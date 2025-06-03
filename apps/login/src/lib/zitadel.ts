@@ -7,7 +7,10 @@ import {
   OIDCService,
 } from "@zitadel/proto/zitadel/oidc/v2/oidc_service_pb";
 import { Organization } from "@zitadel/proto/zitadel/org/v2/org_pb";
-import { OrganizationService } from "@zitadel/proto/zitadel/org/v2/org_service_pb";
+import {
+  AddOrganizationRequest_AdminJson,
+  OrganizationService,
+} from "@zitadel/proto/zitadel/org/v2/org_service_pb";
 import {
   CreateResponseRequest,
   SAMLService,
@@ -42,6 +45,7 @@ import {
   VerifyU2FRegistrationRequest,
 } from "@zitadel/proto/zitadel/user/v2/user_service_pb";
 import { unstable_cacheLife as cacheLife } from "next/cache";
+import { v4 as uuidv4 } from "uuid";
 import { getUserAgent } from "./fingerprint";
 import { createServiceForHost } from "./service";
 
@@ -391,36 +395,89 @@ export type AddHumanUserData = {
   organization: string | undefined;
 };
 
+export async function addOrganizationAndHumanUser({
+  serviceUrl,
+  email,
+  firstName,
+  lastName,
+  password,
+}: AddHumanUserData) {
+  const orgService: Client<typeof OrganizationService> =
+    await createServiceForHost(OrganizationService, serviceUrl);
+
+  return await orgService.addOrganization({
+    name: uuidv4(),
+    admins: [
+      {
+        userType: {
+          case: "human",
+          value: {
+            email: {
+              email,
+              verification: {
+                case: "isVerified",
+                value: false,
+              },
+            },
+            username: email,
+            profile: { givenName: firstName, familyName: lastName },
+            metadata: [
+              {
+                key: "project",
+                value: process.env.ZITADEL_PROJECT_ID,
+              },
+            ],
+            passwordType: password
+              ? { case: "password", value: { password } }
+              : undefined,
+          },
+        } ,
+      } as AddOrganizationRequest_AdminJson,
+    ],
+  });
+}
+
 export async function addHumanUser({
   serviceUrl,
   email,
   firstName,
   lastName,
   password,
-  organization,
+  organization
 }: AddHumanUserData) {
-  const userService: Client<typeof UserService> = await createServiceForHost(
-    UserService,
+  const oRsp = await addOrganizationAndHumanUser({
     serviceUrl,
-  );
-
-  return userService.addHumanUser({
-    email: {
-      email,
-      verification: {
-        case: "isVerified",
-        value: false,
-      },
-    },
-    username: email,
-    profile: { givenName: firstName, familyName: lastName },
-    organization: organization
-      ? { org: { case: "orgId", value: organization } }
-      : undefined,
-    passwordType: password
-      ? { case: "password", value: { password } }
-      : undefined,
+    firstName,
+    lastName,
+    email,
+    password,
+    organization,
   });
+  if (!oRsp) return;
+  return oRsp.createdAdmins[0];
+
+  // const userService: Client<typeof UserService> = await createServiceForHost(
+  //   UserService,
+  //   serviceUrl,
+  // );
+  //
+  // return userService.addHumanUser({
+  //   email: {
+  //     email,
+  //     verification: {
+  //       case: "isVerified",
+  //       value: false,
+  //     },
+  //   },
+  //   username: email,
+  //   profile: { givenName: firstName, familyName: lastName },
+  //   organization: organization
+  //     ? { org: { case: "orgId", value: organization } }
+  //     : undefined,
+  //   passwordType: password
+  //     ? { case: "password", value: { password } }
+  //     : undefined,
+  // });
 }
 
 export async function addHuman({
