@@ -7,10 +7,7 @@ import {
   OIDCService,
 } from "@zitadel/proto/zitadel/oidc/v2/oidc_service_pb";
 import { Organization } from "@zitadel/proto/zitadel/org/v2/org_pb";
-import {
-  AddOrganizationRequest_AdminJson,
-  OrganizationService,
-} from "@zitadel/proto/zitadel/org/v2/org_service_pb";
+import { OrganizationService } from "@zitadel/proto/zitadel/org/v2/org_service_pb";
 import {
   CreateResponseRequest,
   SAMLService,
@@ -405,6 +402,7 @@ export async function addOrganizationAndHumanUser({
   const orgService: Client<typeof OrganizationService> =
     await createServiceForHost(OrganizationService, serviceUrl);
 
+  let utf8Encode = new TextEncoder();
   return await orgService.addOrganization({
     name: uuidv4(),
     admins: [
@@ -424,7 +422,7 @@ export async function addOrganizationAndHumanUser({
             metadata: [
               {
                 key: "project",
-                value: process.env.ZITADEL_PROJECT_ID,
+                value: utf8Encode.encode(process.env.ZITADEL_PROJECT_ID),
               },
             ],
             passwordType: password
@@ -432,7 +430,7 @@ export async function addOrganizationAndHumanUser({
               : undefined,
           },
         } ,
-      } as AddOrganizationRequest_AdminJson,
+      },
     ],
   });
 }
