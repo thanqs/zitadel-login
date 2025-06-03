@@ -412,10 +412,10 @@ export async function addOrganizationAndHumanUser({
           value: {
             email: {
               email,
-              verification: {
-                case: "isVerified",
-                value: false,
-              },
+              // verification: {
+              //   case: "isVerified",
+              //   value: false,
+              // },
             },
             username: email,
             profile: { givenName: firstName, familyName: lastName },
