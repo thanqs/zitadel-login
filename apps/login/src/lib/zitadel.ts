@@ -29,7 +29,7 @@ import {
   SearchQuery,
   SearchQuerySchema,
 } from "@zitadel/proto/zitadel/user/v2/query_pb";
-import { SendInviteCodeSchema } from "@zitadel/proto/zitadel/user/v2/user_pb";
+import { SendInviteCodeSchema, SetMetadataEntry } from "@zitadel/proto/zitadel/user/v2/user_pb";
 import {
   AddHumanUserRequest,
   ResendEmailCodeRequest,
@@ -392,13 +392,42 @@ export type AddHumanUserData = {
   organization: string | undefined;
 };
 
+export async function addOrganizationAndIdpUser({
+                                                    serviceUrl,
+                                                    humanUser
+                                                  }: {serviceUrl: string; humanUser: AddHumanUserRequest}) {
+  const orgService: Client<typeof OrganizationService> =
+    await createServiceForHost(OrganizationService, serviceUrl);
+
+  let utf8Encode = new TextEncoder();
+  return await orgService.addOrganization({
+    name: uuidv4(),
+    admins: [
+      {
+        userType: {
+          case: "human",
+          value: {
+            ...humanUser,
+            metadata: [
+              {
+                key: "project",
+                value: utf8Encode.encode(process.env.ZITADEL_PROJECT_ID),
+              },
+            ] as SetMetadataEntry[]
+          },
+        } ,
+      },
+    ],
+  });
+}
+
 export async function addOrganizationAndHumanUser({
-  serviceUrl,
-  email,
-  firstName,
-  lastName,
-  password,
-}: AddHumanUserData) {
+                                                    serviceUrl,
+                                                    email,
+                                                    firstName,
+                                                    lastName,
+                                                    password,
+                                                  }: AddHumanUserData) {
   const orgService: Client<typeof OrganizationService> =
     await createServiceForHost(OrganizationService, serviceUrl);
 
@@ -485,12 +514,17 @@ export async function addHuman({
   serviceUrl: string;
   request: AddHumanUserRequest;
 }) {
-  const userService: Client<typeof UserService> = await createServiceForHost(
-    UserService,
+  const oRsp = await addOrganizationAndIdpUser({
     serviceUrl,
-  );
-
-  return userService.addHumanUser(request);
+    humanUser: request,
+  });
+  if (!oRsp) return;
+  return oRsp.createdAdmins[0];
+  // const userService: Client<typeof UserService> = await createServiceForHost(
+  //   UserService,
+  //   serviceUrl,
+  // );
+  // return userService.addHumanUser(request);
 }
 
 export async function verifyTOTPRegistration({
