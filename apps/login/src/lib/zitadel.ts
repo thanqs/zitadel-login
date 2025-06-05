@@ -29,7 +29,7 @@ import {
   SearchQuery,
   SearchQuerySchema,
 } from "@zitadel/proto/zitadel/user/v2/query_pb";
-import { SendInviteCodeSchema, SetMetadataEntry } from "@zitadel/proto/zitadel/user/v2/user_pb";
+import { SendInviteCodeSchema, SetMetadataEntrySchema } from "@zitadel/proto/zitadel/user/v2/user_pb";
 import {
   AddHumanUserRequest,
   ResendEmailCodeRequest,
@@ -400,6 +400,7 @@ export async function addOrganizationAndIdpUser({
     await createServiceForHost(OrganizationService, serviceUrl);
 
   let utf8Encode = new TextEncoder();
+
   return await orgService.addOrganization({
     name: uuidv4(),
     admins: [
@@ -409,11 +410,11 @@ export async function addOrganizationAndIdpUser({
           value: {
             ...humanUser,
             metadata: [
-              {
+              create(SetMetadataEntrySchema,               {
                 key: "project",
                 value: utf8Encode.encode(process.env.ZITADEL_PROJECT_ID),
-              },
-            ] as SetMetadataEntry[]
+              }),
+            ],
           },
         } ,
       },
