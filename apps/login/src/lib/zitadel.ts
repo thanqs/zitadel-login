@@ -468,15 +468,7 @@ export async function addOrganizationAndHumanUser({
       },
     ],
     });
-
-    addHumanUserRequest = {
-      ...addHumanUserRequest,
-      organization: organizationSchema,
-    };
   }
-
-  return userService.addHumanUser(addHumanUserRequest);
-}
 
 export async function addHumanUser({
   serviceUrl,
@@ -533,6 +525,7 @@ export async function addHumanUser({
   // }
   //
   // return userService.addHumanUser(addHumanUserRequest);}
+}
 
 export async function addHuman({
   serviceUrl,
