@@ -8,9 +8,9 @@ RUN adduser --system --uid 1001 nextjs
 # If /.env-file/.env is mounted into the container, its variables are made available to the server before it starts up.
 RUN mkdir -p /.env-file && touch /.env-file/.env && chown -R nextjs:nodejs /.env-file
 
-COPY --chown=nextjs:nodejs ./docker/apps/login/.next/standalone ./
-COPY --chown=nextjs:nodejs ./docker/apps/login/.next/static ./apps/login/.next/static
-COPY --chown=nextjs:nodejs ./docker/apps/login/public ./apps/login/public
+COPY --chown=nextjs:nodejs ./apps/login/.next/standalone ./
+COPY --chown=nextjs:nodejs ./apps/login/.next/static ./apps/login/.next/static
+COPY --chown=nextjs:nodejs ./apps/login/public ./apps/login/public
 
 USER nextjs
 ENV HOSTNAME="0.0.0.0"
