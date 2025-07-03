@@ -45,7 +45,7 @@ export default async function RootLayout({
               <div
                 className={`relative min-h-screen  flex  gap-8 justify-center`}
               >
-                <div className="relative ml-4  py-8 w-8/12 flex-col">
+                <div className="relative ml-4  py-8 w-full flex-col">
                   <Logo
                     lightSrc="/logo/thanqs-logo.svg"
                     darkSrc="/logo/thanqs-logo.svg"
@@ -60,14 +60,14 @@ export default async function RootLayout({
                     </div>
                   </div>
                 </div>
-                <div className="relative py-8 w-4/12 flex-col max-h-screen">
+                <div className="relative hidden py-8 px-8 w-4/12 flex-col max-h-screen lg:block">
                   <div
                     style={{
                       backgroundColor: "hsl(271,54%,92%)",
                       height: "100%",
                       width: "100%",
                     }}
-                    className="relative hidden w-full max-w-[566px] shrink-0 overflow-hidden rounded-[20px]  lg:block"
+                    className="relative w-full max-w-[566px] shrink-0 overflow-hidden rounded-[20px]"
                   >
                     <GiftsAndPresentsIllustration />
                   </div>
