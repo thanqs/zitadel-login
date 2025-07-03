@@ -73,7 +73,7 @@ jobs:
       - name: Build for Docker
         run: |
           pnpm build
-          NEXT_PUBLIC_BASE_PATH=/v2/login pnpm build:login:standalone
+          pnpm build:login:standalone
 
       - name: Build and Push Image
         id: build
