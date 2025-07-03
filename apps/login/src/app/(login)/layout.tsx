@@ -60,14 +60,14 @@ export default async function RootLayout({
                     </div>
                   </div>
                 </div>
-                <div className="relative py-4 w-4/12 flex-col max-h-screen">
+                <div className="relative py-8 w-4/12 flex-col max-h-screen">
                   <div
                     style={{
                       backgroundColor: "hsl(271,54%,92%)",
                       height: "100%",
                       width: "100%",
                     }}
-                    className="relative m-8 hidden  w-full max-w-[566px] shrink-0 overflow-hidden rounded-[20px]  lg:block"
+                    className="relative hidden w-full max-w-[566px] shrink-0 overflow-hidden rounded-[20px]  lg:block"
                   >
                     <GiftsAndPresentsIllustration />
                   </div>
