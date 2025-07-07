@@ -9,8 +9,8 @@ RUN adduser --system --uid 1001 nextjs
 RUN mkdir -p /.env-file && touch /.env-file/.env && chown -R nextjs:nodejs /.env-file
 
 COPY --chown=nextjs:nodejs ./apps/login/.next/standalone ./
-COPY --chown=nextjs:nodejs ./apps/login/.next/static ./apps/login/.next/static
-COPY --chown=nextjs:nodejs ./apps/login/public ./apps/login/public
+COPY --chown=nextjs:nodejs ./apps/login/.next/static ./static
+COPY --chown=nextjs:nodejs ./apps/login/public ./public
 
 USER nextjs
 ENV HOSTNAME="0.0.0.0"
