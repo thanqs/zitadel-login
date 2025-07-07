@@ -10,9 +10,10 @@ import { Analytics } from "@vercel/analytics/react";
 import { Lato } from "next/font/google";
 import { ReactNode, Suspense } from "react";
 import Ribbon from "public/icons/ribbon.svg"
-import Flowers from "public/icons/flowers.svg.svg"
-import Present from "public/icons/Present.svg"
+import Flowers from "public/icons/flowers.svg"
+import Present from "public/icons/present.svg"
 import LogoSvg from "public/logo/thanqs-logo.svg"
+import Image from "next/image";
 
 
 const lato = Lato({
@@ -89,20 +90,23 @@ export default async function RootLayout({
 
 const GiftsAndPresentsIllustration = () => (
   <>
-    <img
+    <Image
       src={Ribbon}
+      alt="Ribbon"
       width={403}
       height={403}
       className="absolute -top-20 -right-28 -rotate-12"
     />
-    <img
+    <Image
       src={Flowers}
+      alt="Flowers"
       width={442}
       height={442}
       className="absolute top-[20%] -left-40 rotate-45"
     />
-    <img
+    <Image
       src={Present}
+      alt="Present"
       width={483}
       height={483}
       className="absolute -right-16 -bottom-32 -rotate-[19deg]"
