@@ -9,6 +9,11 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/react";
 import { Lato } from "next/font/google";
 import { ReactNode, Suspense } from "react";
+import Ribbon from "public/icons/ribbon.svg"
+import Flowers from "public/icons/flowers.svg.svg"
+import Present from "public/icons/Present.svg"
+import LogoSvg from "public/logo/thanqs-logo.svg"
+
 
 const lato = Lato({
   weight: ["400", "700", "900"],
@@ -47,8 +52,8 @@ export default async function RootLayout({
               >
                 <div className="relative ml-4  py-8 w-full flex-col">
                   <Logo
-                    lightSrc="/logo/thanqs-logo.svg"
-                    darkSrc="/logo/thanqs-logo.svg"
+                    lightSrc={LogoSvg}
+                    darkSrc={LogoSvg}
                     height={150}
                     width={128}
                   />
@@ -85,19 +90,19 @@ export default async function RootLayout({
 const GiftsAndPresentsIllustration = () => (
   <>
     <img
-      src="/icons/ribbon.svg"
+      src={Ribbon}
       width={403}
       height={403}
       className="absolute -top-20 -right-28 -rotate-12"
     />
     <img
-      src="/icons/flowers.svg"
+      src={Flowers}
       width={442}
       height={442}
       className="absolute top-[20%] -left-40 rotate-45"
     />
     <img
-      src="/icons/present.svg"
+      src={Present}
       width={483}
       height={483}
       className="absolute -right-16 -bottom-32 -rotate-[19deg]"
