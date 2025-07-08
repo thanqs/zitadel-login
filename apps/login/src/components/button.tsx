@@ -33,11 +33,11 @@ export const getButtonClasses = (
   color: ButtonColors,
 ) =>
   clsx({
-    "box-border font-normal leading-36px text-14px inline-flex items-center rounded-md focus:outline-none transition-colors transition-shadow duration-300":
+    "inline-flex items-center h-10 justify-center gap-2 whitespace-nowrap rounded-3xl text-base font-semibold leading-5 transition cursor-pointer focus-visible:outline-hidden focus-visible:ring-[3px] disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 disabled:bg-neutral-200 disabled:text-neutral-400 font-primary":
       true,
-    "shadow hover:shadow-xl active:shadow-xl disabled:border-none disabled:bg-gray-300 disabled:text-gray-600 disabled:shadow-none disabled:cursor-not-allowed disabled:dark:bg-gray-800 disabled:dark:text-gray-900":
+    "disabled:border-none    disabled:cursor-not-allowed ":
       variant === ButtonVariants.Primary,
-    "bg-primary-light-500 dark:bg-primary-dark-500 hover:bg-primary-light-400 hover:dark:bg-primary-dark-400 text-primary-light-contrast-500 dark:text-primary-dark-contrast-500":
+    "bg-primary text-primary-foreground hover:brightness-105 active:brightness-95":
       variant === ButtonVariants.Primary && color !== ButtonColors.Warn,
     "bg-warn-light-500 dark:bg-warn-dark-500 hover:bg-warn-light-400 hover:dark:bg-warn-dark-400 text-white dark:text-white":
       variant === ButtonVariants.Primary && color === ButtonColors.Warn,
@@ -45,8 +45,8 @@ export const getButtonClasses = (
       variant === ButtonVariants.Secondary,
     "border border-button-light-border dark:border-button-dark-border text-warn-light-500 dark:text-warn-dark-500 hover:bg-warn-light-500 hover:bg-opacity-10 dark:hover:bg-warn-light-500 dark:hover:bg-opacity-10 focus:bg-warn-light-500 focus:bg-opacity-20 dark:focus:bg-warn-light-500 dark:focus:bg-opacity-20":
       color === ButtonColors.Warn && variant !== ButtonVariants.Primary,
-    "px-16 py-2": size === ButtonSizes.Large,
-    "px-4 h-[36px]": size === ButtonSizes.Small,
+    "w-full px-5": size === ButtonSizes.Large,
+    "px-5": size === ButtonSizes.Small,
   });
 
 // eslint-disable-next-line react/display-name
@@ -65,6 +65,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     <button
       type="button"
       ref={ref}
+      style={{ backgroundColor: variant === ButtonVariants.Primary ? "hsl(48,100%,50%)": "inherit" }}
       className={`${getButtonClasses(size, variant, color)} ${className}`}
       {...props}
     >

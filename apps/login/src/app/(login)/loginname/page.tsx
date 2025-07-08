@@ -59,14 +59,25 @@ export default async function Page(props: {
   });
 
   return (
-    <DynamicTheme branding={branding}>
-      <div className="flex flex-col items-center space-y-4">
-        <h1 data-i18n-key="error.tryagain">
-          <Translated i18nKey="title" namespace="loginname" />
-        </h1>
-        <p className="ztdl-p">
-          <Translated i18nKey="description" namespace="loginname" />
-        </p>
+      <>
+        <h2  data-i18n-key="error.tryagain" style={{
+          color: "hsl(250,100%,38%)",
+          fontSize: "2.25em",
+          lineHeight: "43px",
+        }}><Translated i18nKey="title" namespace="loginname" /></h2>
+        {/*<p className="ztdl-p">*/}
+        {/*  <Translated i18nKey="description" namespace="loginname" />*/}
+        {/*</p>*/}
+
+        {identityProviders && identityProviders.length > 0 && loginSettings?.allowExternalIdp && (
+          <div className="w-full pt-6 pb-4">
+            <SignInWithIdp
+              identityProviders={identityProviders}
+              requestId={requestId}
+              organization={organization}
+            ></SignInWithIdp>
+          </div>
+        )}
 
         <UsernameForm
           loginName={loginName}
@@ -78,16 +89,6 @@ export default async function Page(props: {
           allowRegister={!!loginSettings?.allowRegister}
         ></UsernameForm>
 
-        {identityProviders && loginSettings?.allowExternalIdp && (
-          <div className="w-full pt-6 pb-4">
-            <SignInWithIdp
-              identityProviders={identityProviders}
-              requestId={requestId}
-              organization={organization}
-            ></SignInWithIdp>
-          </div>
-        )}
-      </div>
-    </DynamicTheme>
+      </>
   );
 }

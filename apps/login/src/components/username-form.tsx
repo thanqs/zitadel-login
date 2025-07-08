@@ -97,8 +97,8 @@ export function UsernameForm({
     inputLabel = "Username or email";
   }
 
-  return (
-    <form className="w-full">
+  return (<>
+    <form className="w-full h-full">
       <div className="">
         <TextInput
           type="text"
@@ -108,27 +108,6 @@ export function UsernameForm({
           data-testid="username-text-input"
           suffix={suffix}
         />
-        {allowRegister && (
-          <button
-            className="transition-all text-sm hover:text-primary-light-500 dark:hover:text-primary-dark-500"
-            onClick={() => {
-              const registerParams = new URLSearchParams();
-              if (organization) {
-                registerParams.append("organization", organization);
-              }
-              if (requestId) {
-                registerParams.append("requestId", requestId);
-              }
-
-              router.push("/register?" + registerParams);
-            }}
-            type="button"
-            disabled={loading}
-            data-testid="register-button"
-          >
-            <Translated i18nKey="register" namespace="loginname" />
-          </button>
-        )}
       </div>
 
       {error && (
@@ -152,5 +131,29 @@ export function UsernameForm({
         </Button>
       </div>
     </form>
+      {allowRegister && (
+        <p className="mb-8 text-center text-base font-normal text-neutral-500 md:mb-14">
+        <button
+          className="transition-all text-sm hover:text-primary-light-500 dark:hover:text-primary-dark-500"
+          onClick={() => {
+            const registerParams = new URLSearchParams();
+            if (organization) {
+              registerParams.append("organization", organization);
+            }
+            if (requestId) {
+              registerParams.append("requestId", requestId);
+            }
+
+            router.push("/register?" + registerParams);
+          }}
+          type="button"
+          disabled={loading}
+          data-testid="register-button"
+        >
+          <Translated i18nKey="register" namespace="loginname" />
+        </button>
+        </p>
+      )}
+    </>
   );
 }

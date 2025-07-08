@@ -34,14 +34,28 @@ export default async function RootLayout({
           <Suspense
             fallback={
               <div
-                className={`relative min-h-screen bg-background-light-600 dark:bg-background-dark-600 flex flex-col justify-center`}
+                className={`relative min-h-screen  flex  gap-8 justify-center`}
               >
-                <div className="relative mx-auto max-w-[440px] py-8 w-full">
-                  <Skeleton>
-                    <div className="h-40"></div>
-                  </Skeleton>
-                  <div className="flex flex-row justify-end py-4 items-center space-x-4">
-                    <Theme />
+                <div className="relative w-full flex-col flex grow">
+                  <div className="flex h-[72px] items-center px-4 lg:h-20 lg:px-6">
+                    <Logo
+                      lightSrc={LogoSvg}
+                      darkSrc={LogoSvg}
+                      height={150}
+                      width={128}
+                    />
+                  </div>
+                </div>
+                <div className="relative hidden m-8 w-full max-w-[566px] flex-col max-h-screen lg:block">
+                  <div
+                    style={{
+                      backgroundColor: "hsl(271,54%,92%)",
+                      height: "100%",
+                      width: "100%",
+                    }}
+                    className="relative w-full  shrink-0 overflow-hidden rounded-[20px]"
+                  >
+                    <GiftsAndPresentsIllustration />
                   </div>
                 </div>
               </div>
@@ -51,29 +65,32 @@ export default async function RootLayout({
               <div
                 className={`relative min-h-screen  flex  gap-8 justify-center`}
               >
-                <div className="relative ml-4  py-8 w-full flex-col">
+                <div className="relative w-full flex-col flex grow">
+                  <div className="flex h-[72px] items-center px-4 lg:h-20 lg:px-6">
                   <Logo
                     lightSrc={LogoSvg}
                     darkSrc={LogoSvg}
                     height={150}
                     width={128}
                   />
-                  <div className="max-w-[440px] justify-center mx-auto">
+                  </div>
+                  <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
                     {children}
-                    <div className="flex flex-row justify-end py-4 items-center space-x-4">
-                      <LanguageSwitcher />
-                      <Theme />
-                    </div>
+
+                  </div>
+                  <div className="flex flex-row justify-end py-4 items-center space-x-4">
+                    <LanguageSwitcher />
+                    <Theme />
                   </div>
                 </div>
-                <div className="relative hidden py-8 px-8 w-4/12 flex-col max-h-screen lg:block">
+                <div className="relative hidden m-8 w-full max-w-[566px] flex-col max-h-screen lg:block">
                   <div
                     style={{
                       backgroundColor: "hsl(271,54%,92%)",
                       height: "100%",
                       width: "100%",
                     }}
-                    className="relative w-full max-w-[566px] shrink-0 overflow-hidden rounded-[20px]"
+                    className="relative w-full  shrink-0 overflow-hidden rounded-[20px]"
                   >
                     <GiftsAndPresentsIllustration />
                   </div>
