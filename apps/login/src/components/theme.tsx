@@ -13,7 +13,8 @@ export function Theme() {
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
     setMounted(true);
-  }, []);
+    setTheme("light"); // Set the theme to system on mount
+  });
 
   if (!mounted) {
     return null;
@@ -27,7 +28,7 @@ export function Theme() {
         className={`h-8 w-8 rounded-full flex flex-row items-center justify-center hover:opacity-100 transition-all ${
           isDark ? "bg-black/10 dark:bg-white/10" : "opacity-60"
         }`}
-        onClick={() => setTheme("dark")}
+        onClick={() => setTheme("light")}
       >
         <MoonIcon className="h-4 w-4 flex-shrink-0 text-xl rounded-full" />
       </button>

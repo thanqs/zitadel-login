@@ -3,11 +3,9 @@ import "@/styles/globals.scss";
 import { LanguageProvider } from "@/components/language-provider";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Logo } from "@/components/logo";
-import { Skeleton } from "@/components/skeleton";
-import { Theme } from "@/components/theme";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/react";
-import { Lato } from "next/font/google";
+import { Fustat } from "next/font/google";
 import { ReactNode, Suspense } from "react";
 import Ribbon from "public/icons/ribbon.svg"
 import Flowers from "public/icons/flowers.svg"
@@ -16,9 +14,10 @@ import LogoSvg from "public/logo/thanqs-logo.svg"
 import Image from "next/image";
 
 
-const lato = Lato({
-  weight: ["400", "700", "900"],
+const fustat = Fustat({
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
   subsets: ["latin"],
+
 });
 
 export default async function RootLayout({
@@ -27,8 +26,13 @@ export default async function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html className={`${lato.className}`} suppressHydrationWarning>
-      <head />
+    <html className={`${fustat.className}`} suppressHydrationWarning>
+      <head>
+        <link
+          href="https://fonts.cdnfonts.com/css/general-sans"
+          rel="stylesheet"
+        />
+      </head>
       <body>
         <ThemeProvider>
           <Suspense
@@ -67,20 +71,18 @@ export default async function RootLayout({
               >
                 <div className="relative w-full flex-col flex grow">
                   <div className="flex h-[72px] items-center px-4 lg:h-20 lg:px-6">
-                  <Logo
-                    lightSrc={LogoSvg}
-                    darkSrc={LogoSvg}
-                    height={150}
-                    width={128}
-                  />
+                    <Logo
+                      lightSrc={LogoSvg}
+                      darkSrc={LogoSvg}
+                      height={150}
+                      width={128}
+                    />
                   </div>
                   <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
                     {children}
-
                   </div>
                   <div className="flex flex-row justify-end py-4 items-center space-x-4">
                     <LanguageSwitcher />
-                    <Theme />
                   </div>
                 </div>
                 <div className="relative hidden m-8 w-full max-w-[566px] flex-col max-h-screen lg:block">

@@ -14,6 +14,13 @@
   .ztdl-p {
     @apply text-sm text-center text-text-light-secondary-500 dark:text-text-dark-secondary-500 text-center;
   }
+
+  /**********THANQS**********/
+    h2 {
+        @apply text-4xl;
+        line-height: 43px;
+        font-weight: 600;
+    }
 }
 
 html {
@@ -63,3 +70,7 @@ html {
     background-position: -200% 0;
   }
 }
+
+h2 {
+    font-family: "General Sans", system-ui, sans-serif
+   }

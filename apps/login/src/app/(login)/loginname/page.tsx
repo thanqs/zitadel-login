@@ -1,11 +1,9 @@
-import { DynamicTheme } from "@/components/dynamic-theme";
 import { SignInWithIdp } from "@/components/sign-in-with-idp";
 import { Translated } from "@/components/translated";
 import { UsernameForm } from "@/components/username-form";
 import { getServiceUrlFromHeaders } from "@/lib/service-url";
 import {
   getActiveIdentityProviders,
-  getBrandingSettings,
   getDefaultOrg,
   getLoginSettings,
 } from "@/lib/zitadel";
@@ -53,17 +51,10 @@ export default async function Page(props: {
     return resp.identityProviders;
   });
 
-  const branding = await getBrandingSettings({
-    serviceUrl,
-    organization: organization ?? defaultOrganization,
-  });
-
   return (
       <>
         <h2  data-i18n-key="error.tryagain" style={{
           color: "hsl(250,100%,38%)",
-          fontSize: "2.25em",
-          lineHeight: "43px",
         }}><Translated i18nKey="title" namespace="loginname" /></h2>
         {/*<p className="ztdl-p">*/}
         {/*  <Translated i18nKey="description" namespace="loginname" />*/}

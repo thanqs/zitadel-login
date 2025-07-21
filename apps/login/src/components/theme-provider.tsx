@@ -8,7 +8,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       attribute="class"
       defaultTheme="system"
       storageKey="cp-theme"
-      value={{ dark: "dark" }}
+      value={{ dark: "light" }}
     >
       {children}
     </ThemeP>

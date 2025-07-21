@@ -1,0 +1,250 @@
+{
+  "common": {
+    "back": "Terug"
+  },
+  "accounts": {
+    "title": "Accounts",
+    "description": "Selecteer het account dat je wilt gebruiken.",
+    "addAnother": "Voeg een ander account toe",
+    "noResults": "Geen accounts gevonden"
+  },
+  "logout": {
+    "title": "Uitloggen",
+    "description": "Klik op een account om de sessie te beëindigen",
+    "noResults": "Geen accounts gevonden",
+    "clear": "Sessie beëindigen",
+    "verifiedAt": "Laatst actief: {time}",
+    "success": {
+      "title": "Succesvol uitgelogd",
+      "description": "Je bent succesvol uitgelogd."
+    }
+  },
+  "loginname": {
+    "title": "Inloggen",
+    "description": "Voer je inloggegevens in.",
+    "register": "Nieuwe gebruiker registreren",
+    "submit": "Doorgaan"
+  },
+  "password": {
+    "verify": {
+      "title": "Wachtwoord",
+      "description": "Voer je wachtwoord in.",
+      "resetPassword": "Wachtwoord resetten",
+      "submit": "Doorgaan"
+    },
+    "set": {
+      "title": "Wachtwoord instellen",
+      "description": "Stel het wachtwoord voor je account in",
+      "codeSent": "Er is een code naar je e-mailadres gestuurd.",
+      "noCodeReceived": "Geen code ontvangen?",
+      "resend": "Code opnieuw versturen",
+      "submit": "Doorgaan"
+    },
+    "change": {
+      "title": "Wachtwoord wijzigen",
+      "description": "Stel het wachtwoord voor je account in",
+      "submit": "Doorgaan"
+    }
+  },
+  "idp": {
+    "title": "Inloggen met SSO",
+    "description": "Selecteer een van de volgende providers om in te loggen",
+    "orSignInWith": "of inloggen met",
+    "signInWithApple": "Inloggen met Apple",
+    "signInWithGoogle": "Inloggen met Google",
+    "signInWithAzureAD": "Inloggen met AzureAD",
+    "signInWithGithub": "Inloggen met GitHub",
+    "signInWithGitlab": "Inloggen met GitLab",
+    "loginSuccess": {
+      "title": "Succesvol ingelogd",
+      "description": "Je bent succesvol ingelogd!"
+    },
+    "linkingSuccess": {
+      "title": "Account gekoppeld",
+      "description": "Je hebt je account succesvol gekoppeld!"
+    },
+    "registerSuccess": {
+      "title": "Registratie succesvol",
+      "description": "Je bent succesvol geregistreerd!"
+    },
+    "loginError": {
+      "title": "Inloggen mislukt",
+      "description": "Er is een fout opgetreden bij het inloggen."
+    },
+    "linkingError": {
+      "title": "Account koppelen mislukt",
+      "description": "Er is een fout opgetreden bij het koppelen van je account."
+    },
+    "completeRegister": {
+      "title": "Vul je gegevens aan",
+      "description": "Je moet je registratie voltooien door je e-mailadres en naam op te geven."
+    }
+  },
+  "ldap": {
+    "title": "LDAP Login",
+    "description": "Voer je LDAP-gegevens in.",
+    "username": "Gebruikersnaam",
+    "password": "Wachtwoord",
+    "submit": "Doorgaan"
+  },
+  "mfa": {
+    "verify": {
+      "title": "Verifieer je identiteit",
+      "description": "Kies een van de volgende factoren.",
+      "noResults": "Geen tweede factoren beschikbaar om in te stellen."
+    },
+    "set": {
+      "title": "2-Factor instellen",
+      "description": "Kies een van de volgende tweede factoren.",
+      "skip": "Overslaan"
+    }
+  },
+  "otp": {
+    "verify": {
+      "title": "2-Factor verifiëren",
+      "totpDescription": "Voer de code in van je authenticator-app.",
+      "smsDescription": "Voer de code in die je via SMS hebt ontvangen.",
+      "emailDescription": "Voer de code in die je via e-mail hebt ontvangen.",
+      "noCodeReceived": "Geen code ontvangen?",
+      "resendCode": "Code opnieuw versturen",
+      "submit": "Doorgaan"
+    },
+    "set": {
+      "title": "2-Factor instellen",
+      "totpDescription": "Scan de QR-code met je authenticator-app.",
+      "smsDescription": "Voer je telefoonnummer in om een code via SMS te ontvangen.",
+      "emailDescription": "Voer je e-mailadres in om een code via e-mail te ontvangen.",
+      "totpRegisterDescription": "Scan de QR-code of navigeer handmatig naar de URL.",
+      "submit": "Doorgaan"
+    }
+  },
+  "passkey": {
+    "verify": {
+      "title": "Authenticeren met een passkey",
+      "description": "Je apparaat vraagt om je vingerafdruk, gezicht of schermvergrendeling",
+      "usePassword": "Gebruik wachtwoord",
+      "submit": "Doorgaan"
+    },
+    "set": {
+      "title": "Passkey instellen",
+      "description": "Je apparaat vraagt om je vingerafdruk, gezicht of schermvergrendeling",
+      "info": {
+        "description": "Een passkey is een authenticatiemethode op een apparaat zoals je vingerafdruk, Apple FaceID of iets vergelijkbaars.",
+        "link": "Wachtwoordloze authenticatie"
+      },
+      "skip": "Overslaan",
+      "submit": "Doorgaan"
+    }
+  },
+  "u2f": {
+    "verify": {
+      "title": "2-Factor verifiëren",
+      "description": "Verifieer je account met je apparaat."
+    },
+    "set": {
+      "title": "2-Factor instellen",
+      "description": "Stel een apparaat in als tweede factor.",
+      "submit": "Doorgaan"
+    }
+  },
+  "register": {
+    "methods": {
+      "passkey": "Passkey",
+      "password": "Wachtwoord"
+    },
+    "disabled": {
+      "title": "Registratie uitgeschakeld",
+      "description": "Registratie is uitgeschakeld. Neem contact op met je beheerder."
+    },
+    "missingdata": {
+      "title": "Gegevens ontbreken",
+      "description": "Geef e-mail, voor- en achternaam op om te registreren."
+    },
+    "title": "Registreren",
+    "description": "Maak je ZITADEL-account aan.",
+    "noMethodAvailableWarning": "Geen authenticatiemethode beschikbaar. Neem contact op met je beheerder.",
+    "selectMethod": "Selecteer de methode waarmee je wilt authenticeren",
+    "agreeTo": "Om te registreren moet je akkoord gaan met de algemene voorwaarden",
+    "termsOfService": "Algemene voorwaarden",
+    "privacyPolicy": "Privacybeleid",
+    "submit": "Doorgaan",
+    "orUseIDP": "of gebruik een Identity Provider",
+    "password": {
+      "title": "Wachtwoord instellen",
+      "description": "Stel het wachtwoord voor je account in",
+      "submit": "Doorgaan"
+    }
+  },
+  "invite": {
+    "title": "Gebruiker uitnodigen",
+    "description": "Geef het e-mailadres en de naam op van de gebruiker die je wilt uitnodigen.",
+    "info": "De gebruiker ontvangt een e-mail met verdere instructies.",
+    "notAllowed": "Je instellingen staan niet toe om gebruikers uit te nodigen.",
+    "submit": "Doorgaan",
+    "success": {
+      "title": "Gebruiker uitgenodigd",
+      "description": "De e-mail is succesvol verzonden.",
+      "verified": "De gebruiker is uitgenodigd en heeft zijn e-mail al geverifieerd.",
+      "notVerifiedYet": "De gebruiker is uitgenodigd. Ze ontvangen een e-mail met verdere instructies.",
+      "submit": "Nog een gebruiker uitnodigen"
+    }
+  },
+  "signedin": {
+    "title": "Welkom {user}!",
+    "description": "Je bent ingelogd.",
+    "continue": "Doorgaan",
+    "error": {
+      "title": "Fout",
+      "description": "Er is een fout opgetreden bij het inloggen."
+    }
+  },
+  "verify": {
+    "userIdMissing": "Geen gebruikers-ID opgegeven!",
+    "successTitle": "Gebruiker geverifieerd",
+    "successDescription": "De gebruiker is succesvol geverifieerd.",
+    "setupAuthenticator": "Authenticator instellen",
+    "verify": {
+      "title": "Gebruiker verifiëren",
+      "description": "Voer de code in die in de verificatie-e-mail staat.",
+      "noCodeReceived": "Geen code ontvangen?",
+      "resendCode": "Code opnieuw versturen",
+      "codeSent": "Er is zojuist een code naar je e-mailadres gestuurd.",
+      "submit": "Doorgaan"
+    }
+  },
+  "authenticator": {
+    "title": "Kies authenticatiemethode",
+    "description": "Selecteer de methode waarmee je wilt authenticeren",
+    "noMethodsAvailable": "Geen authenticatiemethoden beschikbaar",
+    "allSetup": "Je hebt al een authenticator ingesteld!",
+    "linkWithIDP": "of koppel met een Identity Provider"
+  },
+  "device": {
+    "usercode": {
+      "title": "Apparaatcode",
+      "description": "Voer de code in die op je app of apparaat wordt weergegeven.",
+      "submit": "Doorgaan"
+    },
+    "request": {
+      "title": "{appName} wil verbinden",
+      "description": "{appName} krijgt toegang tot:",
+      "disclaimer": "Door op Toestaan te klikken, geef je {appName} en Zitadel toestemming om je informatie te gebruiken volgens hun respectievelijke algemene voorwaarden en privacybeleid. Je kunt deze toegang op elk moment intrekken.",
+      "submit": "Toestaan",
+      "deny": "Weigeren"
+    },
+    "scope": {
+      "openid": "Verifieer je identiteit.",
+      "email": "Bekijk je e-mailadres.",
+      "profile": "Bekijk je volledige profielinformatie.",
+      "offline_access": "Sta offline toegang tot je account toe."
+    }
+  },
+  "error": {
+    "noUserCode": "Geen gebruikerscode opgegeven!",
+    "noDeviceRequest": "Geen apparaatverzoek gevonden.",
+    "unknownContext": "Kon de context van de gebruiker niet ophalen. Zorg ervoor dat je eerst de gebruikersnaam invoert of een loginName als zoekparameter opgeeft.",
+    "sessionExpired": "Je huidige sessie is verlopen. Log opnieuw in.",
+    "failedLoading": "Gegevens laden mislukt. Probeer het opnieuw.",
+    "tryagain": "Opnieuw proberen"
+  }
+}

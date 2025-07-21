@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Alert } from "./alert";
-import { BackButton } from "./back-button";
 import { Button, ButtonVariants } from "./button";
 import { TextInput } from "./input";
 import { Spinner } from "./spinner";
@@ -85,7 +84,7 @@ export function UsernameForm({
     }
   }, []);
 
-  let inputLabel = "Loginname";
+  let inputLabel = "E-mailadres";
   if (
     loginSettings?.disableLoginWithEmail &&
     loginSettings?.disableLoginWithPhone
@@ -107,21 +106,23 @@ export function UsernameForm({
           label={inputLabel}
           data-testid="username-text-input"
           suffix={suffix}
+          style={{
+            borderColor: error? "#920000" : "var(--border-color)",
+            borderWidth: error? 2:0,
+          }}
         />
       </div>
 
       {error && (
-        <div className="py-4" data-testid="error">
+        <div data-testid="error">
           <Alert>{error}</Alert>
         </div>
       )}
       <div className="mt-4 flex w-full flex-row items-center">
-        <BackButton data-testid="back-button" />
-        <span className="flex-grow"></span>
         <Button
           data-testid="submit-button"
           type="submit"
-          className="self-end"
+          className="w-full"
           variant={ButtonVariants.Primary}
           disabled={loading || !formState.isValid}
           onClick={handleSubmit((e) => submitLoginName(e, organization))}
