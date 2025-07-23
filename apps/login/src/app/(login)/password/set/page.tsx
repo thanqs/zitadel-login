@@ -1,8 +1,8 @@
-import { Alert, AlertType } from "@/components/alert";
+import { Alert } from "@/components/alert";
 import { DynamicTheme } from "@/components/dynamic-theme";
 import { SetPasswordForm } from "@/components/set-password-form";
+import { ThanqsResetEmailSendAgain } from "@/components/thanqs-reset-email-send-again";
 import { Translated } from "@/components/translated";
-import { UserAvatar } from "@/components/user-avatar";
 import { getServiceUrlFromHeaders } from "@/lib/service-url";
 import { loadMostRecentSession } from "@/lib/session";
 import {
@@ -15,12 +15,13 @@ import { Session } from "@zitadel/proto/zitadel/session/v2/session_pb";
 import { HumanUser, User } from "@zitadel/proto/zitadel/user/v2/user_pb";
 import { getLocale } from "next-intl/server";
 import { headers } from "next/headers";
+import Image from "next/image";
+import EnvelopeIcon from "public/icons/envelope.svg";
 
 export default async function Page(props: {
   searchParams: Promise<Record<string | number | symbol, string | undefined>>;
 }) {
   const searchParams = await props.searchParams;
-  const locale = getLocale();
 
   const { userId, loginName, organization, requestId, code, initial } =
     searchParams;
@@ -56,82 +57,93 @@ export default async function Page(props: {
   });
 
   let user: User | undefined;
-  let displayName: string | undefined;
   if (userId) {
     const userResponse = await getUserByID({
       serviceUrl,
       userId,
     });
     user = userResponse.user;
-
-    if (user?.type.case === "human") {
-      displayName = (user.type.value as HumanUser).profile?.displayName;
-    }
   }
 
-  return (
-    <DynamicTheme branding={branding}>
-      <div className="flex flex-col items-center space-y-4">
-        <h1>
-          {session?.factors?.user?.displayName ?? (
-            <Translated i18nKey="set.title" namespace="password" />
-          )}
-        </h1>
-        <p className="ztdl-p mb-6 block">
-          <Translated i18nKey="set.description" namespace="password" />
-        </p>
-
-        {/* show error only if usernames should be shown to be unknown */}
-        {loginName && !session && !loginSettings?.ignoreUnknownUsernames && (
-          <div className="py-4">
-            <Alert>
-              <Translated i18nKey="unknownContext" namespace="error" />
-            </Alert>
-          </div>
-        )}
-
-        {session ? (
-          <UserAvatar
-            loginName={loginName ?? session.factors?.user?.loginName}
-            displayName={session.factors?.user?.displayName}
-            showDropdown
-            searchParams={searchParams}
-          ></UserAvatar>
-        ) : user ? (
-          <UserAvatar
-            loginName={user?.preferredLoginName}
-            displayName={displayName}
-            showDropdown
-            searchParams={searchParams}
-          ></UserAvatar>
-        ) : null}
-
-        {!initial && (
-          <Alert type={AlertType.INFO}>
+  return initial !== "true" && !code ? (
+    <div className="m-auto w-full max-w-[566px] space-y-6 pb-10">
+      <div className="flex flex-col items-center space-y-4 gap-[40px]">
+        <div className="flex flex-col items-center space-y-4">
+          <Image src={EnvelopeIcon} alt="Envelope" width={100} height={100} />
+          <h2
+            style={{
+              color: "hsl(250,100%,38%)",
+            }}
+          >
+            Check je inbox
+          </h2>
+          <p className="text-center">
             <Translated i18nKey="set.codeSent" namespace="password" />
-          </Alert>
-        )}
-
-        {passwordComplexity &&
-        (loginName ?? user?.preferredLoginName) &&
-        (userId ?? session?.factors?.user?.id) ? (
-          <SetPasswordForm
-            code={code}
-            userId={userId ?? (session?.factors?.user?.id as string)}
-            loginName={loginName ?? (user?.preferredLoginName as string)}
-            requestId={requestId}
-            organization={organization}
-            passwordComplexitySettings={passwordComplexity}
-            codeRequired={!(initial === "true")}
-          />
-        ) : (
-          <div className="py-4">
-            <Alert>
-              <Translated i18nKey="failedLoading" namespace="error" />
-            </Alert>
-          </div>
-        )}
+          </p>
+        </div>
+        <ThanqsResetEmailSendAgain
+          loginName={loginName ?? (user?.preferredLoginName as string)}
+          organization={organization}
+          requestId={requestId}
+        />
       </div>
-    </DynamicTheme>
+    </div>
+  ) : (
+    <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
+      <DynamicTheme branding={branding}>
+        <div className="flex flex-col items-center space-y-4">
+          <h2 style={{ color: "hsl(250,100%,38%)" }}>
+            {session?.factors?.user?.displayName ?? (
+              <Translated i18nKey="set.title" namespace="password" />
+            )}
+          </h2>
+
+          {/* show error only if usernames should be shown to be unknown */}
+          {loginName && !session && !loginSettings?.ignoreUnknownUsernames && (
+            <div className="py-4">
+              <Alert>
+                <Translated i18nKey="unknownContext" namespace="error" />
+              </Alert>
+            </div>
+          )}
+
+          {/*{session ? (*/}
+          {/*  <UserAvatar*/}
+          {/*    loginName={loginName ?? session.factors?.user?.loginName}*/}
+          {/*    displayName={session.factors?.user?.displayName}*/}
+          {/*    showDropdown*/}
+          {/*    searchParams={searchParams}*/}
+          {/*  ></UserAvatar>*/}
+          {/*) : user ? (*/}
+          {/*  <UserAvatar*/}
+          {/*    loginName={user?.preferredLoginName}*/}
+          {/*    displayName={displayName}*/}
+          {/*    showDropdown*/}
+          {/*    searchParams={searchParams}*/}
+          {/*  ></UserAvatar>*/}
+          {/*) : null}*/}
+
+          {passwordComplexity &&
+          (loginName ?? user?.preferredLoginName) &&
+          (userId ?? session?.factors?.user?.id) ? (
+            <SetPasswordForm
+              code={code}
+              userId={userId ?? (session?.factors?.user?.id as string)}
+              loginName={loginName ?? (user?.preferredLoginName as string)}
+              requestId={requestId}
+              organization={organization}
+              passwordComplexitySettings={passwordComplexity}
+              codeRequired={!(initial === "true")}
+            />
+          ) : (
+            <div className="py-4">
+              <Alert>
+                <Translated i18nKey="failedLoading" namespace="error" />
+              </Alert>
+            </div>
+          )}
+        </div>
+      </DynamicTheme>
+    </div>
   );
 }

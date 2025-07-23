@@ -52,7 +52,7 @@ export default async function Page(props: {
   });
 
   return (
-      <>
+      <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
         <h2  data-i18n-key="error.tryagain" style={{
           color: "hsl(250,100%,38%)",
         }}><Translated i18nKey="title" namespace="loginname" /></h2>
@@ -80,6 +80,6 @@ export default async function Page(props: {
           allowRegister={!!loginSettings?.allowRegister}
         ></UsernameForm>
 
-      </>
+      </div>
   );
 }

@@ -7,11 +7,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/react";
 import { Fustat } from "next/font/google";
 import { ReactNode, Suspense } from "react";
-import Ribbon from "public/icons/ribbon.svg"
-import Flowers from "public/icons/flowers.svg"
-import Present from "public/icons/present.svg"
 import LogoSvg from "public/logo/thanqs-logo.svg"
-import Image from "next/image";
+import { ThanqsSidebar } from "@/components/thanqs-sidebar";
 
 
 const fustat = Fustat({
@@ -25,6 +22,7 @@ export default async function RootLayout({
 }: {
   children: ReactNode;
 }) {
+
   return (
     <html className={`${fustat.className}`} suppressHydrationWarning>
       <head>
@@ -59,7 +57,7 @@ export default async function RootLayout({
                     }}
                     className="relative w-full  shrink-0 overflow-hidden rounded-[20px]"
                   >
-                    <GiftsAndPresentsIllustration />
+                    <ThanqsSidebar/>
                   </div>
                 </div>
               </div>
@@ -78,7 +76,7 @@ export default async function RootLayout({
                       width={128}
                     />
                   </div>
-                  <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
+                  <div className="m-auto w-full max-w-[566px] space-y-6 pb-10">
                     {children}
                   </div>
                   <div className="flex flex-row justify-end py-4 items-center space-x-4">
@@ -94,7 +92,7 @@ export default async function RootLayout({
                     }}
                     className="relative w-full  shrink-0 overflow-hidden rounded-[20px]"
                   >
-                    <GiftsAndPresentsIllustration />
+                    <ThanqsSidebar/>
                   </div>
                 </div>
               </div>
@@ -107,28 +105,3 @@ export default async function RootLayout({
   );
 }
 
-const GiftsAndPresentsIllustration = () => (
-  <>
-    <Image
-      src={Ribbon}
-      alt="Ribbon"
-      width={403}
-      height={403}
-      className="absolute -top-20 -right-28 -rotate-12"
-    />
-    <Image
-      src={Flowers}
-      alt="Flowers"
-      width={442}
-      height={442}
-      className="absolute top-[20%] -left-40 rotate-45"
-    />
-    <Image
-      src={Present}
-      alt="Present"
-      width={483}
-      height={483}
-      className="absolute -right-16 -bottom-32 -rotate-[19deg]"
-    />
-  </>
-);

@@ -113,8 +113,8 @@ export function PasswordForm({
   }
 
   return (
-    <form className="w-full">
-      <div className={`${error && "transform-gpu animate-shake"}`}>
+    <form className="w-full flex flex-col gap-6">
+      <div className={`${error && "transform-gpu animate-shake"} flex flex-col gap-3`}>
         <TextInput
           type="password"
           autoComplete="password"
@@ -123,15 +123,16 @@ export function PasswordForm({
           data-testid="password-text-input"
         />
         {!loginSettings?.hidePasswordReset && (
-          <button
-            className="transition-all text-sm hover:text-primary-light-500 dark:hover:text-primary-dark-500"
+          <a
+            className=" transition-all text-sm hover:text-primary-light-500 dark:hover:text-primary-dark-500"
+            style={{ textAlign: "right", color: "#2100C4", textDecoration: "underline", fontWeight: "600", fontSize: "16px" }}
             onClick={() => resetPasswordAndContinue()}
-            type="button"
-            disabled={loading}
+            // type="button"
+            // disabled={loading}
             data-testid="reset-button"
           >
             <Translated i18nKey="verify.resetPassword" namespace="password" />
-          </button>
+          </a>
         )}
 
         {loginName && (
@@ -156,7 +157,7 @@ export function PasswordForm({
         </div>
       )}
 
-      <div className="mt-8 flex w-full flex-row items-center">
+      <div className="flex w-full flex-row items-center">
         <BackButton data-testid="back-button" />
         <span className="flex-grow"></span>
         <Button

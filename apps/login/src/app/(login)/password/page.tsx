@@ -58,45 +58,47 @@ export default async function Page(props: {
   });
 
   return (
-    <DynamicTheme branding={branding}>
-      <div className="flex flex-col items-center space-y-4">
-        <h1>
-          {sessionFactors?.factors?.user?.displayName ?? (
-            <Translated i18nKey="verify.title" namespace="password" />
+    <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
+      <DynamicTheme branding={branding}>
+        <div className="flex flex-col items-center space-y-4">
+          <h1>
+            {sessionFactors?.factors?.user?.displayName ?? (
+              <Translated i18nKey="verify.title" namespace="password" />
+            )}
+          </h1>
+          <p className="ztdl-p mb-6 block">
+            <Translated i18nKey="verify.description" namespace="password" />
+          </p>
+
+          {/* show error only if usernames should be shown to be unknown */}
+          {(!sessionFactors || !loginName) &&
+            !loginSettings?.ignoreUnknownUsernames && (
+              <div className="py-4">
+                <Alert>
+                  <Translated i18nKey="unknownContext" namespace="error" />
+                </Alert>
+              </div>
+            )}
+
+          {sessionFactors && (
+            <UserAvatar
+              loginName={loginName ?? sessionFactors.factors?.user?.loginName}
+              displayName={sessionFactors.factors?.user?.displayName}
+              showDropdown
+              searchParams={searchParams}
+            ></UserAvatar>
           )}
-        </h1>
-        <p className="ztdl-p mb-6 block">
-          <Translated i18nKey="verify.description" namespace="password" />
-        </p>
 
-        {/* show error only if usernames should be shown to be unknown */}
-        {(!sessionFactors || !loginName) &&
-          !loginSettings?.ignoreUnknownUsernames && (
-            <div className="py-4">
-              <Alert>
-                <Translated i18nKey="unknownContext" namespace="error" />
-              </Alert>
-            </div>
+          {loginName && (
+            <PasswordForm
+              loginName={loginName}
+              requestId={requestId}
+              organization={organization} // stick to "organization" as we still want to do user discovery based on the searchParams not the default organization, later the organization is determined by the found user
+              loginSettings={loginSettings}
+            />
           )}
-
-        {sessionFactors && (
-          <UserAvatar
-            loginName={loginName ?? sessionFactors.factors?.user?.loginName}
-            displayName={sessionFactors.factors?.user?.displayName}
-            showDropdown
-            searchParams={searchParams}
-          ></UserAvatar>
-        )}
-
-        {loginName && (
-          <PasswordForm
-            loginName={loginName}
-            requestId={requestId}
-            organization={organization} // stick to "organization" as we still want to do user discovery based on the searchParams not the default organization, later the organization is determined by the found user
-            loginSettings={loginSettings}
-          />
-        )}
-      </div>
-    </DynamicTheme>
+        </div>
+      </DynamicTheme>
+    </div>
   );
 }

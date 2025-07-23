@@ -189,7 +189,7 @@ export function SetPasswordForm({
   return (
     <form className="w-full">
       <div className="pt-4 grid grid-cols-1 gap-4 mb-4">
-        {codeRequired && (
+        {codeRequired && !code && (
           <Alert type={AlertType.INFO}>
             <div className="flex flex-row">
               <span className="flex-1 mr-auto text-left">
@@ -211,7 +211,7 @@ export function SetPasswordForm({
           </Alert>
         )}
         {codeRequired && (
-          <div>
+          <div className="hidden">
             <TextInput
               type="text"
               required

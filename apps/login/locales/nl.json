@@ -29,13 +29,13 @@
     "verify": {
       "title": "Wachtwoord",
       "description": "Voer je wachtwoord in.",
-      "resetPassword": "Wachtwoord resetten",
+      "resetPassword": "Wachtwoord vergeten?",
       "submit": "Doorgaan"
     },
     "set": {
-      "title": "Wachtwoord instellen",
+      "title": "Kies een wachtwoord",
       "description": "Stel het wachtwoord voor je account in",
-      "codeSent": "Er is een code naar je e-mailadres gestuurd.",
+      "codeSent": "We hebben een e-mail gestuurd naar je e-mailadres. Volg de instructies om weer toegang te krijgen tot je account.",
       "noCodeReceived": "Geen code ontvangen?",
       "resend": "Code opnieuw versturen",
       "submit": "Doorgaan"
