@@ -14,12 +14,11 @@ import HorizontalDotsIcon from 'public/icons/horizontal-dots.svg'
 import Image from "next/image";
 
 export const ThanqsSidebar = () => {
-  const r = usePathname()
-
-  console.log('r', r)
-  if( r.startsWith('/password')) {
-    return <LocksAndShieldsIllustration/>;
-  }
+  // const r = usePathname()
+  //
+  // if( r.startsWith('/password')) {
+  //   return <LocksAndShieldsIllustration/>;
+  // }
   return <GiftsAndPresentsIllustration/>;
 }
 const GiftsAndPresentsIllustration = () => (
