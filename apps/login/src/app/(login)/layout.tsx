@@ -8,7 +8,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { Fustat } from "next/font/google";
 import { ReactNode, Suspense } from "react";
 import LogoSvg from "public/logo/thanqs-logo.svg"
-import { ThanqsSidebar } from "@/components/thanqs-sidebar";
+import { ThanqsSidebar, GiftsAndPresentsIllustration } from "@/components/thanqs-sidebar";
 
 
 const fustat = Fustat({
@@ -57,7 +57,7 @@ export default async function RootLayout({
                     }}
                     className="relative w-full  shrink-0 overflow-hidden rounded-[20px]"
                   >
-                    <ThanqsSidebar/>
+                    <GiftsAndPresentsIllustration/>
                   </div>
                 </div>
               </div>
