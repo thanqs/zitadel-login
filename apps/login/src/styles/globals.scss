@@ -12,7 +12,7 @@
   }
 
   .ztdl-p {
-    @apply text-sm text-center text-text-light-secondary-500 dark:text-text-dark-secondary-500 text-center;
+    @apply text-sm text-center text-text-light-secondary-500 text-center;
   }
 
   /**********THANQS**********/
@@ -25,7 +25,6 @@
 
 html {
   --background-color: #ffffff;
-  --dark-background-color: #000000;
 }
 
 .form-checkbox:checked {
@@ -35,21 +34,6 @@ html {
 .skeleton {
   --accents-2: var(--theme-light-background-400);
   --accents-1: var(--theme-light-background-500);
-
-  background-image: linear-gradient(
-    270deg,
-    var(--accents-1),
-    var(--accents-2),
-    var(--accents-2),
-    var(--accents-1)
-  );
-  background-size: 400% 100%;
-  animation: skeleton_loading 8s ease-in-out infinite;
-}
-
-.dark .skeleton {
-  --accents-2: var(--theme-dark-background-400);
-  --accents-1: var(--theme-dark-background-500);
 
   background-image: linear-gradient(
     270deg,

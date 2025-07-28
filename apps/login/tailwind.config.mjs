@@ -37,7 +37,7 @@ types.forEach((type) => {
 /** @type {import('tailwindcss').Config} */
 export default {
   presets: [sharedConfig],
-  darkMode: "class",
+  darkMode: "false",
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   future: {
     hoverOnlyWhenSupported: true,
