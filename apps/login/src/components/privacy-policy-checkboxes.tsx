@@ -1,29 +1,17 @@
 "use client";
 import { LegalAndSupportSettings } from "@zitadel/proto/zitadel/settings/v2/legal_settings_pb";
 import Link from "next/link";
-import { useState } from "react";
-import { Checkbox } from "./checkbox";
 import { Translated } from "./translated";
 
 type Props = {
   legal: LegalAndSupportSettings;
-  onChange: (allAccepted: boolean) => void;
 };
 
-type AcceptanceState = {
-  tosAccepted: boolean;
-  privacyPolicyAccepted: boolean;
-};
 
-export function PrivacyPolicyCheckboxes({ legal, onChange }: Props) {
-  const [acceptanceState, setAcceptanceState] = useState<AcceptanceState>({
-    tosAccepted: false,
-    privacyPolicyAccepted: false,
-  });
-
+export function PrivacyPolicyCheckboxes({ legal }: Props) {
   return (
     <>
-      <p className="flex flex-row items-center text-text-light-secondary-500 dark:text-text-dark-secondary-500 mt-4 text-sm">
+      <p className="items-center text-center text-text-light-secondary-500 dark:text-text-dark-secondary-500 mt-4 text-sm">
         <Translated i18nKey="agreeTo" namespace="register" />
         {legal?.helpLink && (
           <span>
@@ -45,61 +33,25 @@ export function PrivacyPolicyCheckboxes({ legal, onChange }: Props) {
             </Link>
           </span>
         )}
+        {legal?.tosLink && (
+          <Link href={legal.tosLink} className="underline" target="_blank">
+            <Translated i18nKey="termsOfService" namespace="register" />
+          </Link>
+        )}
+        {legal?.tosLink && legal?.privacyPolicyLink && (
+          <Translated i18nKey="and" namespace="register" />
+        )}
+        {legal?.privacyPolicyLink && (
+          <Link
+            href={legal.privacyPolicyLink}
+            className="underline"
+            target="_blank"
+          >
+            <Translated i18nKey="privacyPolicy" namespace="register" />
+          </Link>
+        )}
+        .
       </p>
-      {legal?.tosLink && (
-        <div className="mt-4 flex items-center">
-          <Checkbox
-            className="mr-4"
-            checked={false}
-            value={"privacypolicy"}
-            onChangeVal={(checked: boolean) => {
-              setAcceptanceState({
-                ...acceptanceState,
-                tosAccepted: checked,
-              });
-              onChange(checked && acceptanceState.privacyPolicyAccepted);
-            }}
-            data-testid="privacy-policy-checkbox"
-          />
-
-          <div className="mr-4 w-[28rem]">
-            <p className="text-sm text-text-light-500 dark:text-text-dark-500">
-              <Link href={legal.tosLink} className="underline" target="_blank">
-                <Translated i18nKey="termsOfService" namespace="register" />
-              </Link>
-            </p>
-          </div>
-        </div>
-      )}
-      {legal?.privacyPolicyLink && (
-        <div className="mt-4 flex items-center">
-          <Checkbox
-            className="mr-4"
-            checked={false}
-            value={"tos"}
-            onChangeVal={(checked: boolean) => {
-              setAcceptanceState({
-                ...acceptanceState,
-                privacyPolicyAccepted: checked,
-              });
-              onChange(checked && acceptanceState.tosAccepted);
-            }}
-            data-testid="tos-checkbox"
-          />
-
-          <div className="mr-4 w-[28rem]">
-            <p className="text-sm text-text-light-500 dark:text-text-dark-500">
-              <Link
-                href={legal.privacyPolicyLink}
-                className="underline"
-                target="_blank"
-              >
-                <Translated i18nKey="privacyPolicy" namespace="register" />
-              </Link>
-            </p>
-          </div>
-        </div>
-      )}
     </>
   );
 }

@@ -81,19 +81,28 @@ export default async function Page(props: {
   }
 
   return (
-    <DynamicTheme branding={branding}>
-      <div className="flex flex-col items-center space-y-4">
-        <h1>
+    <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
+      <div className="flex flex-col items-center space-y-4 gap-4">
+        <h2 style={{
+          color: "hsl(250,100%,38%)",
+        }}>
           <Translated i18nKey="title" namespace="register" />
-        </h1>
-        <p className="ztdl-p">
-          <Translated i18nKey="description" namespace="register" />
-        </p>
+        </h2>
 
         {!organization && (
           <Alert>
             <Translated i18nKey="unknownContext" namespace="error" />
           </Alert>
+        )}
+
+        {loginSettings?.allowExternalIdp && !!identityProviders.length && (
+          <>
+            <SignInWithIdp
+              identityProviders={identityProviders}
+              requestId={requestId}
+              organization={organization}
+            ></SignInWithIdp>
+          </>
         )}
 
         {legal &&
@@ -114,23 +123,7 @@ export default async function Page(props: {
               loginSettings={loginSettings}
             ></RegisterForm>
           )}
-
-        {loginSettings?.allowExternalIdp && !!identityProviders.length && (
-          <>
-            <div className="py-3 flex flex-col items-center">
-              <p className="ztdl-p text-center">
-                <Translated i18nKey="orUseIDP" namespace="register" />
-              </p>
-            </div>
-
-            <SignInWithIdp
-              identityProviders={identityProviders}
-              requestId={requestId}
-              organization={organization}
-            ></SignInWithIdp>
-          </>
-        )}
       </div>
-    </DynamicTheme>
+    </div>
   );
 }

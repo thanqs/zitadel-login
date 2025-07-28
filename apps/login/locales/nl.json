@@ -52,7 +52,7 @@
     "orSignInWith": "of inloggen met",
     "signInWithApple": "Inloggen met Apple",
     "signInWithGoogle": "Inloggen met Google",
-    "signInWithAzureAD": "Inloggen met AzureAD",
+    "signInWithAzureAD": "Inloggen met Microsoft",
     "signInWithGithub": "Inloggen met GitHub",
     "signInWithGitlab": "Inloggen met GitLab",
     "loginSuccess": {
@@ -160,18 +160,20 @@
       "title": "Gegevens ontbreken",
       "description": "Geef e-mail, voor- en achternaam op om te registreren."
     },
-    "title": "Registreren",
+    "title": "Account aanmaken",
     "description": "Maak je ZITADEL-account aan.",
     "noMethodAvailableWarning": "Geen authenticatiemethode beschikbaar. Neem contact op met je beheerder.",
     "selectMethod": "Selecteer de methode waarmee je wilt authenticeren",
-    "agreeTo": "Om te registreren moet je akkoord gaan met de algemene voorwaarden",
-    "termsOfService": "Algemene voorwaarden",
-    "privacyPolicy": "Privacybeleid",
+    "agreeTo": "Door verder te gaan, ga je akkoord met onze ",
+    "termsOfService": "voorwaarden",
+    "and": " en ",
+    "privacyPolicy": "privacy verklaring",
     "submit": "Doorgaan",
     "orUseIDP": "of gebruik een Identity Provider",
+    "login": "Al een account bij Thanqs? Inloggen",
     "password": {
-      "title": "Wachtwoord instellen",
-      "description": "Stel het wachtwoord voor je account in",
+      "title": "Kies een wachtwoord",
+      "description": "Stel nu een wachtwoord in om je account aan te maken.",
       "submit": "Doorgaan"
     }
   },

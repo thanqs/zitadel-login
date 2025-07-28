@@ -15,7 +15,8 @@ import { SignInWithGeneric } from "./idps/sign-in-with-generic";
 import { SignInWithGithub } from "./idps/sign-in-with-github";
 import { SignInWithGitlab } from "./idps/sign-in-with-gitlab";
 import { SignInWithGoogle } from "./idps/sign-in-with-google";
-import { Translated } from "./translated";
+import  Line  from "public/icons/line.svg";
+import Image from "next/image";
 
 export interface SignInWithIDPProps {
   children?: ReactNode;
@@ -76,16 +77,31 @@ export function SignInWithIdp({
   };
 
   return (
-    <div className="flex flex-col w-full space-y-2 text-sm">
-      <p className="text-center ztdl-p">
-        <Translated i18nKey="orSignInWith" namespace="idp" />
-      </p>
+    <div className="flex flex-col w-full space-y-2 text-sm gap-3">
+      <div className="flex flex-col gap-2">
       {!!identityProviders.length && identityProviders?.map(renderIDPButton)}
       {state?.error && (
         <div className="py-4">
           <Alert>{state?.error}</Alert>
         </div>
       )}
+      </div>
+      <div className="flex flex-row gap-2 items-center">
+      <Image
+        src={Line}
+        alt="line"
+        width={200}
+        height={1}
+        />
+        <span className="flex-1">of</span>
+      <Image
+        src={Line}
+        alt="line"
+        width={200}
+        height={1}
+      />
+      </div>
+
     </div>
   );
 }

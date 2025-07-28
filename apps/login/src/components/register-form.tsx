@@ -15,7 +15,6 @@ import {
   AuthenticationMethodRadio,
   methods,
 } from "./authentication-method-radio";
-import { BackButton } from "./back-button";
 import { Button, ButtonVariants } from "./button";
 import { TextInput } from "./input";
 import { PrivacyPolicyCheckboxes } from "./privacy-policy-checkboxes";
@@ -55,8 +54,8 @@ export function RegisterForm({
     mode: "onBlur",
     defaultValues: {
       email: email ?? "",
-      firstName: firstname ?? "",
-      lastname: lastname ?? "",
+      firstname: firstname ?? "-",
+      lastname: lastname ?? "-",
     },
   });
 
@@ -121,107 +120,122 @@ export function RegisterForm({
 
   const { errors } = formState;
 
-  const [tosAndPolicyAccepted, setTosAndPolicyAccepted] = useState(false);
   return (
-    <form className="w-full">
-      <div className="grid grid-cols-2 gap-4 mb-4">
-        <div className="">
-          <TextInput
-            type="firstname"
-            autoComplete="firstname"
-            required
-            {...register("firstname", { required: "This field is required" })}
-            label="First name"
-            error={errors.firstname?.message as string}
-            data-testid="firstname-text-input"
-          />
+    <>
+      <form className="w-full">
+        <div className="grid grid-cols-2 gap-4 mb-4">
+          <div className=" hidden">
+            <TextInput
+              type="firstname"
+              autoComplete="firstname"
+              required
+              {...register("firstname", { required: "This field is required" })}
+              label="First name"
+              error={errors.firstname?.message as string}
+              data-testid="firstname-text-input"
+            />
+          </div>
+          <div className="hidden">
+            <TextInput
+              type="lastname"
+              autoComplete="lastname"
+              required
+              {...register("lastname", { required: "This field is required" })}
+              label="Last name"
+              error={errors.lastname?.message as string}
+              data-testid="lastname-text-input"
+            />
+          </div>
+          <div className="col-span-2">
+            <TextInput
+              type="email"
+              autoComplete="email"
+              required
+              {...register("email", { required: "This field is required" })}
+              label="E-mail"
+              error={errors.email?.message as string}
+              data-testid="email-text-input"
+            />
+          </div>
         </div>
-        <div className="">
-          <TextInput
-            type="lastname"
-            autoComplete="lastname"
-            required
-            {...register("lastname", { required: "This field is required" })}
-            label="Last name"
-            error={errors.lastname?.message as string}
-            data-testid="lastname-text-input"
-          />
-        </div>
-        <div className="col-span-2">
-          <TextInput
-            type="email"
-            autoComplete="email"
-            required
-            {...register("email", { required: "This field is required" })}
-            label="E-mail"
-            error={errors.email?.message as string}
-            data-testid="email-text-input"
-          />
-        </div>
-      </div>
-      {legal && (
-        <PrivacyPolicyCheckboxes
-          legal={legal}
-          onChange={setTosAndPolicyAccepted}
-        />
-      )}
-      {/* show chooser if both methods are allowed */}
-      {loginSettings &&
-        loginSettings.allowUsernamePassword &&
-        loginSettings.passkeysType == PasskeysType.ALLOWED && (
-          <>
-            <p className="mt-4 ztdl-p mb-6 block text-left">
-              <Translated i18nKey="selectMethod" namespace="register" />
-            </p>
+        {/* show chooser if both methods are allowed */}
+        {loginSettings &&
+          loginSettings.allowUsernamePassword &&
+          loginSettings.passkeysType == PasskeysType.ALLOWED && (
+            <>
+              <p className="mt-4 ztdl-p mb-6 block text-left">
+                <Translated i18nKey="selectMethod" namespace="register" />
+              </p>
 
-            <div className="pb-4">
-              <AuthenticationMethodRadio
-                selected={selected}
-                selectionChanged={setSelected}
-              />
+              <div className="pb-4">
+                <AuthenticationMethodRadio
+                  selected={selected}
+                  selectionChanged={setSelected}
+                />
+              </div>
+            </>
+          )}
+        {!loginSettings?.allowUsernamePassword &&
+          loginSettings?.passkeysType !== PasskeysType.ALLOWED &&
+          (!loginSettings?.allowExternalIdp || !idpCount) && (
+            <div className="py-4">
+              <Alert type={AlertType.INFO}>
+                <Translated
+                  i18nKey="noMethodAvailableWarning"
+                  namespace="register"
+                />
+              </Alert>
             </div>
-          </>
-        )}
-      {!loginSettings?.allowUsernamePassword &&
-        loginSettings?.passkeysType !== PasskeysType.ALLOWED &&
-        (!loginSettings?.allowExternalIdp || !idpCount) && (
+          )}
+
+        {error && (
           <div className="py-4">
-            <Alert type={AlertType.INFO}>
-              <Translated
-                i18nKey="noMethodAvailableWarning"
-                namespace="register"
-              />
-            </Alert>
+            <Alert>{error}</Alert>
           </div>
         )}
 
-      {error && (
-        <div className="py-4">
-          <Alert>{error}</Alert>
+        <div className="mt-8 flex w-full flex-row items-center justify-between">
+          <Button
+            type="submit"
+            className="w-full"
+            variant={ButtonVariants.Primary}
+            disabled={loading || !formState.isValid}
+            onClick={handleSubmit((values) => {
+              const usePasswordToContinue: boolean =
+                loginSettings?.allowUsernamePassword &&
+                loginSettings?.passkeysType == PasskeysType.ALLOWED
+                  ? !!!(selected === methods[0]) // choose selection if both available
+                  : !!loginSettings?.allowUsernamePassword; // if password is chosen
+              // set password as default if only password is allowed
+              return submitAndContinue(values, usePasswordToContinue);
+            })}
+            data-testid="submit-button"
+          >
+            {loading && <Spinner className="h-5 w-5 mr-2" />}
+            <Translated i18nKey="submit" namespace="register" />
+          </Button>
         </div>
-      )}
+        {legal && <PrivacyPolicyCheckboxes legal={legal} />}
+      </form>
+      <button
+        className="w-full transition-all text-sm hover:text-primary-light-500 dark:hover:text-primary-dark-500"
+        onClick={() => {
+          const registerParams = new URLSearchParams();
+          if (organization) {
+            registerParams.append("organization", organization);
+          }
+          if (requestId) {
+            registerParams.append("requestId", requestId);
+          }
 
-      <div className="mt-8 flex w-full flex-row items-center justify-between">
-        <BackButton data-testid="back-button" />
-        <Button
-          type="submit"
-          variant={ButtonVariants.Primary}
-          disabled={loading || !formState.isValid || !tosAndPolicyAccepted}
-          onClick={handleSubmit((values) => {
-            const usePasswordToContinue: boolean =
-              loginSettings?.allowUsernamePassword &&
-              loginSettings?.passkeysType == PasskeysType.ALLOWED
-                ? !!!(selected === methods[0]) // choose selection if both available
-                : !!loginSettings?.allowUsernamePassword; // if password is chosen
-            // set password as default if only password is allowed
-            return submitAndContinue(values, usePasswordToContinue);
-          })}
-          data-testid="submit-button"
-        >
-          {loading && <Spinner className="h-5 w-5 mr-2" />}
-          <Translated i18nKey="submit" namespace="register" />
-        </Button>
-      </div>
-    </form>
+          router.push("/loginname?" + registerParams);
+        }}
+        type="button"
+        disabled={loading}
+        data-testid="register-button"
+      >
+        <Translated i18nKey="login" namespace="register" />
+      </button>
+    </>
   );
 }

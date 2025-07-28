@@ -52,23 +52,29 @@ export default async function Page(props: {
   });
 
   return (
-      <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
-        <h2  data-i18n-key="error.tryagain" style={{
-          color: "hsl(250,100%,38%)",
-        }}><Translated i18nKey="title" namespace="loginname" /></h2>
+    <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
+      <div className="flex flex-col items-center space-y-4 gap-4">
+        <h2
+          data-i18n-key="error.tryagain"
+          style={{
+            color: "hsl(250,100%,38%)",
+          }}
+        >
+          <Translated i18nKey="title" namespace="loginname" />
+        </h2>
         {/*<p className="ztdl-p">*/}
         {/*  <Translated i18nKey="description" namespace="loginname" />*/}
         {/*</p>*/}
 
-        {identityProviders && identityProviders.length > 0 && loginSettings?.allowExternalIdp && (
-          <div className="w-full pt-6 pb-4">
+        {identityProviders &&
+          identityProviders.length > 0 &&
+          loginSettings?.allowExternalIdp && (
             <SignInWithIdp
               identityProviders={identityProviders}
               requestId={requestId}
               organization={organization}
             ></SignInWithIdp>
-          </div>
-        )}
+          )}
 
         <UsernameForm
           loginName={loginName}
@@ -79,7 +85,7 @@ export default async function Page(props: {
           submit={submit}
           allowRegister={!!loginSettings?.allowRegister}
         ></UsernameForm>
-
       </div>
+    </div>
   );
 }

@@ -12,7 +12,7 @@ export const SignInWithAzureAd = forwardRef<
 
   return (
     <BaseButton {...restProps} ref={ref}>
-      <div className="h-12 p-[10px] w-12 flex items-center justify-center">
+      <div className="h-5 w-5 flex items-center justify-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="21"
@@ -29,13 +29,7 @@ export const SignInWithAzureAd = forwardRef<
       {children ? (
         children
       ) : (
-        <span className="ml-4">
-          {name ? (
-            name
-          ) : (
-            <Translated i18nKey="signInWithAzureAD" namespace="idp" />
-          )}
-        </span>
+        <Translated i18nKey="signInWithAzureAD" namespace="idp" />
       )}
     </BaseButton>
   );

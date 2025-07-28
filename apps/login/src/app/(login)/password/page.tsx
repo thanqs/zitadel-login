@@ -1,12 +1,10 @@
 import { Alert } from "@/components/alert";
-import { DynamicTheme } from "@/components/dynamic-theme";
 import { PasswordForm } from "@/components/password-form";
 import { Translated } from "@/components/translated";
 import { UserAvatar } from "@/components/user-avatar";
 import { getServiceUrlFromHeaders } from "@/lib/service-url";
 import { loadMostRecentSession } from "@/lib/session";
 import {
-  getBrandingSettings,
   getDefaultOrg,
   getLoginSettings,
 } from "@/lib/zitadel";
@@ -48,10 +46,6 @@ export default async function Page(props: {
     console.warn(error);
   }
 
-  const branding = await getBrandingSettings({
-    serviceUrl,
-    organization: organization ?? defaultOrganization,
-  });
   const loginSettings = await getLoginSettings({
     serviceUrl,
     organization: organization ?? defaultOrganization,
@@ -59,7 +53,6 @@ export default async function Page(props: {
 
   return (
     <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
-      <DynamicTheme branding={branding}>
         <div className="flex flex-col items-center space-y-4">
           <h1>
             {sessionFactors?.factors?.user?.displayName ?? (
@@ -98,7 +91,6 @@ export default async function Page(props: {
             />
           )}
         </div>
-      </DynamicTheme>
     </div>
   );
 }

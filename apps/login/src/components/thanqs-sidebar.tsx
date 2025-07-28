@@ -1,26 +1,32 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Ribbon from "public/icons/ribbon.svg"
-import Flowers from "public/icons/flowers.svg"
-import Present from "public/icons/present.svg"
-import KeyIcon from 'public/icons/key.svg'
-import ShieldIcon from 'public/icons/shield.svg'
-import LockIcon from 'public/icons/lock.svg'
-import CheckCircleIcon from 'public/icons/check-circle.svg'
-import ShieldYellowIcon from 'public/icons/shield-yellow.svg'
-import HorizontalDotsIcon from 'public/icons/horizontal-dots.svg'
+import Ribbon from "public/icons/ribbon.svg";
+import Flowers from "public/icons/flowers.svg";
+import Present from "public/icons/present.svg";
+import KeyIcon from "public/icons/key.svg";
+import ShieldIcon from "public/icons/shield.svg";
+import LockIcon from "public/icons/lock.svg";
+import CheckCircleIcon from "public/icons/check-circle.svg";
+import ShieldYellowIcon from "public/icons/shield-yellow.svg";
+import HorizontalDotsIcon from "public/icons/horizontal-dots.svg";
+import ChampageIcon from 'public/icons/champagne.svg'
+import ChocolateIcon from 'public/icons/chocolate.svg'
+import GiftYellowPurpleIcon from 'public/icons/gift-yellow-purple.svg'
 
 import Image from "next/image";
 
 export const ThanqsSidebar = () => {
-  const r = usePathname()
+  const r = usePathname();
 
-  if( r.startsWith('/password')) {
-    return <LocksAndShieldsIllustration/>;
+  if (r.startsWith("/password")) {
+    return <LocksAndShieldsIllustration />;
   }
-  return <GiftsAndPresentsIllustration/>;
-}
+  if (r.startsWith("/register")) {
+    return <ChocolateAndChampangeIllustration />;
+  }
+  return <GiftsAndPresentsIllustration />;
+};
 export const GiftsAndPresentsIllustration = () => (
   <>
     <Image
@@ -71,7 +77,7 @@ const LocksAndShieldsIllustration = () => (
       className="absolute -bottom-24 -left-12 rotate-12"
     />
   </>
-)
+);
 
 const CheckAndDotsIllustration = () => (
   <>
@@ -97,4 +103,36 @@ const CheckAndDotsIllustration = () => (
       className="absolute -right-32 bottom-0"
     />
   </>
-)
+);
+
+const ChocolateAndChampangeIllustration = () => (
+  <>
+    <Image
+      src={ChampageIcon}
+      alt="Champagne"
+      width={403}
+      height={403}
+      className="absolute -top-2 -right-32 -rotate-8"
+    />
+
+    <Image
+      src={ChocolateIcon}
+      alt="Chocolate"
+      width={442}
+      height={442}
+      className="absolute top-[10%] -left-36 rotate-40"
+      style={{rotate: "40deg"}}
+    />
+
+    <Image
+      src={GiftYellowPurpleIcon}
+      alt="Gift Yellow Purple"
+      width={483}
+      height={483}
+      className="absolute -right-10 -bottom-28 -rotate-20"
+      style={{
+        rotate: "-20deg",
+      }}
+    />
+  </>
+);

@@ -52,7 +52,7 @@
     "orSignInWith": "oder melden Sie sich an mit",
     "signInWithApple": "Mit Apple anmelden",
     "signInWithGoogle": "Mit Google anmelden",
-    "signInWithAzureAD": "Mit AzureAD anmelden",
+    "signInWithAzureAD": "Mit Microsoft anmelden",
     "signInWithGithub": "Mit GitHub anmelden",
     "signInWithGitlab": "Mit GitLab anmelden",
     "loginSuccess": {

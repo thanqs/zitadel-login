@@ -52,49 +52,69 @@ export default async function Page(props: {
     organization,
   });
 
-  return missingData ? (
-    <DynamicTheme branding={branding}>
-      <div className="flex flex-col items-center space-y-4">
-        <h1>
-          <Translated i18nKey="missingdata.title" namespace="register" />
-        </h1>
-        <p className="ztdl-p">
-          <Translated i18nKey="missingdata.description" namespace="register" />
-        </p>
-      </div>
-    </DynamicTheme>
-  ) : loginSettings?.allowRegister && loginSettings.allowUsernamePassword ? (
-    <DynamicTheme branding={branding}>
-      <div className="flex flex-col items-center space-y-4">
-        <h1>
-          <Translated i18nKey="password.title" namespace="register" />
-        </h1>
-        <p className="ztdl-p">
-          <Translated i18nKey="description" namespace="register" />
-        </p>
+  return (
+    <div className="m-auto w-full max-w-[566px] space-y-6 pb-10">
+      <div className="flex flex-col items-center space-y-4 gap-[40px]">
+        {missingData ? (
+          <DynamicTheme branding={branding}>
+            <div className="flex flex-col items-center space-y-4">
+              <h1>
+                <Translated i18nKey="missingdata.title" namespace="register" />
+              </h1>
+              <p className="ztdl-p">
+                <Translated
+                  i18nKey="missingdata.description"
+                  namespace="register"
+                />
+              </p>
+            </div>
+          </DynamicTheme>
+        ) : loginSettings?.allowRegister &&
+          loginSettings.allowUsernamePassword ? (
+          <DynamicTheme branding={branding}>
+            <div className="flex flex-col items-center space-y-4">
+              <h2
+                style={{
+                  color: "hsl(250,100%,38%)",
+                }}
+              >
+                <Translated i18nKey="password.title" namespace="register" />
+              </h2>
+              <p className="ztdl-p">
+                <Translated
+                  i18nKey="password.description"
+                  namespace="register"
+                />
+              </p>
 
-        {legal && passwordComplexitySettings && (
-          <SetRegisterPasswordForm
-            passwordComplexitySettings={passwordComplexitySettings}
-            email={email}
-            firstname={firstname}
-            lastname={lastname}
-            organization={organization as string} // organization is guaranteed to be a string here otherwise we would have returned earlier
-            requestId={requestId}
-          ></SetRegisterPasswordForm>
+              {legal && passwordComplexitySettings && (
+                <SetRegisterPasswordForm
+                  passwordComplexitySettings={passwordComplexitySettings}
+                  email={email}
+                  firstname={firstname}
+                  lastname={lastname}
+                  organization={organization as string} // organization is guaranteed to be a string here otherwise we would have returned earlier
+                  requestId={requestId}
+                ></SetRegisterPasswordForm>
+              )}
+            </div>
+          </DynamicTheme>
+        ) : (
+          <DynamicTheme branding={branding}>
+            <div className="flex flex-col items-center space-y-4">
+              <h1>
+                <Translated i18nKey="disabled.title" namespace="register" />
+              </h1>
+              <p className="ztdl-p">
+                <Translated
+                  i18nKey="disabled.description"
+                  namespace="register"
+                />
+              </p>
+            </div>
+          </DynamicTheme>
         )}
       </div>
-    </DynamicTheme>
-  ) : (
-    <DynamicTheme branding={branding}>
-      <div className="flex flex-col items-center space-y-4">
-        <h1>
-          <Translated i18nKey="disabled.title" namespace="register" />
-        </h1>
-        <p className="ztdl-p">
-          <Translated i18nKey="disabled.description" namespace="register" />
-        </p>
-      </div>
-    </DynamicTheme>
+    </div>
   );
 }

@@ -1,19 +1,16 @@
 import { Alert } from "@/components/alert";
-import { DynamicTheme } from "@/components/dynamic-theme";
 import { SetPasswordForm } from "@/components/set-password-form";
 import { ThanqsResetEmailSendAgain } from "@/components/thanqs-reset-email-send-again";
 import { Translated } from "@/components/translated";
 import { getServiceUrlFromHeaders } from "@/lib/service-url";
 import { loadMostRecentSession } from "@/lib/session";
 import {
-  getBrandingSettings,
   getLoginSettings,
   getPasswordComplexitySettings,
   getUserByID,
 } from "@/lib/zitadel";
 import { Session } from "@zitadel/proto/zitadel/session/v2/session_pb";
-import { HumanUser, User } from "@zitadel/proto/zitadel/user/v2/user_pb";
-import { getLocale } from "next-intl/server";
+import { User } from "@zitadel/proto/zitadel/user/v2/user_pb";
 import { headers } from "next/headers";
 import Image from "next/image";
 import EnvelopeIcon from "public/icons/envelope.svg";
@@ -40,11 +37,6 @@ export default async function Page(props: {
       },
     });
   }
-
-  const branding = await getBrandingSettings({
-    serviceUrl,
-    organization,
-  });
 
   const passwordComplexity = await getPasswordComplexitySettings({
     serviceUrl,
@@ -90,60 +82,58 @@ export default async function Page(props: {
     </div>
   ) : (
     <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
-      <DynamicTheme branding={branding}>
-        <div className="flex flex-col items-center space-y-4">
-          <h2 style={{ color: "hsl(250,100%,38%)" }}>
-            {session?.factors?.user?.displayName ?? (
-              <Translated i18nKey="set.title" namespace="password" />
-            )}
-          </h2>
-
-          {/* show error only if usernames should be shown to be unknown */}
-          {loginName && !session && !loginSettings?.ignoreUnknownUsernames && (
-            <div className="py-4">
-              <Alert>
-                <Translated i18nKey="unknownContext" namespace="error" />
-              </Alert>
-            </div>
+      <div className="flex flex-col items-center space-y-4">
+        <h2 style={{ color: "hsl(250,100%,38%)" }}>
+          {session?.factors?.user?.displayName ?? (
+            <Translated i18nKey="set.title" namespace="password" />
           )}
+        </h2>
 
-          {/*{session ? (*/}
-          {/*  <UserAvatar*/}
-          {/*    loginName={loginName ?? session.factors?.user?.loginName}*/}
-          {/*    displayName={session.factors?.user?.displayName}*/}
-          {/*    showDropdown*/}
-          {/*    searchParams={searchParams}*/}
-          {/*  ></UserAvatar>*/}
-          {/*) : user ? (*/}
-          {/*  <UserAvatar*/}
-          {/*    loginName={user?.preferredLoginName}*/}
-          {/*    displayName={displayName}*/}
-          {/*    showDropdown*/}
-          {/*    searchParams={searchParams}*/}
-          {/*  ></UserAvatar>*/}
-          {/*) : null}*/}
+        {/* show error only if usernames should be shown to be unknown */}
+        {loginName && !session && !loginSettings?.ignoreUnknownUsernames && (
+          <div className="py-4">
+            <Alert>
+              <Translated i18nKey="unknownContext" namespace="error" />
+            </Alert>
+          </div>
+        )}
 
-          {passwordComplexity &&
-          (loginName ?? user?.preferredLoginName) &&
-          (userId ?? session?.factors?.user?.id) ? (
-            <SetPasswordForm
-              code={code}
-              userId={userId ?? (session?.factors?.user?.id as string)}
-              loginName={loginName ?? (user?.preferredLoginName as string)}
-              requestId={requestId}
-              organization={organization}
-              passwordComplexitySettings={passwordComplexity}
-              codeRequired={!(initial === "true")}
-            />
-          ) : (
-            <div className="py-4">
-              <Alert>
-                <Translated i18nKey="failedLoading" namespace="error" />
-              </Alert>
-            </div>
-          )}
-        </div>
-      </DynamicTheme>
+        {/*{session ? (*/}
+        {/*  <UserAvatar*/}
+        {/*    loginName={loginName ?? session.factors?.user?.loginName}*/}
+        {/*    displayName={session.factors?.user?.displayName}*/}
+        {/*    showDropdown*/}
+        {/*    searchParams={searchParams}*/}
+        {/*  ></UserAvatar>*/}
+        {/*) : user ? (*/}
+        {/*  <UserAvatar*/}
+        {/*    loginName={user?.preferredLoginName}*/}
+        {/*    displayName={displayName}*/}
+        {/*    showDropdown*/}
+        {/*    searchParams={searchParams}*/}
+        {/*  ></UserAvatar>*/}
+        {/*) : null}*/}
+
+        {passwordComplexity &&
+        (loginName ?? user?.preferredLoginName) &&
+        (userId ?? session?.factors?.user?.id) ? (
+          <SetPasswordForm
+            code={code}
+            userId={userId ?? (session?.factors?.user?.id as string)}
+            loginName={loginName ?? (user?.preferredLoginName as string)}
+            requestId={requestId}
+            organization={organization}
+            passwordComplexitySettings={passwordComplexity}
+            codeRequired={!(initial === "true")}
+          />
+        ) : (
+          <div className="py-4">
+            <Alert>
+              <Translated i18nKey="failedLoading" namespace="error" />
+            </Alert>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
