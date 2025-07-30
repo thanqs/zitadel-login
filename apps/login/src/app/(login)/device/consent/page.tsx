@@ -1,10 +1,7 @@
 import { ConsentScreen } from "@/components/consent";
-import { DynamicTheme } from "@/components/dynamic-theme";
 import { Translated } from "@/components/translated";
 import { getServiceUrlFromHeaders } from "@/lib/service-url";
 import {
-  getBrandingSettings,
-  getDefaultOrg,
   getDeviceAuthorizationRequest,
 } from "@/lib/zitadel";
 import { Organization } from "@zitadel/proto/zitadel/org/v2/org_pb";
@@ -43,21 +40,6 @@ export default async function Page(props: {
     );
   }
 
-  let defaultOrganization;
-  if (!organization) {
-    const org: Organization | null = await getDefaultOrg({
-      serviceUrl,
-    });
-    if (org) {
-      defaultOrganization = org.id;
-    }
-  }
-
-  const branding = await getBrandingSettings({
-    serviceUrl,
-    organization: organization ?? defaultOrganization,
-  });
-
   const params = new URLSearchParams();
 
   if (requestId) {
@@ -69,15 +51,18 @@ export default async function Page(props: {
   }
 
   return (
-    <DynamicTheme branding={branding}>
-      <div className="flex flex-col items-center space-y-4">
-        <h1>
-          <Translated
-            i18nKey="request.title"
-            namespace="device"
-            data={{ appName: deviceAuthorizationRequest?.appName }}
-          />
-        </h1>
+    <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
+      <div className="flex flex-col items-center space-y-4 gap-4">
+        <h2
+          style={{
+            color: "hsl(250,100%,38%)",
+          }}
+        ><Translated
+          i18nKey="request.title"
+          namespace="device"
+          data={{ appName: deviceAuthorizationRequest?.appName }}
+        />
+        </h2>
 
         <p className="ztdl-p">
           <Translated
@@ -94,6 +79,6 @@ export default async function Page(props: {
           nextUrl={`/loginname?` + params}
         />
       </div>
-    </DynamicTheme>
+    </div>
   );
 }

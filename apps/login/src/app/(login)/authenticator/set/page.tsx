@@ -1,7 +1,6 @@
 import { Alert } from "@/components/alert";
 import { BackButton } from "@/components/back-button";
 import { ChooseAuthenticatorToSetup } from "@/components/choose-authenticator-to-setup";
-import { DynamicTheme } from "@/components/dynamic-theme";
 import { SignInWithIdp } from "@/components/sign-in-with-idp";
 import { Translated } from "@/components/translated";
 import { UserAvatar } from "@/components/user-avatar";
@@ -11,7 +10,6 @@ import { loadMostRecentSession } from "@/lib/session";
 import { checkUserVerification } from "@/lib/verify-helper";
 import {
   getActiveIdentityProviders,
-  getBrandingSettings,
   getLoginSettings,
   getSession,
   getUserByID,
@@ -37,11 +35,7 @@ export default async function Page(props: {
     ? await loadSessionById(sessionId, organization)
     : await loadSessionByLoginname(loginName, organization);
 
-  async function getAuthMethodsAndUser(
-    serviceUrl: string,
-
-    session?: Session,
-  ) {
+  async function getAuthMethodsAndUser(serviceUrl: string, session?: Session) {
     const userId = session?.factors?.user?.id;
 
     if (!userId) {
@@ -105,11 +99,6 @@ export default async function Page(props: {
     );
   }
 
-  const branding = await getBrandingSettings({
-    serviceUrl,
-    organization: sessionWithData.factors.user?.organizationId,
-  });
-
   const loginSettings = await getLoginSettings({
     serviceUrl,
     organization: sessionWithData.factors.user?.organizationId,
@@ -166,11 +155,15 @@ export default async function Page(props: {
   }
 
   return (
-    <DynamicTheme branding={branding}>
-      <div className="flex flex-col items-center space-y-4">
-        <h1>
+    <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
+      <div className="flex flex-col items-center space-y-4 gap-4">
+        <h2
+          style={{
+            color: "hsl(250,100%,38%)",
+          }}
+        >
           <Translated i18nKey="title" namespace="authenticator" />
-        </h1>
+        </h2>
 
         <p className="ztdl-p">
           <Translated i18nKey="description" namespace="authenticator" />
@@ -213,6 +206,6 @@ export default async function Page(props: {
           <span className="flex-grow"></span>
         </div>
       </div>
-    </DynamicTheme>
+    </div>
   );
 }
