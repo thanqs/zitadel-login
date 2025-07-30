@@ -4,10 +4,7 @@ import { Translated } from "@/components/translated";
 import { UserAvatar } from "@/components/user-avatar";
 import { getServiceUrlFromHeaders } from "@/lib/service-url";
 import { loadMostRecentSession } from "@/lib/session";
-import {
-  getDefaultOrg,
-  getLoginSettings,
-} from "@/lib/zitadel";
+import { getDefaultOrg, getLoginSettings } from "@/lib/zitadel";
 import { Organization } from "@zitadel/proto/zitadel/org/v2/org_pb";
 import { headers } from "next/headers";
 
@@ -53,44 +50,43 @@ export default async function Page(props: {
 
   return (
     <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
-        <div className="flex flex-col items-center space-y-4">
-          <h1>
-            {sessionFactors?.factors?.user?.displayName ?? (
-              <Translated i18nKey="verify.title" namespace="password" />
-            )}
-          </h1>
-          <p className="ztdl-p mb-6 block">
-            <Translated i18nKey="verify.description" namespace="password" />
-          </p>
+      <div className="flex flex-col items-center gap-4">
+        <h2
+          style={{
+            color: "hsl(250,100%,38%)",
+          }}
+        >
+          <Translated i18nKey="verify.title" namespace="password" />
+        </h2>
 
-          {/* show error only if usernames should be shown to be unknown */}
-          {(!sessionFactors || !loginName) &&
-            !loginSettings?.ignoreUnknownUsernames && (
-              <div className="py-4">
-                <Alert>
-                  <Translated i18nKey="unknownContext" namespace="error" />
-                </Alert>
-              </div>
-            )}
-
-          {sessionFactors && (
-            <UserAvatar
-              loginName={loginName ?? sessionFactors.factors?.user?.loginName}
-              displayName={sessionFactors.factors?.user?.displayName}
-              showDropdown
-              searchParams={searchParams}
-            ></UserAvatar>
+        {/* show error only if usernames should be shown to be unknown */}
+        {(!sessionFactors || !loginName) &&
+          !loginSettings?.ignoreUnknownUsernames && (
+            <div className="py-4">
+              <Alert>
+                <Translated i18nKey="unknownContext" namespace="error" />
+              </Alert>
+            </div>
           )}
 
-          {loginName && (
-            <PasswordForm
-              loginName={loginName}
-              requestId={requestId}
-              organization={organization} // stick to "organization" as we still want to do user discovery based on the searchParams not the default organization, later the organization is determined by the found user
-              loginSettings={loginSettings}
-            />
-          )}
-        </div>
+        {sessionFactors && (
+          <UserAvatar
+            loginName={loginName ?? sessionFactors.factors?.user?.loginName}
+            displayName={sessionFactors.factors?.user?.displayName}
+            showDropdown
+            searchParams={searchParams}
+          ></UserAvatar>
+        )}
+
+        {loginName && (
+          <PasswordForm
+            loginName={loginName}
+            requestId={requestId}
+            organization={organization} // stick to "organization" as we still want to do user discovery based on the searchParams not the default organization, later the organization is determined by the found user
+            loginSettings={loginSettings}
+          />
+        )}
+      </div>
     </div>
   );
 }

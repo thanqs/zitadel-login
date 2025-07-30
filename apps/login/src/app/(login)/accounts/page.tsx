@@ -1,15 +1,9 @@
-import { DynamicTheme } from "@/components/dynamic-theme";
 import { SessionsList } from "@/components/sessions-list";
 import { Translated } from "@/components/translated";
 import { getAllSessionCookieIds } from "@/lib/cookies";
 import { getServiceUrlFromHeaders } from "@/lib/service-url";
-import {
-  getBrandingSettings,
-  getDefaultOrg,
-  listSessions,
-} from "@/lib/zitadel";
+import { listSessions } from "@/lib/zitadel";
 import { UserPlusIcon } from "@heroicons/react/24/outline";
-import { Organization } from "@zitadel/proto/zitadel/org/v2/org_pb";
 import { getLocale } from "next-intl/server";
 import { headers } from "next/headers";
 import Link from "next/link";
@@ -41,22 +35,7 @@ export default async function Page(props: {
   const _headers = await headers();
   const { serviceUrl } = getServiceUrlFromHeaders(_headers);
 
-  let defaultOrganization;
-  if (!organization) {
-    const org: Organization | null = await getDefaultOrg({
-      serviceUrl,
-    });
-    if (org) {
-      defaultOrganization = org.id;
-    }
-  }
-
   let sessions = await loadSessions({ serviceUrl });
-
-  const branding = await getBrandingSettings({
-    serviceUrl,
-    organization: organization ?? defaultOrganization,
-  });
 
   const params = new URLSearchParams();
 
@@ -69,11 +48,15 @@ export default async function Page(props: {
   }
 
   return (
-    <DynamicTheme branding={branding}>
-      <div className="flex flex-col items-center space-y-4">
-        <h1>
+    <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
+      <div className="flex flex-col items-center space-y-4 gap-4">
+        <h2
+          style={{
+            color: "hsl(250,100%,38%)",
+          }}
+        >
           <Translated i18nKey="title" namespace="accounts" />
-        </h1>
+        </h2>
         <p className="ztdl-p mb-6 block">
           <Translated i18nKey="description" namespace="accounts" />
         </p>
@@ -92,6 +75,6 @@ export default async function Page(props: {
           </Link>
         </div>
       </div>
-    </DynamicTheme>
+    </div>
   );
 }

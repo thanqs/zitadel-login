@@ -5,7 +5,7 @@
   "accounts": {
     "title": "Accounts",
     "description": "Selecteer het account dat je wilt gebruiken.",
-    "addAnother": "Voeg een ander account toe",
+    "addAnother": "Een ander account gebruiken",
     "noResults": "Geen accounts gevonden"
   },
   "logout": {
@@ -28,7 +28,6 @@
   "password": {
     "verify": {
       "title": "Wachtwoord",
-      "description": "Voer je wachtwoord in.",
       "resetPassword": "Wachtwoord vergeten?",
       "submit": "Doorgaan"
     },

@@ -9,7 +9,6 @@ import moment from "moment";
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Avatar } from "./avatar";
 
 export function isSessionValid(session: Partial<Session>): {
   valid: boolean;
@@ -104,19 +103,18 @@ export function SessionItem({
       }}
       className="group flex flex-row items-center bg-background-light-400 dark:bg-background-dark-400  border border-divider-light hover:shadow-lg dark:hover:bg-white/10 py-2 px-4 rounded-md transition-all"
     >
-      <div className="pr-4">
-        <Avatar
-          size="small"
-          loginName={session.factors?.user?.loginName as string}
-          name={session.factors?.user?.displayName ?? ""}
-        />
-      </div>
-
       <div className="flex flex-col items-start overflow-hidden">
-        <span className="">{session.factors?.user?.displayName}</span>
-        <span className="text-xs opacity-80 text-ellipsis">
-          {session.factors?.user?.loginName}
+        <span className="">
+          {session.factors?.user?.displayName !== "- -"
+            ? session.factors?.user?.displayName
+            : session.factors?.user?.loginName}
         </span>
+
+        {session.factors?.user?.displayName !== "- -" && (
+          <span className="text-xs opacity-80 text-ellipsis">
+            {session.factors?.user?.loginName}
+          </span>
+        )}
         {valid ? (
           <span className="text-xs opacity-80 text-ellipsis">
             {verifiedAt && moment(timestampDate(verifiedAt)).fromNow()}

@@ -51,6 +51,15 @@ jobs:
           username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
           password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
 
+      - name: Get Next Version
+        if: github.event_name != 'pull_request'
+        id: semver
+        uses: ietf-tools/semver-action@v1
+        with:
+          token: ${{ github.token }}
+          branch: main
+          noVersionBumpBehavior: warn
+
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v5
@@ -63,6 +72,7 @@ jobs:
             type=ref,event=tag
             type=ref,event=pr
             type=sha
+            type=semver,pattern={{version}},value=${{steps.semver.outputs.next}}
 
       - name: Install dependencies
         run: pnpm install
@@ -85,3 +95,14 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+      - name: Create tag
+        if: ${{ steps.semver.outputs.next != '' }}
+        uses: actions/github-script@v5
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/${{ steps.semver.outputs.next }}',
+              sha: context.sha
+            })
