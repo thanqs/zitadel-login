@@ -12,6 +12,9 @@ permissions:
 
 jobs:
   build:
+    permissions:
+      contents: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -67,10 +70,6 @@ jobs:
           images: |
             rg.nl-ams.scw.cloud/thanqs/zitadel-login
           tags: |
-            type=edge
-            type=ref,event=branch
-            type=ref,event=tag
-            type=ref,event=pr
             type=sha
             type=semver,pattern={{version}},value=${{steps.semver.outputs.next}}
 
