@@ -1,4 +1,3 @@
-import { DynamicTheme } from "@/components/dynamic-theme";
 import { IdpSignin } from "@/components/idp-signin";
 import { completeIDP } from "@/components/idps/pages/complete-idp";
 import { linkingFailed } from "@/components/idps/pages/linking-failed";
@@ -304,7 +303,6 @@ export default async function Page(props: {
     }
 
     return completeIDP({
-      branding,
       idpIntent: { idpIntentId: id, idpIntentToken: token },
       addHumanUser,
       organization: orgToRegisterOn,
@@ -317,11 +315,15 @@ export default async function Page(props: {
 
   if (newUser) {
     return (
-      <DynamicTheme branding={branding}>
-        <div className="flex flex-col items-center space-y-4">
-          <h1>
+      <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
+        <div className="flex flex-col items-center gap-4">
+          <h2
+            style={{
+              color: "hsl(250,100%,38%)",
+            }}
+          >
             <Translated i18nKey="registerSuccess.title" namespace="idp" />
-          </h1>
+          </h2>
           <p className="ztdl-p">
             <Translated i18nKey="registerSuccess.description" namespace="idp" />
           </p>
@@ -331,7 +333,7 @@ export default async function Page(props: {
             requestId={requestId}
           />
         </div>
-      </DynamicTheme>
+      </div>
     );
   }
 

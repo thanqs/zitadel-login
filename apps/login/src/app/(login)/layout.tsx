@@ -84,16 +84,7 @@ export default async function RootLayout({
                   </div>
                 </div>
                 <div className="relative hidden m-8 w-full max-w-[566px] flex-col max-h-screen lg:block">
-                  <div
-                    style={{
-                      backgroundColor: "hsl(271,54%,92%)",
-                      height: "100%",
-                      width: "100%",
-                    }}
-                    className="relative w-full  shrink-0 overflow-hidden rounded-[20px]"
-                  >
                     <ThanqsSidebar/>
-                  </div>
                 </div>
               </div>
             </LanguageProvider>

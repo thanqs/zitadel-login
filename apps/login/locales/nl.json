@@ -75,8 +75,8 @@
       "description": "Er is een fout opgetreden bij het koppelen van je account."
     },
     "completeRegister": {
-      "title": "Vul je gegevens aan",
-      "description": "Je moet je registratie voltooien door je e-mailadres en naam op te geven."
+      "title": "Even kennismaken",
+      "description": "Controleer je gegevens en voorkeuren om je account compleet te maken."
     }
   },
   "ldap": {

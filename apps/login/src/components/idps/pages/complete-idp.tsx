@@ -1,7 +1,5 @@
 import { RegisterFormIDPIncomplete } from "@/components/register-form-idp-incomplete";
-import { BrandingSettings } from "@zitadel/proto/zitadel/settings/v2/branding_settings_pb";
 import { AddHumanUserRequest } from "@zitadel/proto/zitadel/user/v2/user_service_pb";
-import { DynamicTheme } from "../../dynamic-theme";
 import { Translated } from "../../translated";
 
 export async function completeIDP({
@@ -11,7 +9,6 @@ export async function completeIDP({
   addHumanUser,
   requestId,
   organization,
-  branding,
   idpIntent,
 }: {
   idpUserId: string;
@@ -20,21 +17,26 @@ export async function completeIDP({
   addHumanUser?: AddHumanUserRequest;
   requestId?: string;
   organization: string;
-  branding?: BrandingSettings;
   idpIntent: {
     idpIntentId: string;
     idpIntentToken: string;
   };
 }) {
   return (
-    <DynamicTheme branding={branding}>
-      <div className="flex flex-col items-center space-y-4">
-        <h1>
+    <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
+      <div className="flex flex-col items-center gap-6">
+        <div className="flex flex-col items-center gap-4">
+        <h2
+          style={{
+            color: "hsl(250,100%,38%)",
+          }}
+        >
           <Translated i18nKey="completeRegister.title" namespace="idp" />
-        </h1>
-        <p className="ztdl-p">
+        </h2>
+        <p className="">
           <Translated i18nKey="completeRegister.description" namespace="idp" />
         </p>
+        </div>
 
         <RegisterFormIDPIncomplete
           idpUserId={idpUserId}
@@ -50,6 +52,6 @@ export async function completeIDP({
           idpIntent={idpIntent}
         />
       </div>
-    </DynamicTheme>
+    </div>
   );
 }

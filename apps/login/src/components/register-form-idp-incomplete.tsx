@@ -51,6 +51,7 @@ export function RegisterFormIDPIncomplete({
       email: defaultValues?.email ?? "",
       firstname: defaultValues?.firstname ?? "",
       lastname: defaultValues?.lastname ?? "",
+      preferredLanguage: "",
     },
   });
 
@@ -95,41 +96,39 @@ export function RegisterFormIDPIncomplete({
   const { errors } = formState;
 
   return (
-    <form className="w-full">
-      <div className="grid grid-cols-2 gap-4 mb-4">
-        <div className="">
-          <TextInput
-            type="firstname"
-            autoComplete="firstname"
-            required
-            {...register("firstname", { required: "This field is required" })}
-            label="First name"
-            error={errors.firstname?.message as string}
-            data-testid="firstname-text-input"
-          />
-        </div>
-        <div className="">
-          <TextInput
-            type="lastname"
-            autoComplete="lastname"
-            required
-            {...register("lastname", { required: "This field is required" })}
-            label="Last name"
-            error={errors.lastname?.message as string}
-            data-testid="lastname-text-input"
-          />
-        </div>
-        <div className="col-span-2">
-          <TextInput
-            type="email"
-            autoComplete="email"
-            required
-            {...register("email", { required: "This field is required" })}
-            label="E-mail"
-            error={errors.email?.message as string}
-            data-testid="email-text-input"
-          />
-        </div>
+    <form className="w-full flex flex-col gap-4">
+      <div className="">
+        <TextInput
+          type="firstname"
+          autoComplete="firstname"
+          required
+          {...register("firstname", { required: "This field is required" })}
+          label="First name"
+          error={errors.firstname?.message as string}
+          data-testid="firstname-text-input"
+        />
+      </div>
+      <div className="">
+        <TextInput
+          type="lastname"
+          autoComplete="lastname"
+          required
+          {...register("lastname", { required: "This field is required" })}
+          label="Last name"
+          error={errors.lastname?.message as string}
+          data-testid="lastname-text-input"
+        />
+      </div>
+      <div className="">
+        <TextInput
+          type="email"
+          autoComplete="email"
+          required
+          {...register("email", { required: "This field is required" })}
+          label="E-mail"
+          error={errors.email?.message as string}
+          data-testid="email-text-input"
+        />
       </div>
 
       {error && (
