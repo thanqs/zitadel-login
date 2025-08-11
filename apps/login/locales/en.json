@@ -12,52 +12,51 @@
     "title": "Logout",
     "description": "Click an account to end the session",
     "noResults": "No accounts found",
-    "clear": "End Session",
+    "clear": "End session",
     "verifiedAt": "Last active: {time}",
     "success": {
-      "title": "Logout successful",
-      "description": "You have successfully logged out."
+      "title": "Successfully logged out",
+      "description": "You have been successfully logged out."
     }
   },
   "loginname": {
-    "title": "Welcome back!",
-    "description": "Enter your login data.",
+    "title": "Login",
+    "description": "Enter your login details.",
     "register": "Register new user",
     "submit": "Continue"
   },
   "password": {
     "verify": {
       "title": "Password",
-      "description": "Enter your password.",
-      "resetPassword": "Reset Password",
+      "resetPassword": "Forgot password?",
       "submit": "Continue"
     },
     "set": {
-      "title": "Set Password",
+      "title": "Choose a password",
       "description": "Set the password for your account",
-      "codeSent": "A code has been sent to your email address.",
-      "noCodeReceived": "Didn't receive a code?",
+      "codeSent": "We have sent an email to your address. Follow the instructions to regain access to your account.",
+      "noCodeReceived": "No code received?",
       "resend": "Resend code",
       "submit": "Continue"
     },
     "change": {
-      "title": "Change Password",
+      "title": "Change password",
       "description": "Set the password for your account",
       "submit": "Continue"
     }
   },
   "idp": {
-    "title": "Sign in with SSO",
-    "description": "Select one of the following providers to sign in",
+    "title": "Login with SSO",
+    "description": "Select one of the following providers to log in",
     "orSignInWith": "or sign in with",
     "signInWithApple": "Sign in with Apple",
     "signInWithGoogle": "Sign in with Google",
-    "signInWithAzureAD": "Sign in with Microsoft",
+    "signInWithMicrosoft": "Sign in with Microsoft",
     "signInWithGithub": "Sign in with GitHub",
     "signInWithGitlab": "Sign in with GitLab",
     "loginSuccess": {
-      "title": "Login successful",
-      "description": "You have successfully been loggedIn!"
+      "title": "Successfully logged in",
+      "description": "You have successfully logged in!"
     },
     "linkingSuccess": {
       "title": "Account linked",
@@ -69,20 +68,20 @@
     },
     "loginError": {
       "title": "Login failed",
-      "description": "An error occurred while trying to login."
+      "description": "An error occurred while logging in."
     },
     "linkingError": {
       "title": "Account linking failed",
-      "description": "An error occurred while trying to link your account."
+      "description": "An error occurred while linking your account."
     },
     "completeRegister": {
-      "title": "Complete your data",
-      "description": "You need to complete your registration by providing your email address and name."
+      "title": "Let's get acquainted",
+      "description": "Check your details and preferences to complete your account."
     }
   },
   "ldap": {
     "title": "LDAP Login",
-    "description": "Enter your LDAP credentials.",
+    "description": "Enter your LDAP details.",
     "username": "Username",
     "password": "Password",
     "submit": "Continue"
@@ -91,7 +90,7 @@
     "verify": {
       "title": "Verify your identity",
       "description": "Choose one of the following factors.",
-      "noResults": "No second factors available to setup."
+      "noResults": "No second factors available to set up."
     },
     "set": {
       "title": "Set up 2-Factor",
@@ -105,7 +104,7 @@
       "totpDescription": "Enter the code from your authenticator app.",
       "smsDescription": "Enter the code you received via SMS.",
       "emailDescription": "Enter the code you received via email.",
-      "noCodeReceived": "Didn't receive a code?",
+      "noCodeReceived": "No code received?",
       "resendCode": "Resend code",
       "submit": "Continue"
     },
@@ -114,7 +113,7 @@
       "totpDescription": "Scan the QR code with your authenticator app.",
       "smsDescription": "Enter your phone number to receive a code via SMS.",
       "emailDescription": "Enter your email address to receive a code via email.",
-      "totpRegisterDescription": "Scan the QR Code or navigate to the URL manually.",
+      "totpRegisterDescription": "Scan the QR code or manually navigate to the URL.",
       "submit": "Continue"
     }
   },
@@ -126,11 +125,11 @@
       "submit": "Continue"
     },
     "set": {
-      "title": "Setup a passkey",
+      "title": "Set up passkey",
       "description": "Your device will ask for your fingerprint, face, or screen lock",
       "info": {
-        "description": "A passkey is an authentication method on a device like your fingerprint, Apple FaceID or similar. ",
-        "link": "Passwordless Authentication"
+        "description": "A passkey is an authentication method on a device such as your fingerprint, Apple FaceID, or something similar.",
+        "link": "Passwordless authentication"
       },
       "skip": "Skip",
       "submit": "Continue"
@@ -154,59 +153,61 @@
     },
     "disabled": {
       "title": "Registration disabled",
-      "description": "The registration is disabled. Please contact your administrator."
+      "description": "Registration is disabled. Contact your administrator."
     },
     "missingdata": {
       "title": "Missing data",
       "description": "Provide email, first and last name to register."
     },
-    "title": "Register",
+    "title": "Create account",
     "description": "Create your ZITADEL account.",
-    "noMethodAvailableWarning": "No authentication method available. Please contact your administrator.",
-    "selectMethod": "Select the method you would like to authenticate",
-    "agreeTo": "To register you must agree to the terms and conditions",
-    "termsOfService": "Terms of Service",
-    "privacyPolicy": "Privacy Policy",
+    "noMethodAvailableWarning": "No authentication method available. Contact your administrator.",
+    "selectMethod": "Select the method you want to authenticate with",
+    "agreeTo": "By continuing, you agree to our ",
+    "termsOfService": "terms of service",
+    "and": " and ",
+    "privacyPolicy": "privacy policy",
     "submit": "Continue",
     "orUseIDP": "or use an Identity Provider",
+    "login": "Already have a Thanqs account? Log in",
     "password": {
-      "title": "Set Password",
-      "description": "Set the password for your account",
+      "title": "Choose a password",
+      "description": "Set a password now to create your account.",
       "submit": "Continue"
     }
   },
   "invite": {
-    "title": "Invite User",
-    "description": "Provide the email address and the name of the user you want to invite.",
+    "title": "Invite user",
+    "description": "Enter the email address and name of the user you want to invite.",
     "info": "The user will receive an email with further instructions.",
-    "notAllowed": "Your settings do not allow you to invite users.",
+    "notAllowed": "Your settings do not allow inviting users.",
     "submit": "Continue",
     "success": {
       "title": "User invited",
-      "description": "The email has successfully been sent.",
-      "verified": "The user has been invited and has already verified his email.",
+      "description": "The email was sent successfully.",
+      "verified": "The user has been invited and has already verified their email.",
       "notVerifiedYet": "The user has been invited. They will receive an email with further instructions.",
       "submit": "Invite another user"
     }
   },
   "signedin": {
     "title": "Welcome {user}!",
-    "description": "You are signed in.",
+    "description": "You are logged in.",
     "continue": "Continue",
     "error": {
       "title": "Error",
-      "description": "An error occurred while trying to sign in."
+      "description": "An error occurred while logging in."
     }
   },
   "verify": {
-    "userIdMissing": "No userId provided!",
+    "userIdMissing": "No user ID provided!",
     "successTitle": "User verified",
-    "successDescription": "The user has been verified successfully.",
-    "setupAuthenticator": "Setup authenticator",
+    "successDescription": "The user has been successfully verified.",
+    "setupAuthenticator": "Set up authenticator",
     "verify": {
       "title": "Verify user",
-      "description": "Enter the Code provided in the verification email.",
-      "noCodeReceived": "Didn't receive a code?",
+      "description": "Enter the code from the verification email.",
+      "noCodeReceived": "No code received?",
       "resendCode": "Resend code",
       "codeSent": "A code has just been sent to your email address.",
       "submit": "Continue"
@@ -214,9 +215,9 @@
   },
   "authenticator": {
     "title": "Choose authentication method",
-    "description": "Select the method you would like to authenticate",
+    "description": "Select the method you want to authenticate with",
     "noMethodsAvailable": "No authentication methods available",
-    "allSetup": "You have already setup an authenticator!",
+    "allSetup": "You have already set up an authenticator!",
     "linkWithIDP": "or link with an Identity Provider"
   },
   "device": {
@@ -226,9 +227,9 @@
       "submit": "Continue"
     },
     "request": {
-      "title": "{appName} would like to connect",
+      "title": "{appName} wants to connect",
       "description": "{appName} will have access to:",
-      "disclaimer": "By clicking Allow, you allow {appName} and Zitadel to use your information in accordance with their respective terms of service and privacy policies. You can revoke this access at any time.",
+      "disclaimer": "By clicking Allow, you give {appName} and Zitadel permission to use your information according to their respective terms and privacy policies. You can revoke this access at any time.",
       "submit": "Allow",
       "deny": "Deny"
     },
@@ -242,9 +243,9 @@
   "error": {
     "noUserCode": "No user code provided!",
     "noDeviceRequest": "No device request found.",
-    "unknownContext": "Could not get the context of the user. Make sure to enter the username first or provide a loginName as searchParam.",
-    "sessionExpired": "Your current session has expired. Please login again.",
+    "unknownContext": "Could not retrieve the user's context. Make sure you enter the username first or provide a loginName as a search parameter.",
+    "sessionExpired": "Your current session has expired. Please log in again.",
     "failedLoading": "Failed to load data. Please try again.",
-    "tryagain": "Try Again"
+    "tryagain": "Try again"
   }
 }

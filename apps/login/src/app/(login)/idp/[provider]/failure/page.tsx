@@ -1,12 +1,9 @@
-import { Alert, AlertType } from "@/components/alert";
 import { ChooseAuthenticatorToLogin } from "@/components/choose-authenticator-to-login";
-import { DynamicTheme } from "@/components/dynamic-theme";
 import { Translated } from "@/components/translated";
 import { UserAvatar } from "@/components/user-avatar";
 import { getServiceUrlFromHeaders } from "@/lib/service-url";
 import {
-  getBrandingSettings,
-  getLoginSettings,
+   getLoginSettings,
   getUserByID,
   listAuthenticationMethodTypes,
 } from "@/lib/zitadel";
@@ -24,11 +21,6 @@ export default async function Page(props: {
 
   const _headers = await headers();
   const { serviceUrl } = getServiceUrlFromHeaders(_headers);
-
-  const branding = await getBrandingSettings({
-    serviceUrl,
-    organization,
-  });
 
   const loginSettings = await getLoginSettings({
     serviceUrl,
@@ -73,33 +65,39 @@ export default async function Page(props: {
   }
 
   return (
-    <DynamicTheme branding={branding}>
-      <div className="flex flex-col items-center space-y-4">
-        <h1>
-          <Translated i18nKey="loginError.title" namespace="idp" />
-        </h1>
-        <Alert type={AlertType.ALERT}>
-          <Translated i18nKey="loginError.description" namespace="idp" />
-        </Alert>
+    <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
+      <div className="flex flex-col items-center gap-6">
+        <div className="flex flex-col items-center gap-4">
+          <h2
+            style={{
+              color: "hsl(250,100%,38%)",
+            }}
+          >
+            <Translated i18nKey="loginError.title" namespace="idp" />
+          </h2>
+          <p className="">
+            <Translated i18nKey="loginError.description" namespace="idp" />
+          </p>
 
-        {userId && authMethods.length && (
-          <>
-            {user && human && (
-              <UserAvatar
-                loginName={user.preferredLoginName}
-                displayName={human?.profile?.displayName}
-                showDropdown={false}
-              />
-            )}
+          {userId && authMethods.length && (
+            <>
+              {user && human && (
+                <UserAvatar
+                  loginName={user.preferredLoginName}
+                  displayName={human?.profile?.displayName}
+                  showDropdown={false}
+                />
+              )}
 
-            <ChooseAuthenticatorToLogin
-              authMethods={authMethods}
-              loginSettings={loginSettings}
-              params={params}
-            ></ChooseAuthenticatorToLogin>
-          </>
-        )}
+              <ChooseAuthenticatorToLogin
+                authMethods={authMethods}
+                loginSettings={loginSettings}
+                params={params}
+              ></ChooseAuthenticatorToLogin>
+            </>
+          )}
+        </div>
       </div>
-    </DynamicTheme>
+    </div>
   );
 }

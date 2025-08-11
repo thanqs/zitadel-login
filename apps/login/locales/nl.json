@@ -51,7 +51,7 @@
     "orSignInWith": "of inloggen met",
     "signInWithApple": "Inloggen met Apple",
     "signInWithGoogle": "Inloggen met Google",
-    "signInWithAzureAD": "Inloggen met Microsoft",
+    "signInWithMicrosoft": "Inloggen met Microsoft",
     "signInWithGithub": "Inloggen met GitHub",
     "signInWithGitlab": "Inloggen met GitLab",
     "loginSuccess": {

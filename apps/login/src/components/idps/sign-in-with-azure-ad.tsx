@@ -29,7 +29,7 @@ export const SignInWithAzureAd = forwardRef<
       {children ? (
         children
       ) : (
-        <Translated i18nKey="signInWithAzureAD" namespace="idp" />
+        <Translated i18nKey="signInWithMicrosoft" namespace="idp" />
       )}
     </BaseButton>
   );

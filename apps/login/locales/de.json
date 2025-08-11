@@ -5,22 +5,22 @@
   "accounts": {
     "title": "Konten",
     "description": "Wählen Sie das Konto aus, das Sie verwenden möchten.",
-    "addAnother": "Ein weiteres Konto hinzufügen",
+    "addAnother": "Anderes Konto verwenden",
     "noResults": "Keine Konten gefunden"
   },
   "logout": {
-    "title": "Logout",
-    "description": "Wählen Sie den Account aus, das Sie entfernen möchten",
+    "title": "Abmelden",
+    "description": "Klicken Sie auf ein Konto, um die Sitzung zu beenden",
     "noResults": "Keine Konten gefunden",
-    "clear": "Session beenden",
+    "clear": "Sitzung beenden",
     "verifiedAt": "Zuletzt aktiv: {time}",
     "success": {
-      "title": "Logout erfolgreich",
-      "description": "Sie haben sich erfolgreich abgemeldet."
+      "title": "Erfolgreich abgemeldet",
+      "description": "Sie wurden erfolgreich abgemeldet."
     }
   },
   "loginname": {
-    "title": "Willkommen zurück!",
+    "title": "Anmelden",
     "description": "Geben Sie Ihre Anmeldedaten ein.",
     "register": "Neuen Benutzer registrieren",
     "submit": "Weiter"
@@ -28,16 +28,15 @@
   "password": {
     "verify": {
       "title": "Passwort",
-      "description": "Geben Sie Ihr Passwort ein.",
-      "resetPassword": "Passwort zurücksetzen",
+      "resetPassword": "Passwort vergessen?",
       "submit": "Weiter"
     },
     "set": {
-      "title": "Passwort festlegen",
+      "title": "Passwort wählen",
       "description": "Legen Sie das Passwort für Ihr Konto fest",
-      "codeSent": "Ein Code wurde an Ihre E-Mail-Adresse gesendet.",
+      "codeSent": "Wir haben eine E-Mail an Ihre Adresse gesendet. Folgen Sie den Anweisungen, um wieder Zugriff auf Ihr Konto zu erhalten.",
       "noCodeReceived": "Keinen Code erhalten?",
-      "resend": "Erneut senden",
+      "resend": "Code erneut senden",
       "submit": "Weiter"
     },
     "change": {
@@ -49,14 +48,14 @@
   "idp": {
     "title": "Mit SSO anmelden",
     "description": "Wählen Sie einen der folgenden Anbieter, um sich anzumelden",
-    "orSignInWith": "oder melden Sie sich an mit",
+    "orSignInWith": "oder anmelden mit",
     "signInWithApple": "Mit Apple anmelden",
     "signInWithGoogle": "Mit Google anmelden",
-    "signInWithAzureAD": "Mit Microsoft anmelden",
+    "signInWithMicrosoft": "Mit Microsoft anmelden",
     "signInWithGithub": "Mit GitHub anmelden",
     "signInWithGitlab": "Mit GitLab anmelden",
     "loginSuccess": {
-      "title": "Anmeldung erfolgreich",
+      "title": "Erfolgreich angemeldet",
       "description": "Sie haben sich erfolgreich angemeldet!"
     },
     "linkingSuccess": {
@@ -76,22 +75,22 @@
       "description": "Beim Verknüpfen Ihres Kontos ist ein Fehler aufgetreten."
     },
     "completeRegister": {
-      "title": "Registrierung abschließen",
-      "description": "Bitte vervollständige die Registrierung, um dein Konto zu erstellen."
+      "title": "Lernen wir uns kennen",
+      "description": "Überprüfen Sie Ihre Daten und Präferenzen, um Ihr Konto zu vervollständigen."
     }
   },
   "ldap": {
-    "title": "LDAP Login",
-    "description": "Geben Sie Ihre LDAP-Anmeldedaten ein.",
+    "title": "LDAP-Anmeldung",
+    "description": "Geben Sie Ihre LDAP-Daten ein.",
     "username": "Benutzername",
     "password": "Passwort",
     "submit": "Weiter"
   },
   "mfa": {
     "verify": {
-      "title": "Bestätigen Sie Ihre Identität",
+      "title": "Identität bestätigen",
       "description": "Wählen Sie einen der folgenden Faktoren.",
-      "noResults": "Keine zweiten Faktoren verfügbar, um sie einzurichten."
+      "noResults": "Keine zweiten Faktoren verfügbar."
     },
     "set": {
       "title": "2-Faktor einrichten",
@@ -102,7 +101,7 @@
   "otp": {
     "verify": {
       "title": "2-Faktor bestätigen",
-      "totpDescription": "Geben Sie den Code aus Ihrer Authentifizierungs-App ein.",
+      "totpDescription": "Geben Sie den Code aus Ihrer Authenticator-App ein.",
       "smsDescription": "Geben Sie den Code ein, den Sie per SMS erhalten haben.",
       "emailDescription": "Geben Sie den Code ein, den Sie per E-Mail erhalten haben.",
       "noCodeReceived": "Keinen Code erhalten?",
@@ -111,7 +110,7 @@
     },
     "set": {
       "title": "2-Faktor einrichten",
-      "totpDescription": "Scannen Sie den QR-Code mit Ihrer Authentifizierungs-App.",
+      "totpDescription": "Scannen Sie den QR-Code mit Ihrer Authenticator-App.",
       "smsDescription": "Geben Sie Ihre Telefonnummer ein, um einen Code per SMS zu erhalten.",
       "emailDescription": "Geben Sie Ihre E-Mail-Adresse ein, um einen Code per E-Mail zu erhalten.",
       "totpRegisterDescription": "Scannen Sie den QR-Code oder navigieren Sie manuell zur URL.",
@@ -120,14 +119,14 @@
   },
   "passkey": {
     "verify": {
-      "title": "Mit einem Passkey authentifizieren",
-      "description": "Ihr Gerät wird nach Ihrem Fingerabdruck, Gesicht oder Bildschirmsperre fragen",
+      "title": "Mit Passkey authentifizieren",
+      "description": "Ihr Gerät fragt nach Fingerabdruck, Gesicht oder Bildschirmsperre",
       "usePassword": "Passwort verwenden",
       "submit": "Weiter"
     },
     "set": {
       "title": "Passkey einrichten",
-      "description": "Ihr Gerät wird nach Ihrem Fingerabdruck, Gesicht oder Bildschirmsperre fragen",
+      "description": "Ihr Gerät fragt nach Fingerabdruck, Gesicht oder Bildschirmsperre",
       "info": {
         "description": "Ein Passkey ist eine Authentifizierungsmethode auf einem Gerät wie Ihr Fingerabdruck, Apple FaceID oder ähnliches.",
         "link": "Passwortlose Authentifizierung"
@@ -150,40 +149,42 @@
   "register": {
     "methods": {
       "passkey": "Passkey",
-      "password": "Password"
+      "password": "Passwort"
     },
     "disabled": {
       "title": "Registrierung deaktiviert",
-      "description": "Die Registrierung ist deaktiviert. Bitte wenden Sie sich an den Administrator."
+      "description": "Registrierung ist deaktiviert. Kontaktieren Sie Ihren Administrator."
     },
     "missingdata": {
-      "title": "Registrierung fehlgeschlagen",
-      "description": "Einige Daten fehlen. Bitte überprüfen Sie Ihre Eingaben."
+      "title": "Fehlende Daten",
+      "description": "Geben Sie E-Mail, Vor- und Nachnamen an, um sich zu registrieren."
     },
-    "title": "Registrieren",
+    "title": "Konto erstellen",
     "description": "Erstellen Sie Ihr ZITADEL-Konto.",
-    "noMethodAvailableWarning": "Keine Authentifizierungsmethode verfügbar. Bitte wenden Sie sich an den Administrator.",
+    "noMethodAvailableWarning": "Keine Authentifizierungsmethode verfügbar. Kontaktieren Sie Ihren Administrator.",
     "selectMethod": "Wählen Sie die Methode, mit der Sie sich authentifizieren möchten",
-    "agreeTo": "Um sich zu registrieren, müssen Sie den Nutzungsbedingungen zustimmen",
+    "agreeTo": "Indem Sie fortfahren, stimmen Sie unseren ",
     "termsOfService": "Nutzungsbedingungen",
-    "privacyPolicy": "Datenschutzrichtlinie",
+    "and": " und ",
+    "privacyPolicy": "Datenschutzerklärung",
     "submit": "Weiter",
-    "orUseIDP": "oder verwenden Sie einen Identitätsanbieter",
+    "orUseIDP": "oder verwenden Sie einen Identity Provider",
+    "login": "Bereits ein Thanqs-Konto? Anmelden",
     "password": {
-      "title": "Passwort festlegen",
-      "description": "Legen Sie das Passwort für Ihr Konto fest",
+      "title": "Passwort wählen",
+      "description": "Legen Sie jetzt ein Passwort fest, um Ihr Konto zu erstellen.",
       "submit": "Weiter"
     }
   },
   "invite": {
     "title": "Benutzer einladen",
-    "description": "Geben Sie die E-Mail-Adresse des Benutzers ein, den Sie einladen möchten.",
-    "info": "Der Benutzer erhält eine E-Mail mit einem Link, um sich zu registrieren.",
-    "notAllowed": "Sie haben keine Berechtigung, Benutzer einzuladen.",
-    "submit": "Einladen",
+    "description": "Geben Sie die E-Mail-Adresse und den Namen des Benutzers ein, den Sie einladen möchten.",
+    "info": "Der Benutzer erhält eine E-Mail mit weiteren Anweisungen.",
+    "notAllowed": "Ihre Einstellungen erlauben das Einladen von Benutzern nicht.",
+    "submit": "Weiter",
     "success": {
-      "title": "Einladung erfolgreich",
-      "description": "Der Benutzer wurde erfolgreich eingeladen.",
+      "title": "Benutzer eingeladen",
+      "description": "Die E-Mail wurde erfolgreich gesendet.",
       "verified": "Der Benutzer wurde eingeladen und hat seine E-Mail bereits verifiziert.",
       "notVerifiedYet": "Der Benutzer wurde eingeladen. Er erhält eine E-Mail mit weiteren Anweisungen.",
       "submit": "Weiteren Benutzer einladen"
@@ -195,54 +196,54 @@
     "continue": "Weiter",
     "error": {
       "title": "Fehler",
-      "description": "Ein Fehler ist aufgetreten."
+      "description": "Beim Anmelden ist ein Fehler aufgetreten."
     }
   },
   "verify": {
     "userIdMissing": "Keine Benutzer-ID angegeben!",
     "successTitle": "Benutzer verifiziert",
     "successDescription": "Der Benutzer wurde erfolgreich verifiziert.",
-    "setupAuthenticator": "Authentifikator einrichten",
+    "setupAuthenticator": "Authenticator einrichten",
     "verify": {
       "title": "Benutzer verifizieren",
-      "description": "Geben Sie den Code ein, der in der Bestätigungs-E-Mail angegeben ist.",
+      "description": "Geben Sie den Code aus der Bestätigungs-E-Mail ein.",
       "noCodeReceived": "Keinen Code erhalten?",
       "resendCode": "Code erneut senden",
-      "codeSent": "Ein Code wurde gerade an Ihre E-Mail-Adresse gesendet.",
+      "codeSent": "Ein Code wurde soeben an Ihre E-Mail-Adresse gesendet.",
       "submit": "Weiter"
     }
   },
   "authenticator": {
-    "title": "Authentifizierungsmethode auswählen",
-    "description": "Wählen Sie die Methode, mit der Sie sich authentifizieren möchten.",
+    "title": "Authentifizierungsmethode wählen",
+    "description": "Wählen Sie die Methode, mit der Sie sich authentifizieren möchten",
     "noMethodsAvailable": "Keine Authentifizierungsmethoden verfügbar",
-    "allSetup": "Sie haben bereits einen Authentifikator eingerichtet!",
-    "linkWithIDP": "oder verknüpfe mit einem Identitätsanbieter"
+    "allSetup": "Sie haben bereits einen Authenticator eingerichtet!",
+    "linkWithIDP": "oder mit einem Identity Provider verknüpfen"
   },
   "device": {
     "usercode": {
       "title": "Gerätecode",
-      "description": "Geben Sie den Code ein.",
+      "description": "Geben Sie den Code ein, der auf Ihrer App oder Ihrem Gerät angezeigt wird.",
       "submit": "Weiter"
     },
     "request": {
-      "title": "{appName} möchte eine Verbindung herstellen:",
-      "disclaimer": "{appName} hat Zugriff auf:",
-      "description": "Durch Klicken auf Zulassen erlauben Sie {appName} und Zitadel, Ihre Informationen gemäß ihren jeweiligen Nutzungsbedingungen und Datenschutzrichtlinien zu verwenden. Sie können diesen Zugriff jederzeit widerrufen.",
+      "title": "{appName} möchte verbinden",
+      "description": "{appName} erhält Zugriff auf:",
+      "disclaimer": "Durch Klicken auf Zulassen geben Sie {appName} und Zitadel die Erlaubnis, Ihre Informationen gemäß deren jeweiligen Bedingungen und Datenschutzrichtlinien zu verwenden. Sie können diesen Zugriff jederzeit widerrufen.",
       "submit": "Zulassen",
       "deny": "Ablehnen"
     },
     "scope": {
-      "openid": "Überprüfen Ihrer Identität.",
-      "email": "Zugriff auf Ihre E-Mail-Adresse.",
-      "profile": "Zugriff auf Ihre vollständigen Profilinformationen.",
-      "offline_access": "Erlauben Sie den Offline-Zugriff auf Ihr Konto."
+      "openid": "Bestätigen Sie Ihre Identität.",
+      "email": "Sehen Sie Ihre E-Mail-Adresse ein.",
+      "profile": "Sehen Sie Ihre vollständigen Profildaten ein.",
+      "offline_access": "Offline-Zugriff auf Ihr Konto erlauben."
     }
   },
   "error": {
-    "noUserCode": "Kein Benutzercode angegeben!",
-    "noDeviceRequest": " Es wurde keine Geräteanforderung gefunden. Bitte überprüfen Sie die URL.",
-    "unknownContext": "Der Kontext des Benutzers konnte nicht ermittelt werden. Stellen Sie sicher, dass Sie zuerst den Benutzernamen eingeben oder einen loginName als Suchparameter angeben.",
+    "noUserCode": "Kein Benutzer-Code angegeben!",
+    "noDeviceRequest": "Keine Geräteanfrage gefunden.",
+    "unknownContext": "Der Benutzerkontext konnte nicht abgerufen werden. Stellen Sie sicher, dass Sie zuerst den Benutzernamen eingeben oder einen loginName als Suchparameter angeben.",
     "sessionExpired": "Ihre aktuelle Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.",
     "failedLoading": "Daten konnten nicht geladen werden. Bitte versuchen Sie es erneut.",
     "tryagain": "Erneut versuchen"

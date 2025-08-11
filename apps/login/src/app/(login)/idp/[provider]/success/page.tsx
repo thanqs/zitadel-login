@@ -9,7 +9,6 @@ import { getServiceUrlFromHeaders } from "@/lib/service-url";
 import {
   addHuman,
   addIDPLink,
-  getBrandingSettings,
   getDefaultOrg,
   getIDPByID,
   getLoginSettings,
@@ -78,11 +77,6 @@ export default async function Page(props: {
   const _headers = await headers();
   const { serviceUrl } = getServiceUrlFromHeaders(_headers);
 
-  let branding = await getBrandingSettings({
-    serviceUrl,
-    organization,
-  });
-
   if (!organization) {
     const org: Organization | null = await getDefaultOrg({
       serviceUrl,
@@ -93,7 +87,7 @@ export default async function Page(props: {
   }
 
   if (!provider || !id || !token) {
-    return loginFailed(branding, "IDP context missing");
+    return loginFailed( "IDP context missing");
   }
 
   const intent = await retrieveIDPIntent({
@@ -106,7 +100,7 @@ export default async function Page(props: {
   let { addHumanUser } = intent;
 
   if (!idpInformation) {
-    return loginFailed(branding, "IDP information missing");
+    return loginFailed( "IDP information missing");
   }
 
   const idp = await getIDPByID({
@@ -144,14 +138,13 @@ export default async function Page(props: {
       userId,
       { idpIntentId: id, idpIntentToken: token },
       requestId,
-      branding,
     );
   }
 
   if (link) {
     if (!options?.isLinkingAllowed) {
       // linking was probably disallowed since the invitation was created
-      return linkingFailed(branding, "Linking is no longer allowed");
+      return linkingFailed("Linking is no longer allowed");
     }
 
     let idpLink;
@@ -167,17 +160,16 @@ export default async function Page(props: {
       });
     } catch (error) {
       console.error(error);
-      return linkingFailed(branding);
+      return linkingFailed();
     }
 
     if (!idpLink) {
-      return linkingFailed(branding);
+      return linkingFailed();
     } else {
       return linkingSuccess(
         userId,
         { idpIntentId: id, idpIntentToken: token },
         requestId,
-        branding,
       );
     }
   }
@@ -223,17 +215,16 @@ export default async function Page(props: {
         });
       } catch (error) {
         console.error(error);
-        return linkingFailed(branding);
+        return linkingFailed();
       }
 
       if (!idpLink) {
-        return linkingFailed(branding);
+        return linkingFailed();
       } else {
         return linkingSuccess(
           foundUser.userId,
           { idpIntentId: id, idpIntentToken: token },
           requestId,
-          branding,
         );
       }
     }
@@ -277,7 +268,6 @@ export default async function Page(props: {
         addHumanUser,
       );
       return loginFailed(
-        branding,
         (error as ConnectError).message
           ? (error as ConnectError).message
           : "Could not create user",
@@ -291,15 +281,8 @@ export default async function Page(props: {
       serviceUrl,
     });
 
-    if (orgToRegisterOn) {
-      branding = await getBrandingSettings({
-        serviceUrl,
-        organization: orgToRegisterOn,
-      });
-    }
-
     if (!orgToRegisterOn) {
-      return loginFailed(branding, "No organization found for registration");
+      return loginFailed("No organization found for registration");
     }
 
     return completeIDP({
@@ -338,5 +321,5 @@ export default async function Page(props: {
   }
 
   // return login failed if no linking or creation is allowed and no user was found
-  return loginFailed(branding, "No user found");
+  return loginFailed("No user found");
 }
