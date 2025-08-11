@@ -56,7 +56,7 @@ import { getUserAgent } from "./fingerprint";
 import { setSAMLFormCookie } from "./saml";
 import { createServiceForHost } from "./service";
 
-const useCache = process.env.DEBUG !== "true";
+const useCache = false;
 
 async function cacheWrapper<T>(callback: Promise<T>) {
   "use cache";
@@ -435,6 +435,7 @@ export type AddHumanUserData = {
   email: string;
   password?: string;
   organization: string;
+  preferredLanguage?: string;
 };
 
 export async function addOrganizationAndIdpUser({
@@ -473,6 +474,7 @@ export async function addOrganizationAndHumanUser({
                                                     firstName,
                                                     lastName,
                                                     password,
+                                                    preferredLanguage,
                                                   }: AddHumanUserData) {
   const orgService: Client<typeof OrganizationService> =
     await createServiceForHost(OrganizationService, serviceUrl);
@@ -493,7 +495,7 @@ export async function addOrganizationAndHumanUser({
               // },
             },
             username: email,
-            profile: { givenName: firstName, familyName: lastName },
+            profile: { givenName: firstName, familyName: lastName, preferredLanguage: preferredLanguage },
             metadata: [
               {
                 key: "project",

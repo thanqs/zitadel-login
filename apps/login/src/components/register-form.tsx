@@ -20,6 +20,7 @@ import { TextInput } from "./input";
 import { PrivacyPolicyCheckboxes } from "./privacy-policy-checkboxes";
 import { Spinner } from "./spinner";
 import { Translated } from "./translated";
+import { useLocale } from "next-intl";
 
 type Inputs =
   | {
@@ -65,6 +66,7 @@ export function RegisterForm({
 
   const router = useRouter();
 
+  const locale = useLocale();
   async function submitAndRegister(values: Inputs) {
     setLoading(true);
     const response = await registerUser({
@@ -73,6 +75,7 @@ export function RegisterForm({
       lastName: values.lastname,
       organization: organization,
       requestId: requestId,
+      preferredLanguage: locale,
     })
       .catch(() => {
         setError("Could not register user");

@@ -15,8 +15,6 @@ export function Translated({
   const t = useTranslations(namespace);
   const helperKey = `${namespace ? `${namespace}.` : ""}${i18nKey}`;
 
-  console.log(helperKey, data, t)
-
   return (
     <span data-i18n-key={helperKey} {...props}>
       {t(i18nKey, data)}

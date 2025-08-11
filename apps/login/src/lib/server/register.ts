@@ -28,6 +28,7 @@ type RegisterUserCommand = {
   password?: string;
   organization: string;
   requestId?: string;
+  preferredLanguage?: string;
 };
 
 export type RegisterUserResponse = {
@@ -51,6 +52,7 @@ export async function registerUser(command: RegisterUserCommand) {
     lastName: command.lastName,
     password: command.password ? command.password : undefined,
     organization: command.organization,
+    preferredLanguage: command.preferredLanguage,
   });
 
   if (!addResponse) {

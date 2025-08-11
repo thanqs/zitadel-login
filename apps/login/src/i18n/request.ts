@@ -7,6 +7,7 @@ import { getRequestConfig } from "next-intl/server";
 import { cookies, headers } from "next/headers";
 
 export default getRequestConfig(async () => {
+
   const fallback = "nl";
   const cookiesList = await cookies();
 
@@ -21,6 +22,7 @@ export default getRequestConfig(async () => {
     if (LANGS.map((l) => l.code).includes(headerLocale)) {
       locale = headerLocale;
     }
+
   }
 
   const languageCookie = cookiesList?.get(LANGUAGE_COOKIE_NAME);
@@ -39,6 +41,7 @@ export default getRequestConfig(async () => {
       locale,
       organization: i18nOrganization,
     });
+
 
     if (i18nJSON) {
       translations = i18nJSON;
