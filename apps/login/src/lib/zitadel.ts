@@ -518,7 +518,8 @@ export async function addHumanUser({
   firstName,
   lastName,
   password,
-  organization
+  organization,
+  preferredLanguage
 }: AddHumanUserData) {
   const oRsp = await addOrganizationAndHumanUser({
     serviceUrl,
@@ -527,6 +528,7 @@ export async function addHumanUser({
     email,
     password,
     organization,
+    preferredLanguage
   });
   if (!oRsp) return;
   return oRsp.createdAdmins[0];
