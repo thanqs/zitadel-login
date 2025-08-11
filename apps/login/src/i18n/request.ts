@@ -7,7 +7,7 @@ import { getRequestConfig } from "next-intl/server";
 import { cookies, headers } from "next/headers";
 
 export default getRequestConfig(async () => {
-  const fallback = "en";
+  const fallback = "nl";
   const cookiesList = await cookies();
 
   let locale: string = fallback;
