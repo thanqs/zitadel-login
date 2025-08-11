@@ -18,6 +18,7 @@ import { TextInput } from "./input";
 import { PasswordComplexity } from "./password-complexity";
 import { Spinner } from "./spinner";
 import { Translated } from "./translated";
+import { useLocale } from "next-intl";
 
 type Inputs =
   | {
@@ -57,6 +58,8 @@ export function SetRegisterPasswordForm({
 
   const router = useRouter();
 
+  const locale = useLocale();
+
   async function submitRegister(values: Inputs) {
     setLoading(true);
     const response = await registerUser({
@@ -66,6 +69,7 @@ export function SetRegisterPasswordForm({
       organization: organization,
       requestId: requestId,
       password: values.password,
+      preferredLanguage: locale
     })
       .catch(() => {
         setError("Could not register user");
