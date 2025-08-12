@@ -18,6 +18,8 @@ export const SignInWithGoogle = forwardRef<
           xmlSpace="preserve"
           id="Capa_1"
           viewBox="0 0 150 150"
+          width="150"
+          height="150"
         >
           <style>
             {
