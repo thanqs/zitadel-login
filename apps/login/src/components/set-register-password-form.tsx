@@ -71,7 +71,8 @@ export function SetRegisterPasswordForm({
       password: values.password,
       preferredLanguage: locale
     })
-      .catch(() => {
+      .catch((e) => {
+        console.error("Error registering user:", e);
         setError("Could not register user");
         return;
       })
