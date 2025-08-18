@@ -13,6 +13,8 @@
 !tsconfig.json
 !package.json
 !pnpm-lock.yaml
+!.next/standalone
+!.next/static
 
 **/*.md
 **/*.png
