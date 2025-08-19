@@ -130,24 +130,24 @@ export function RegisterForm({
     <>
       <form className="w-full">
         <div className="grid grid-cols-2 gap-4 mb-4">
-          <div className=" hidden">
+          <div className="col-span-2 ">
             <TextInput
               type="firstname"
               autoComplete="firstname"
               required
             {...register("firstname", { required: t("required.firstname") })}
-              label="First name"
+              label={t("firstname")}
               error={errors.firstname?.message as string}
               data-testid="firstname-text-input"
             />
           </div>
-          <div className="hidden">
+          <div className="col-span-2">
             <TextInput
               type="lastname"
               autoComplete="lastname"
               required
             {...register("lastname", { required: t("required.lastname") })}
-              label="Last name"
+              label={t("lastname")}
               error={errors.lastname?.message as string}
               data-testid="lastname-text-input"
             />
@@ -158,7 +158,7 @@ export function RegisterForm({
               autoComplete="email"
               required
             {...register("email", { required: t("required.email") })}
-              label="E-mail"
+              label={t("email")}
               error={errors.email?.message as string}
               data-testid="email-text-input"
             />

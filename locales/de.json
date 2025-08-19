@@ -95,7 +95,7 @@
       "title": "Lernen wir uns kennen",
       "description": "Überprüfen Sie Ihre Daten und Präferenzen, um Ihr Konto zu vervollständigen."
     },
-    "chooseAlternativeMethod": "Wählen Sie eine alternative Methode zur Anmeldung"
+    "chooseAlternativeMethod": "Wählen Sie eine alternative Methode"
   },
   "ldap": {
     "title": "LDAP-Anmeldung",
@@ -198,6 +198,9 @@
     "submit": "Weiter",
     "orUseIDP": "oder verwenden Sie einen Identity Provider",
     "login": "Bereits ein Thanqs-Konto? Anmelden",
+    "firstname": "Vorname",
+    "lastname": "Nachname",
+    "email": "E-Mail-Adresse",
     "password": {
       "title": "Passwort wählen",
       "description": "Legen Sie jetzt ein Passwort fest, um Ihr Konto zu erstellen.",
@@ -242,7 +245,7 @@
     "successDescription": "Der Benutzer wurde erfolgreich verifiziert.",
     "setupAuthenticator": "Authenticator einrichten",
     "verify": {
-      "title": "Benutzer verifizieren",
+      "title": "Verifizieren...",
       "description": "Geben Sie den Code aus der Bestätigungs-E-Mail ein.",
       "noCodeReceived": "Keinen Code erhalten?",
       "resendCode": "Code erneut senden",

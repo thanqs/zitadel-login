@@ -199,6 +199,9 @@
     "submit": "Doorgaan",
     "orUseIDP": "of gebruik een Identity Provider",
     "login": "Al een account bij Thanqs? Inloggen",
+    "firstname": "Voornaam",
+    "lastname": "Achternaam",
+    "email": "E-mailadres",
     "password": {
       "title": "Kies een wachtwoord",
       "description": "Stel nu een wachtwoord in om je account aan te maken.",
