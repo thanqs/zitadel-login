@@ -25,7 +25,8 @@ export const ThanqsSidebar = () => {
   if (r.startsWith("/password")) {
     return <LocksAndShieldsIllustration />;
   }
-  if (r.startsWith("/register")) {
+
+  if (r.startsWith("/register") || r.startsWith("/verify")) {
     return <ChocolateAndChampangeIllustration />;
   }
   if (r.startsWith("/idp")) {

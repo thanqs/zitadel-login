@@ -80,6 +80,7 @@ export function checkEmailVerification(
   humanUser?: HumanUser,
   organization?: string,
   requestId?: string,
+  sendMail = true
 ) {
   if (
     !humanUser?.email?.isVerified &&
@@ -87,7 +88,7 @@ export function checkEmailVerification(
   ) {
     const params = new URLSearchParams({
       loginName: session.factors?.user?.loginName as string,
-      send: "true", // set this to true as we dont expect old email codes to be valid anymore
+      send: sendMail ? "true" : "false", // set this to true as we dont expect old email codes to be valid anymore
     });
 
     if (requestId) {

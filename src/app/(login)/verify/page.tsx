@@ -1,14 +1,15 @@
 import { Alert, AlertType } from "@/components/alert";
-import { DynamicTheme } from "@/components/dynamic-theme";
 import { Translated } from "@/components/translated";
-import { UserAvatar } from "@/components/user-avatar";
-import { VerifyForm } from "@/components/verify-form";
 import { sendEmailCode, sendInviteEmailCode } from "@/lib/server/verify";
 import { getServiceUrlFromHeaders } from "@/lib/service-url";
 import { loadMostRecentSession } from "@/lib/session";
-import { getBrandingSettings, getUserByID } from "@/lib/zitadel";
+import { getUserByID } from "@/lib/zitadel";
 import { HumanUser, User } from "@zitadel/proto/zitadel/user/v2/user_pb";
 import { headers } from "next/headers";
+import Image from "next/image";
+import EnvelopeIcon from "@/public/icons/envelope.svg";
+import { ThanqsVerifyEmailSendAgain } from "@/components/thanqs-verify-email-send-again";
+import { VerifyForm } from "@/components/verify-form";
 
 export default async function Page(props: { searchParams: Promise<any> }) {
   const searchParams = await props.searchParams;
@@ -19,10 +20,6 @@ export default async function Page(props: { searchParams: Promise<any> }) {
   const _headers = await headers();
   const { serviceUrl } = getServiceUrlFromHeaders(_headers);
 
-  const branding = await getBrandingSettings({
-    serviceUrl,
-    organization,
-  });
 
   let sessionFactors;
   let user: User | undefined;
@@ -32,6 +29,7 @@ export default async function Page(props: { searchParams: Promise<any> }) {
   const doSend = send === "true";
 
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 
   async function sendEmail(userId: string) {
     const host = _headers.get("host");
@@ -115,15 +113,41 @@ export default async function Page(props: { searchParams: Promise<any> }) {
     params.set("requestId", requestId);
   }
 
+  if (invite !== "true" && !doSend && !code) {
+    //This means we are coming from register
+    return (<div className="m-auto w-full max-w-[566px] space-y-6 pb-10">
+      <div className="flex flex-col items-center space-y-4 gap-[40px]">
+        <div className="flex flex-col items-center space-y-4">
+          <Image src={EnvelopeIcon} alt="Envelope" width={100} height={100} />
+          <h2
+            style={{
+              color: "hsl(250,100%,38%)",
+            }}
+          >
+            Check je inbox
+          </h2>
+          <p className="text-center">
+            <Translated i18nKey="verify.codeSent" namespace="verify" data={{email: human?.email?.email}} />
+          </p>
+        </div>
+        <ThanqsVerifyEmailSendAgain
+          userId={userId}
+          isInvite={invite === "true"}
+        />
+      </div>
+    </div>)
+  }
+
   return (
-    <DynamicTheme branding={branding}>
-      <div className="flex flex-col items-center space-y-4">
-        <h1>
+    <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
+      <div className="flex flex-col items-center gap-4">
+        <h2
+          style={{
+            color: "hsl(250,100%,38%)",
+          }}
+        >
           <Translated i18nKey="verify.title" namespace="verify" />
-        </h1>
-        <p className="ztdl-p mb-6 block">
-          <Translated i18nKey="verify.description" namespace="verify" />
-        </p>
+        </h2>
 
         {!id && (
           <div className="py-4">
@@ -140,24 +164,6 @@ export default async function Page(props: { searchParams: Promise<any> }) {
             </Alert>
           </div>
         )}
-
-        {sessionFactors ? (
-          <UserAvatar
-            loginName={loginName ?? sessionFactors.factors?.user?.loginName}
-            displayName={sessionFactors.factors?.user?.displayName}
-            showDropdown
-            searchParams={searchParams}
-          ></UserAvatar>
-        ) : (
-          user && (
-            <UserAvatar
-              loginName={user.preferredLoginName}
-              displayName={human?.profile?.displayName}
-              showDropdown={false}
-            />
-          )
-        )}
-
         <VerifyForm
           loginName={loginName}
           organization={organization}
@@ -167,6 +173,6 @@ export default async function Page(props: { searchParams: Promise<any> }) {
           requestId={requestId}
         />
       </div>
-    </DynamicTheme>
+    </div>
   );
 }

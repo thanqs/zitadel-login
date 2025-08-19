@@ -243,11 +243,11 @@
     "successDescription": "De gebruiker is succesvol geverifieerd.",
     "setupAuthenticator": "Authenticator instellen",
     "verify": {
-      "title": "Gebruiker verifiëren",
+      "title": "Verifiëren...",
       "description": "Voer de code in die in de verificatie-e-mail staat.",
       "noCodeReceived": "Geen code ontvangen?",
       "resendCode": "Code opnieuw versturen",
-      "codeSent": "Er is zojuist een code naar je e-mailadres gestuurd.",
+      "codeSent": "We hebben een e-mail gestuurd naar {email}. Klik op de link in de mail om je e-mailadres te bevestigen en je account aan te maken.",
       "submit": "Doorgaan",
       "required": {
         "code": "Dit veld is verplicht"

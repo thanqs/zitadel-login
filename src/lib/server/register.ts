@@ -89,18 +89,18 @@ export async function registerUser(command: RegisterUserCommand) {
     return { error: "Could not create session" };
   }
 
-  if (!command.password) {
-    const params = new URLSearchParams({
-      loginName: session.factors.user.loginName,
-      organization: session.factors.user.organizationId,
-    });
-
-    if (command.requestId) {
-      params.append("requestId", command.requestId);
-    }
-
-    return { redirect: "/passkey/set?" + params };
-  } else {
+  // if (!command.password) {
+  //   const params = new URLSearchParams({
+  //     loginName: session.factors.user.loginName,
+  //     organization: session.factors.user.organizationId,
+  //   });
+  //
+  //   if (command.requestId) {
+  //     params.append("requestId", command.requestId);
+  //   }
+  //
+  //   return { redirect: "/passkey/set?" + params };
+  // } else {
     const userResponse = await getUserByID({
       serviceUrl,
       userId: session?.factors?.user?.id,
@@ -120,6 +120,7 @@ export async function registerUser(command: RegisterUserCommand) {
       humanUser,
       session.factors.user.organizationId,
       command.requestId,
+      false
     );
 
     if (emailVerificationCheck?.redirect) {
@@ -141,7 +142,7 @@ export async function registerUser(command: RegisterUserCommand) {
     );
 
     return { redirect: url };
-  }
+  // }
 }
 
 type RegisterUserAndLinkToIDPommand = {

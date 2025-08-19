@@ -1,19 +1,17 @@
 "use client";
 
 import { Button, ButtonVariants } from "@/components/button";
-import { resetPassword } from "@/lib/server/password";
 import { useState } from "react";
+import { resendVerification } from "@/lib/server/verify";
 
 type Props = {
-  loginName: string;
-  organization?: string;
-  requestId?: string;
+  userId: string;
+  isInvite: boolean;
 };
 
-export const ThanqsResetEmailSendAgain = ({
-  loginName,
-  organization,
-  requestId,
+export const ThanqsVerifyEmailSendAgain = ({
+  userId,
+  isInvite,
 }: Props) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
@@ -22,24 +20,26 @@ export const ThanqsResetEmailSendAgain = ({
     setError("");
     setLoading(true);
 
-    const response = await resetPassword({
-      loginName,
-      organization,
-      requestId,
+    const response = await resendVerification({
+      userId,
+      isInvite: isInvite,
     })
       .catch(() => {
-        setError("Could not reset password");
+        setError("Could not resend email");
         return;
       })
       .finally(() => {
         setLoading(false);
       });
 
-    if (response && "error" in response) {
+    if (response && "error" in response && response?.error) {
       setError(response.error);
       return;
     }
+
+    return response;
   }
+
 
   return (
     <div
@@ -55,8 +55,8 @@ export const ThanqsResetEmailSendAgain = ({
       </p>
       <Button
         type="button"
-        disabled={loading}
         variant={ButtonVariants.Primary}
+        disabled={loading}
         onClick={() => {
           resendCode();
         }}

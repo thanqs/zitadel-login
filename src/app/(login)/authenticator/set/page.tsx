@@ -1,7 +1,6 @@
 import { Alert } from "@/components/alert";
 import { BackButton } from "@/components/back-button";
 import { ChooseAuthenticatorToSetup } from "@/components/choose-authenticator-to-setup";
-import { SignInWithIdp } from "@/components/sign-in-with-idp";
 import { Translated } from "@/components/translated";
 import { UserAvatar } from "@/components/user-avatar";
 import { getSessionCookieById } from "@/lib/cookies";
@@ -9,7 +8,6 @@ import { getServiceUrlFromHeaders } from "@/lib/service-url";
 import { loadMostRecentSession } from "@/lib/session";
 import { checkUserVerification } from "@/lib/verify-helper";
 import {
-  getActiveIdentityProviders,
   getLoginSettings,
   getSession,
   getUserByID,
@@ -19,6 +17,8 @@ import { Session } from "@zitadel/proto/zitadel/session/v2/session_pb";
 // import { getLocale } from "next-intl/server";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { AuthenticationMethodType } from "@zitadel/proto/zitadel/user/v2/user_service_pb";
+import { PasskeysType } from "@zitadel/proto/zitadel/settings/v2/login_settings_pb";
 
 export default async function Page(props: {
   searchParams: Promise<Record<string | number | symbol, string | undefined>>;
@@ -129,14 +129,6 @@ export default async function Page(props: {
     redirect(`/verify?` + params);
   }
 
-  const identityProviders = await getActiveIdentityProviders({
-    serviceUrl,
-    orgId: sessionWithData.factors?.user?.organizationId,
-    linking_allowed: true,
-  }).then((resp) => {
-    return resp.identityProviders;
-  });
-
   const params = new URLSearchParams({
     initial: "true", // defines that a code is not required and is therefore not shown in the UI
   });
@@ -152,6 +144,14 @@ export default async function Page(props: {
   if (requestId) {
     params.set("requestId", requestId);
   }
+
+  //If only password is allowed and no password is set, redirect to set password
+  if(!sessionWithData.authMethods.includes(AuthenticationMethodType.PASSWORD) &&
+    loginSettings?.allowUsernamePassword && loginSettings.passkeysType == PasskeysType.NOT_ALLOWED) {
+
+    redirect(`/password/set?`+params);
+  }
+
 
   return (
     <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
@@ -181,23 +181,6 @@ export default async function Page(props: {
             loginSettings={loginSettings}
             params={params}
           ></ChooseAuthenticatorToSetup>
-        )}
-
-        {loginSettings?.allowExternalIdp && !!identityProviders.length && (
-          <>
-            <div className="flex flex-col py-3">
-              <p className="ztdl-p text-center">
-                <Translated i18nKey="linkWithIDP" namespace="authenticator" />
-              </p>
-            </div>
-
-            <SignInWithIdp
-              identityProviders={identityProviders}
-              requestId={requestId}
-              organization={sessionWithData.factors?.user?.organizationId}
-              linkOnly={true} // tell the callback function to just link the IDP and not login, to get an error when user is already available
-            ></SignInWithIdp>
-          </>
         )}
 
         <div className="mt-8 flex w-full flex-row items-center">

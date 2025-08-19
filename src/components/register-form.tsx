@@ -115,13 +115,13 @@ export function RegisterForm({
     }
 
     // redirect user to /register/password if password is chosen
-    if (withPassword) {
-      return router.push(
-        `/register/password?` + new URLSearchParams(registerParams),
-      );
-    } else {
+    // if (withPassword) {
+    //   return router.push(
+    //     `/register/password?` + new URLSearchParams(registerParams),
+    //   );
+    // } else {
       return submitAndRegister(value);
-    }
+    // }
   }
 
   const { errors } = formState;

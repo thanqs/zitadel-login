@@ -162,6 +162,8 @@ export function SetPasswordForm({
       "redirect" in passwordResponse &&
       passwordResponse.redirect
     ) {
+
+      //TODO if initial go to user details here
       return router.push(passwordResponse.redirect);
     }
 
