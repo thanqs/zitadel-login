@@ -251,6 +251,8 @@
       "noCodeReceived": "No code received?",
       "resendCode": "Resend code",
       "codeSent": "We have sent an email to {email}. Click the link in the email to confirm your email address and create your account.",
+      "codeSentAgain": "We have sent a new email to {email}. Click the link in the email to confirm your email address and create your account.",
+
       "submit": "Continue",
       "required": {
         "code": "This field is required"

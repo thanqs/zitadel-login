@@ -251,6 +251,7 @@
       "noCodeReceived": "Geen code ontvangen?",
       "resendCode": "Code opnieuw versturen",
       "codeSent": "We hebben een e-mail gestuurd naar {email}. Klik op de link in de mail om je e-mailadres te bevestigen en je account aan te maken.",
+      "codeSentAgain": "We hebben een nieuwe e-mail gestuurd naar {email}. Klik op de link in de mail om je e-mailadres te bevestigen en je account aan te maken.",
       "submit": "Doorgaan",
       "required": {
         "code": "Dit veld is verplicht"

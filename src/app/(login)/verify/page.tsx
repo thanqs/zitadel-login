@@ -113,7 +113,7 @@ export default async function Page(props: { searchParams: Promise<any> }) {
     params.set("requestId", requestId);
   }
 
-  if (invite !== "true" && !code) {
+  if (invite !== "true"&& !doSend && !code) {
     //This means we are coming from register
     return (<div className="m-auto w-full max-w-[566px] space-y-6 pb-10">
       <div className="flex flex-col items-center space-y-4 gap-[40px]">
@@ -160,7 +160,7 @@ export default async function Page(props: { searchParams: Promise<any> }) {
         {id && send && (
           <div className="w-full py-4">
             <Alert type={AlertType.INFO}>
-              <Translated i18nKey="verify.codeSent" namespace="verify" />
+              <Translated i18nKey="verify.codeSentAgain" namespace="verify" data={{email: human?.email?.email}} />
             </Alert>
           </div>
         )}

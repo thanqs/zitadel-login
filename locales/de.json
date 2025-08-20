@@ -250,6 +250,7 @@
       "noCodeReceived": "Keinen Code erhalten?",
       "resendCode": "Code erneut senden",
       "codeSent": "Wir haben eine E-Mail an {email} gesendet. Klicken Sie auf den Link in der E-Mail, um Ihre E-Mail-Adresse zu bestätigen und Ihr Konto zu erstellen.",
+      "codeSentAgain": "Wir haben eine E-Mail an {email} gesendet. Klicken Sie auf den Link in der E-Mail, um Ihre E-Mail-Adresse zu bestätigen und Ihr Konto zu erstellen.",
       "submit": "Weiter",
       "required": {
         "code": "Dieses Feld ist erforderlich"
