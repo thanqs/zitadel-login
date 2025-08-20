@@ -90,8 +90,8 @@ export function RegisterFormIDPIncomplete({
     }
 
     if (response && "redirect" in response && response.redirect) {
-      await new Promise((resolve) => setTimeout(resolve, 3000));
-      return router.push(response.redirect);
+      setLoading(true);
+      await new Promise(() => setTimeout(() => router.push(response.redirect), 3000));
     }
 
     return response;
