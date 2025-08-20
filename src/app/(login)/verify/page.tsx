@@ -113,7 +113,7 @@ export default async function Page(props: { searchParams: Promise<any> }) {
     params.set("requestId", requestId);
   }
 
-  if (invite !== "true" && !doSend && !code) {
+  if (invite !== "true" && !code) {
     //This means we are coming from register
     return (<div className="m-auto w-full max-w-[566px] space-y-6 pb-10">
       <div className="flex flex-col items-center space-y-4 gap-[40px]">
