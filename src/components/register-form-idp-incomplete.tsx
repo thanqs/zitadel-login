@@ -90,6 +90,7 @@ export function RegisterFormIDPIncomplete({
     }
 
     if (response && "redirect" in response && response.redirect) {
+      await new Promise((resolve) => setTimeout(resolve, 3000));
       return router.push(response.redirect);
     }
 
@@ -106,7 +107,7 @@ export function RegisterFormIDPIncomplete({
           autoComplete="firstname"
           required
             {...register("firstname", { required: t("required.firstname") })}
-          label="First name"
+          label={t("firstname")}
           error={errors.firstname?.message as string}
           data-testid="firstname-text-input"
         />
@@ -117,7 +118,7 @@ export function RegisterFormIDPIncomplete({
           autoComplete="lastname"
           required
             {...register("lastname", { required: t("required.lastname") })}
-          label="Last name"
+          label={t("lastname")}
           error={errors.lastname?.message as string}
           data-testid="lastname-text-input"
         />

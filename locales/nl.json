@@ -71,6 +71,8 @@
     "signInWithMicrosoft": "Inloggen met Microsoft",
     "signInWithGithub": "Inloggen met GitHub",
     "signInWithGitlab": "Inloggen met GitLab",
+    "firstname": "Voornaam",
+    "lastname": "Achternaam",
     "loginSuccess": {
       "title": "Succesvol ingelogd",
       "description": "Je bent succesvol ingelogd!"
