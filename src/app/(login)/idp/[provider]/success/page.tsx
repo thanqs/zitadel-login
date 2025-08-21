@@ -102,14 +102,6 @@ export default async function Page(props: {
   const { idpInformation, userId } = intent;
   let { addHumanUser } = intent;
 
-  // make idp user always verified
-  if(addHumanUser && addHumanUser.email) {
-    addHumanUser.email.verification = {
-      case: "isVerified",
-      value: true
-    }
-  }
-
   if (!idpInformation) {
     return loginFailed("IDP information missing");
   }
