@@ -46,7 +46,6 @@ export default {
   },
   theme: {
     extend: {
-      // https://vercel.com/design/color
       fontSize: {
         "12px": "12px",
         "14px": "14px",

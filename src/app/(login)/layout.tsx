@@ -4,7 +4,6 @@ import { LanguageProvider } from "@/components/language-provider";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Logo } from "@/components/logo";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Analytics } from "@vercel/analytics/react";
 import { Fustat } from "next/font/google";
 import { ReactNode, Suspense } from "react";
 import LogoSvg from "../../public/logo/thanqs-logo.svg"
@@ -89,7 +88,6 @@ export default async function RootLayout({
         </LanguageProvider>
       </Suspense>
     </ThemeProvider>
-    <Analytics />
     </body>
     </html>
   );
