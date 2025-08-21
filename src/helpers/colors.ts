@@ -30,37 +30,23 @@ export type ColorMap = {
   [_key in MapName]: Color[];
 };
 
-export const DARK_PRIMARY = "#2073c4";
 export const PRIMARY = "#5469d4";
 
-export const DARK_WARN = "#ff3b5b";
 export const WARN = "#cd3d56";
 
-export const DARK_BACKGROUND = "#111827";
 export const BACKGROUND = "#fafafa";
 
-export const DARK_TEXT = "#ffffff";
 export const TEXT = "#000000";
 
 export type LabelPolicyColors = {
   backgroundColor: string;
-  backgroundColorDark: string;
   fontColor: string;
-  fontColorDark: string;
   warnColor: string;
-  warnColorDark: string;
   primaryColor: string;
-  primaryColorDark: string;
 };
 
 type BrandingColors = {
   lightTheme: {
-    backgroundColor: string;
-    fontColor: string;
-    primaryColor: string;
-    warnColor: string;
-  };
-  darkTheme: {
     backgroundColor: string;
     fontColor: string;
     primaryColor: string;
@@ -76,30 +62,18 @@ export function setTheme(document: any, policy?: BrandingSettings) {
       primaryColor: policy?.lightTheme?.primaryColor || PRIMARY,
       warnColor: policy?.lightTheme?.warnColor || WARN,
     },
-    darkTheme: {
-      backgroundColor: policy?.darkTheme?.backgroundColor || DARK_BACKGROUND,
-      fontColor: policy?.darkTheme?.fontColor || DARK_TEXT,
-      primaryColor: policy?.darkTheme?.primaryColor || DARK_PRIMARY,
-      warnColor: policy?.darkTheme?.warnColor || DARK_WARN,
-    },
   };
 
-  const dark = computeMap(lP, true);
-  const light = computeMap(lP, false);
+  const light = computeMap(lP);
 
-  setColorShades(dark.background, "background", "dark", document);
   setColorShades(light.background, "background", "light", document);
 
-  setColorShades(dark.primary, "primary", "dark", document);
   setColorShades(light.primary, "primary", "light", document);
 
-  setColorShades(dark.warn, "warn", "dark", document);
   setColorShades(light.warn, "warn", "light", document);
 
-  setColorAlpha(dark.text, "text", "dark", document);
   setColorAlpha(light.text, "text", "light", document);
 
-  setColorAlpha(dark.link, "link", "dark", document);
   setColorAlpha(light.link, "link", "light", document);
 }
 
@@ -182,24 +156,20 @@ function getContrast(color: string): string {
   }
 }
 
-export function computeMap(branding: BrandingColors, dark: boolean): ColorMap {
+export function computeMap(branding: BrandingColors): ColorMap {
   return {
-    background: computeColors(
-      dark
-        ? branding.darkTheme.backgroundColor
-        : branding.lightTheme.backgroundColor,
-    ),
+    background: computeColors(branding.lightTheme.backgroundColor,    ),
     primary: computeColors(
-      dark ? branding.darkTheme.primaryColor : branding.lightTheme.primaryColor,
+      branding.lightTheme.primaryColor,
     ),
     warn: computeColors(
-      dark ? branding.darkTheme.warnColor : branding.lightTheme.warnColor,
+      branding.lightTheme.warnColor,
     ),
     text: computeColors(
-      dark ? branding.darkTheme.fontColor : branding.lightTheme.fontColor,
+      branding.lightTheme.fontColor,
     ),
     link: computeColors(
-      dark ? branding.darkTheme.fontColor : branding.lightTheme.fontColor,
+      branding.lightTheme.fontColor,
     ),
   };
 }

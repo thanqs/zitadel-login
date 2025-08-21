@@ -2,11 +2,11 @@ import colors from "tailwindcss/colors";
 
 // Generate dynamic theme colors
 let themeColors = {
-  background: { light: { contrast: {} }, dark: { contrast: {} } },
-  primary: { light: { contrast: {} }, dark: { contrast: {} } },
-  warn: { light: { contrast: {} }, dark: { contrast: {} } },
-  text: { light: { contrast: {} }, dark: { contrast: {} } },
-  link: { light: { contrast: {} }, dark: { contrast: {} } },
+  background: { light: { contrast: {} } },
+  primary: { light: { contrast: {} } },
+  warn: { light: { contrast: {} }},
+  text: { light: { contrast: {} } },
+  link: { light: { contrast: {} } },
 };
 
 const shades = [
@@ -61,19 +61,11 @@ export default {
               background: "#cbf4c9",
               color: "#0e6245",
             },
-            dark: {
-              background: "#68cf8340",
-              color: "#cbf4c9",
-            },
           },
           error: {
             light: {
               background: "#ffc1c1",
               color: "#620e0e",
-            },
-            dark: {
-              background: "#af455359",
-              color: "#ffc1c1",
             },
           },
           neutral: {
@@ -81,19 +73,11 @@ export default {
               background: "#e4e7e4",
               color: "#000000",
             },
-            dark: {
-              background: "#1a253c",
-              color: "#ffffff",
-            },
           },
           alert: {
             light: {
               background: "#fbbf24",
               color: "#92400e",
-            },
-            dark: {
-              background: "#92400e50",
-              color: "#fbbf24",
             },
           },
         },
