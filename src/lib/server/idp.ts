@@ -10,7 +10,6 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { getNextUrl } from "../client";
 import { getServiceUrlFromHeaders } from "../service-url";
-import { checkEmailVerification } from "../verify-helper";
 import { createSessionForIdpAndUpdateCookie } from "./cookie";
 
 export type RedirectToIdpState = { error?: string | null } | undefined;
@@ -143,22 +142,23 @@ export async function createNewSessionFromIdpIntent(
     return { error: "Could not create session" };
   }
 
-  const humanUser =
-    userResponse.user.type.case === "human"
-      ? userResponse.user.type.value
-      : undefined;
+  // const humanUser =
+  //   userResponse.user.type.case === "human"
+  //     ? userResponse.user.type.value
+  //     : undefined;
 
   // check to see if user was verified
-  const emailVerificationCheck = checkEmailVerification(
-    session,
-    humanUser,
-    command.organization,
-    command.requestId,
-  );
 
-  if (emailVerificationCheck?.redirect) {
-    return emailVerificationCheck;
-  }
+  // const emailVerificationCheck = checkEmailVerification(
+  //   session,
+  //   humanUser,
+  //   command.organization,
+  //   command.requestId,
+  // );
+
+  // if (emailVerificationCheck?.redirect) {
+  //   return emailVerificationCheck;
+  // }
 
   // TODO: check if user has MFA methods
   // const mfaFactorCheck = checkMFAFactors(session, loginSettings, authMethods, organization, requestId);
