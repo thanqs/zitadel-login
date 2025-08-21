@@ -31,10 +31,10 @@ import { headers } from "next/headers";
 const ORG_SUFFIX_REGEX = /(?<=@)(.+)/;
 
 async function resolveOrganizationForUser({
-  organization,
-  addHumanUser,
-  serviceUrl,
-}: {
+                                            organization,
+                                            addHumanUser,
+                                            serviceUrl,
+                                          }: {
   organization?: string;
   addHumanUser?: { username?: string };
   serviceUrl: string;
@@ -87,7 +87,7 @@ export default async function Page(props: {
   }
 
   if (!provider || !id || !token) {
-    return loginFailed( "IDP context missing");
+    return loginFailed("IDP context missing");
   }
 
   const intent = await retrieveIDPIntent({
@@ -99,8 +99,16 @@ export default async function Page(props: {
   const { idpInformation, userId } = intent;
   let { addHumanUser } = intent;
 
+  // make idp user always verified
+  if(addHumanUser && addHumanUser.email) {
+    addHumanUser.email.verification = {
+      case: "isVerified",
+      value: true
+    }
+  }
+
   if (!idpInformation) {
-    return loginFailed( "IDP information missing");
+    return loginFailed("IDP information missing");
   }
 
   const idp = await getIDPByID({
