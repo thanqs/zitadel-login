@@ -90,14 +90,11 @@ export default async function Page(props: {
     return loginFailed("IDP context missing");
   }
 
-  console.log("IDP Success Page")
-
   const intent = await retrieveIDPIntent({
     serviceUrl,
     id,
     token,
   });
-  console.log("IDP Intent", intent);
 
   const { idpInformation, userId } = intent;
   let { addHumanUser } = intent;
