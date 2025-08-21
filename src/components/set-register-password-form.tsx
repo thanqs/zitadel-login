@@ -84,7 +84,7 @@ export function SetRegisterPasswordForm({
       });
 
     if (response && "error" in response && response.error) {
-      setError(response.error);
+      setError(!response.errorCode ? response.error : t("error." + response.errorCode));
       return;
     }
 

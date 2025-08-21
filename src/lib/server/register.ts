@@ -44,63 +44,62 @@ export async function registerUser(command: RegisterUserCommand) {
   if (!host || typeof host !== "string") {
     throw new Error("No host found");
   }
+  try {
+    const addResponse = await addHumanUser({
+      serviceUrl,
+      email: command.email,
+      firstName: command.firstName,
+      lastName: command.lastName,
+      password: command.password ? command.password : undefined,
+      organization: command.organization,
+      preferredLanguage: command.preferredLanguage,
+    });
+    if (!addResponse) {
+      return { error: "Could not create user" };
+    }
 
-  const addResponse = await addHumanUser({
-    serviceUrl,
-    email: command.email,
-    firstName: command.firstName,
-    lastName: command.lastName,
-    password: command.password ? command.password : undefined,
-    organization: command.organization,
-    preferredLanguage: command.preferredLanguage,
-  });
+    const loginSettings = await getLoginSettings({
+      serviceUrl,
+      organization: command.organization,
+    });
 
-  if (!addResponse) {
-    return { error: "Could not create user" };
-  }
+    let checkPayload: any = {
+      user: { search: { case: "userId", value: addResponse.userId } },
+    };
 
-  const loginSettings = await getLoginSettings({
-    serviceUrl,
-    organization: command.organization,
-  });
+    if (command.password) {
+      checkPayload = {
+        ...checkPayload,
+        password: { password: command.password },
+      } as ChecksJson;
+    }
 
-  let checkPayload: any = {
-    user: { search: { case: "userId", value: addResponse.userId } },
-  };
+    const checks = create(ChecksSchema, checkPayload);
 
-  if (command.password) {
-    checkPayload = {
-      ...checkPayload,
-      password: { password: command.password },
-    } as ChecksJson;
-  }
+    const session = await createSessionAndUpdateCookie({
+      checks,
+      requestId: command.requestId,
+      lifetime: command.password
+        ? loginSettings?.passwordCheckLifetime
+        : undefined,
+    });
 
-  const checks = create(ChecksSchema, checkPayload);
+    if (!session || !session.factors?.user) {
+      return { error: "Could not create session" };
+    }
 
-  const session = await createSessionAndUpdateCookie({
-    checks,
-    requestId: command.requestId,
-    lifetime: command.password
-      ? loginSettings?.passwordCheckLifetime
-      : undefined,
-  });
-
-  if (!session || !session.factors?.user) {
-    return { error: "Could not create session" };
-  }
-
-  // if (!command.password) {
-  //   const params = new URLSearchParams({
-  //     loginName: session.factors.user.loginName,
-  //     organization: session.factors.user.organizationId,
-  //   });
-  //
-  //   if (command.requestId) {
-  //     params.append("requestId", command.requestId);
-  //   }
-  //
-  //   return { redirect: "/passkey/set?" + params };
-  // } else {
+    // if (!command.password) {
+    //   const params = new URLSearchParams({
+    //     loginName: session.factors.user.loginName,
+    //     organization: session.factors.user.organizationId,
+    //   });
+    //
+    //   if (command.requestId) {
+    //     params.append("requestId", command.requestId);
+    //   }
+    //
+    //   return { redirect: "/passkey/set?" + params };
+    // } else {
     const userResponse = await getUserByID({
       serviceUrl,
       userId: session?.factors?.user?.id,
@@ -130,19 +129,26 @@ export async function registerUser(command: RegisterUserCommand) {
     const url = await getNextUrl(
       command.requestId && session.id
         ? {
-            sessionId: session.id,
-            requestId: command.requestId,
-            organization: session.factors.user.organizationId,
-          }
+          sessionId: session.id,
+          requestId: command.requestId,
+          organization: session.factors.user.organizationId,
+        }
         : {
-            loginName: session.factors.user.loginName,
-            organization: session.factors.user.organizationId,
-          },
+          loginName: session.factors.user.loginName,
+          organization: session.factors.user.organizationId,
+        },
       loginSettings?.defaultRedirectUri,
     );
 
     return { redirect: url };
-  // }
+    // }
+  } catch (error) {
+    if(String(error).includes('V3-DKcYh')) {
+      return { error: "Could not register user", errorCode: "user_already_exists" };
+    }
+    console.error("Error during user registration:", error);
+    return { error: "Could not register user"};
+  }
 }
 
 type RegisterUserAndLinkToIDPommand = {
@@ -183,6 +189,8 @@ export async function registerUserAndLinkToIDP(
     lastName: command.lastName,
     organization: command.organization,
   });
+
+  console.log('addResponse', addResponse);
 
   if (!addResponse) {
     return { error: "Could not create user" };

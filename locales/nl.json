@@ -216,6 +216,9 @@
     "firstname": "Voornaam",
     "lastname": "Achternaam",
     "email": "E-mailadres",
+    "error": {
+      "user_already_exists": "Het e-mailadres is al in gebruik."
+    },
     "password": {
       "title": "Kies een wachtwoord",
       "description": "Stel nu een wachtwoord in om je account aan te maken.",

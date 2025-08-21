@@ -2,33 +2,25 @@
 
 import { registerUser } from "@/lib/server/register";
 import { LegalAndSupportSettings } from "@zitadel/proto/zitadel/settings/v2/legal_settings_pb";
-import {
-  LoginSettings,
-  PasskeysType,
-} from "@zitadel/proto/zitadel/settings/v2/login_settings_pb";
+import { LoginSettings, PasskeysType } from "@zitadel/proto/zitadel/settings/v2/login_settings_pb";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { FieldValues, useForm } from "react-hook-form";
 import { Alert, AlertType } from "./alert";
-import {
-  AuthenticationMethod,
-  AuthenticationMethodRadio,
-  methods,
-} from "./authentication-method-radio";
+import { AuthenticationMethod, AuthenticationMethodRadio, methods } from "./authentication-method-radio";
 import { Button, ButtonVariants } from "./button";
 import { TextInput } from "./input";
 import { PrivacyPolicyCheckboxes } from "./privacy-policy-checkboxes";
 import { Spinner } from "./spinner";
 import { Translated } from "./translated";
-import { useLocale } from "next-intl";
 
 type Inputs =
   | {
-      firstname: string;
-      lastname: string;
-      email: string;
-    }
+  firstname: string;
+  lastname: string;
+  email: string;
+}
   | FieldValues;
 
 type Props = {
@@ -43,15 +35,15 @@ type Props = {
 };
 
 export function RegisterForm({
-  legal,
-  email,
-  firstname,
-  lastname,
-  organization,
-  requestId,
-  loginSettings,
-  idpCount = 0,
-}: Props) {
+                               legal,
+                               email,
+                               firstname,
+                               lastname,
+                               organization,
+                               requestId,
+                               loginSettings,
+                               idpCount = 0,
+                             }: Props) {
   const { register, handleSubmit, formState } = useForm<Inputs>({
     mode: "onBlur",
     defaultValues: {
@@ -70,6 +62,7 @@ export function RegisterForm({
   const router = useRouter();
 
   const locale = useLocale();
+
   async function submitAndRegister(values: Inputs) {
     setLoading(true);
     const response = await registerUser({
@@ -89,7 +82,7 @@ export function RegisterForm({
       });
 
     if (response && "error" in response && response.error) {
-      setError(response.error);
+      setError(!response.errorCode ? response.error : t("error." + response.errorCode));
       return;
     }
 
@@ -120,7 +113,7 @@ export function RegisterForm({
     //     `/register/password?` + new URLSearchParams(registerParams),
     //   );
     // } else {
-      return submitAndRegister(value);
+    return submitAndRegister(value);
     // }
   }
 
@@ -135,7 +128,7 @@ export function RegisterForm({
               type="firstname"
               autoComplete="firstname"
               required
-            {...register("firstname", { required: t("required.firstname") })}
+              {...register("firstname", { required: t("required.firstname") })}
               label={t("firstname")}
               error={errors.firstname?.message as string}
               data-testid="firstname-text-input"
@@ -146,7 +139,7 @@ export function RegisterForm({
               type="lastname"
               autoComplete="lastname"
               required
-            {...register("lastname", { required: t("required.lastname") })}
+              {...register("lastname", { required: t("required.lastname") })}
               label={t("lastname")}
               error={errors.lastname?.message as string}
               data-testid="lastname-text-input"
@@ -157,7 +150,7 @@ export function RegisterForm({
               type="email"
               autoComplete="email"
               required
-            {...register("email", { required: t("required.email") })}
+              {...register("email", { required: t("required.email") })}
               label="E-mail"
               error={errors.email?.message as string}
               data-testid="email-text-input"
@@ -169,7 +162,7 @@ export function RegisterForm({
           loginSettings.allowUsernamePassword &&
           loginSettings.passkeysType == PasskeysType.ALLOWED && (
             <>
-            <p className="mt-4 ztdl-p mb-6 block text-left">
+              <p className="mt-4 ztdl-p mb-6 block text-left">
                 <Translated i18nKey="selectMethod" namespace="register" />
               </p>
 
@@ -210,14 +203,14 @@ export function RegisterForm({
               const usePasswordToContinue: boolean =
                 loginSettings?.allowUsernamePassword &&
                 loginSettings?.passkeysType == PasskeysType.ALLOWED
-                ? !(selected === methods[0]) // choose selection if both available
+                  ? !(selected === methods[0]) // choose selection if both available
                   : !!loginSettings?.allowUsernamePassword; // if password is chosen
               // set password as default if only password is allowed
               return submitAndContinue(values, usePasswordToContinue);
             })}
             data-testid="submit-button"
           >
-          {loading && <Spinner className="h-5 w-5 mr-2" />}
+            {loading && <Spinner className="h-5 w-5 mr-2" />}
             <Translated i18nKey="submit" namespace="register" />
           </Button>
         </div>

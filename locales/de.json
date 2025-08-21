@@ -215,6 +215,9 @@
     "firstname": "Vorname",
     "lastname": "Nachname",
     "email": "E-Mail-Adresse",
+    "error": {
+      "user_already_exists": "Ein Benutzer mit dieser E-Mail-Adresse existiert bereits. Bitte melden Sie sich an."
+    },
     "password": {
       "title": "Passwort wählen",
       "description": "Legen Sie jetzt ein Passwort fest, um Ihr Konto zu erstellen.",
