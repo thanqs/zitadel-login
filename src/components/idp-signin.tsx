@@ -42,7 +42,7 @@ export function IdpSignin({
         }
 
         if (response && "redirect" in response && response?.redirect) {
-          return router.push(response.redirect);
+          return new Promise(() => setTimeout(() => router.push(response.redirect), 2000));
         }
       })
       .catch(() => {
