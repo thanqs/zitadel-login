@@ -37,6 +37,16 @@
       "submit": "Doorgaan",
       "required": {
         "password": "Dit veld is verplicht"
+      },
+      "error": {
+        "password_error": "Wachtwoord is onjuist. Probeer het opnieuw.",
+        "password_error_with_attempts": "Wachtwoord is onjuist. Probeer het opnieuw. Je hebt {failedAttempts} van {maxPasswordAttempts} pogingen gebruikt.",
+        "session_creation_error": "Er is een fout opgetreden.",
+        "login_settings_error": "Er is een fout opgetreden.",
+        "initial_user_not_supported": "Er is een fout opgetreden.",
+        "user_not_found": "Gebruiker niet gevonden.",
+        "password_verification_error": "Er is een fout opgetreden.",
+        "user_locked_out": "Je account is geblokkeerd.s"
       }
     },
     "set": {

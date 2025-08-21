@@ -37,6 +37,16 @@
       "submit": "Weiter",
       "required": {
         "password": "Dieses Feld ist erforderlich"
+      },
+      "error": {
+        "password_error": "Passwort ist falsch. Bitte versuchen Sie es erneut.",
+        "password_error_with_attempts": "Passwort ist falsch. Bitte versuchen Sie es erneut. Sie haben {failedAttempts} von {maxPasswordAttempts} Versuchen verwendet.",
+        "session_creation_error": "Ein Fehler ist aufgetreten.",
+        "login_settings_error": "Ein Fehler ist aufgetreten.",
+        "initial_user_not_supported": "Ein Fehler ist aufgetreten.",
+        "user_not_found": "Benutzer nicht gefunden.",
+        "password_verification_error": "Ein Fehler ist aufgetreten.",
+        "user_locked_out": "Ihr Konto ist gesperrt."
       }
     },
     "set": {

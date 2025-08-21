@@ -136,21 +136,33 @@ export async function sendPassword(command: UpdateSessionCommand) {
             orgId: command.organization,
           });
 
+          if(!!lockoutSettings && lockoutSettings.maxPasswordAttempts ===  BigInt(0)) {
+            return {
+              error: "Failed to authenticate",
+              errorCode: "password_error",
+            };
+          }
+
           return {
             error:
               `Failed to authenticate. You had ${error.failedAttempts} of ${lockoutSettings?.maxPasswordAttempts} password attempts.` +
               (lockoutSettings?.maxPasswordAttempts &&
               error.failedAttempts >= lockoutSettings?.maxPasswordAttempts
-                ? "Contact your administrator to unlock your account"
+                ? " Contact your administrator to unlock your account"
                 : ""),
+            errorCode: lockoutSettings?.maxPasswordAttempts && error.failedAttempts >= lockoutSettings?.maxPasswordAttempts? "user_locked_out" :"password_error_with_attempts",
+            data: {
+              failedAttempts: Number(error.failedAttempts),
+              maxPasswordAttempts: Number(lockoutSettings?.maxPasswordAttempts),
+            }
           };
         }
-        return { error: "Could not create session for user" };
+        return { error: "Could not create session for user", errorCode: "session_creation_error" };
       }
     }
 
     // this is a fake error message to hide that the user does not even exist
-    return { error: "Could not verify password" };
+    return { error: "Could not verify password", errorCode: "password_error" };
   } else {
     loginSettings = await getLoginSettings({
       serviceUrl,
@@ -158,7 +170,7 @@ export async function sendPassword(command: UpdateSessionCommand) {
     });
 
     if (!loginSettings) {
-      return { error: "Could not load login settings" };
+      return { error: "Could not load login settings", errorCode: "login_settings_error" };
     }
 
     let lifetime = loginSettings.passwordCheckLifetime;
@@ -185,6 +197,13 @@ export async function sendPassword(command: UpdateSessionCommand) {
           orgId: command.organization,
         });
 
+        if(!!lockoutSettings && lockoutSettings.maxPasswordAttempts ===  BigInt(0)) {
+          return {
+            error: "Failed to authenticate",
+            errorCode: "password_error",
+          };
+        }
+
         return {
           error:
             `Failed to authenticate. You had ${error.failedAttempts} of ${lockoutSettings?.maxPasswordAttempts} password attempts.` +
@@ -192,13 +211,18 @@ export async function sendPassword(command: UpdateSessionCommand) {
             error.failedAttempts >= lockoutSettings?.maxPasswordAttempts
               ? " Contact your administrator to unlock your account"
               : ""),
+          errorCode: lockoutSettings?.maxPasswordAttempts && error.failedAttempts >= lockoutSettings?.maxPasswordAttempts? "user_locked_out" :"password_error_with_attempts",
+          data: {
+            failedAttempts: Number(error.failedAttempts),
+            maxPasswordAttempts: Number(lockoutSettings?.maxPasswordAttempts),
+          }
         };
       }
       throw error;
     }
 
     if (!session?.factors?.user?.id) {
-      return { error: "Could not create session for user" };
+      return { error: "Could not create session for user", errorCode: "session_creation_error" };
     }
 
     const userResponse = await getUserByID({
@@ -207,7 +231,7 @@ export async function sendPassword(command: UpdateSessionCommand) {
     });
 
     if (!userResponse.user) {
-      return { error: "User not found in the system" };
+      return { error: "User not found in the system", errorCode: "user_not_found" };
     }
 
     user = userResponse.user;
@@ -222,7 +246,7 @@ export async function sendPassword(command: UpdateSessionCommand) {
   }
 
   if (!session?.factors?.user?.id || !sessionCookie) {
-    return { error: "Could not create session for user" };
+    return { error: "Could not create session for user", errorCode: "session_creation_error" };
   }
 
   const humanUser = user.type.case === "human" ? user.type.value : undefined;
@@ -247,7 +271,7 @@ export async function sendPassword(command: UpdateSessionCommand) {
 
   // throw error if user is in initial state here and do not continue
   if (user.state === UserState.INITIAL) {
-    return { error: "Initial User not supported" };
+    return { error: "Initial User not supported", errorCode: "initial_user_not_supported" };
   }
 
   // check to see if user was verified
@@ -275,7 +299,7 @@ export async function sendPassword(command: UpdateSessionCommand) {
   }
 
   if (!authMethods) {
-    return { error: "Could not verify password!" };
+    return { error: "Could not verify password!", errorCode: "password_verification_error" };
   }
 
   const mfaFactorCheck = await checkMFAFactors(

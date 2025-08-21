@@ -38,6 +38,16 @@
       "submit": "Continue",
       "required": {
         "password": "This field is required"
+      },
+      "error": {
+        "password_error": "Password is incorrect. Please try again.",
+        "password_error_with_attempts": "Password is incorrect. Please try again. You have used {failedAttempts} of {maxPasswordAttempts} attempts.",
+        "session_creation_error": "An error occurred.",
+        "login_settings_error": "An error occurred.",
+        "initial_user_not_supported": "An error occurred.",
+        "user_not_found": "User not found.",
+        "password_verification_error": "An error occurred.",
+        "user_locked_out": "Your account is locked."
       }
     },
     "set": {
