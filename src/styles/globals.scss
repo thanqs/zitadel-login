@@ -5,6 +5,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  color-scheme: light !important;
+}
+
 @layer base {
   h1,
   .ztdl-h1 {
