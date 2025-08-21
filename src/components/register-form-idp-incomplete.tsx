@@ -1,7 +1,7 @@
 "use client";
 
 import { registerUserAndLinkToIDP } from "@/lib/server/register";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { FieldValues, useForm } from "react-hook-form";
@@ -14,10 +14,10 @@ import { Translated } from "./translated";
 
 type Inputs =
   | {
-      firstname: string;
-      lastname: string;
-      email: string;
-    }
+  firstname: string;
+  lastname: string;
+  email: string;
+}
   | FieldValues;
 
 type Props = {
@@ -38,14 +38,14 @@ type Props = {
 };
 
 export function RegisterFormIDPIncomplete({
-  organization,
-  requestId,
-  idpIntent,
-  defaultValues,
-  idpUserId,
-  idpId,
-  idpUserName,
-}: Props) {
+                                            organization,
+                                            requestId,
+                                            idpIntent,
+                                            defaultValues,
+                                            idpUserId,
+                                            idpId,
+                                            idpUserName,
+                                          }: Props) {
   const { register, handleSubmit, formState } = useForm<Inputs>({
     mode: "onBlur",
     defaultValues: {
@@ -55,6 +55,7 @@ export function RegisterFormIDPIncomplete({
       preferredLanguage: "",
     },
   });
+  const path = usePathname();
 
   const t = useTranslations("register");
 
@@ -91,7 +92,7 @@ export function RegisterFormIDPIncomplete({
 
     if (response && "redirect" in response && response.redirect) {
       setLoading(true);
-      return new Promise(() => setTimeout(() => router.push(response.redirect), 3000));
+      return router.push(`${path}/redirect?redirectURL=${response.redirect}`);
     }
 
     return response;
@@ -106,7 +107,7 @@ export function RegisterFormIDPIncomplete({
           type="firstname"
           autoComplete="firstname"
           required
-            {...register("firstname", { required: t("required.firstname") })}
+          {...register("firstname", { required: t("required.firstname") })}
           label={t("firstname")}
           error={errors.firstname?.message as string}
           data-testid="firstname-text-input"
@@ -117,7 +118,7 @@ export function RegisterFormIDPIncomplete({
           type="lastname"
           autoComplete="lastname"
           required
-            {...register("lastname", { required: t("required.lastname") })}
+          {...register("lastname", { required: t("required.lastname") })}
           label={t("lastname")}
           error={errors.lastname?.message as string}
           data-testid="lastname-text-input"
@@ -128,7 +129,7 @@ export function RegisterFormIDPIncomplete({
           type="email"
           autoComplete="email"
           required
-            {...register("email", { required: t("required.email") })}
+          {...register("email", { required: t("required.email") })}
           label="E-mail"
           error={errors.email?.message as string}
           data-testid="email-text-input"

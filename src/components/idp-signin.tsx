@@ -1,7 +1,7 @@
 "use client";
 
 import { createNewSessionFromIdpIntent } from "@/lib/server/idp";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Alert } from "./alert";
 import { Spinner } from "./spinner";
@@ -17,13 +17,13 @@ type Props = {
 };
 
 export function IdpSignin({
-  userId,
-  idpIntent: { idpIntentId, idpIntentToken },
-  requestId,
-}: Props) {
+                            userId,
+                            idpIntent: { idpIntentId, idpIntentToken },
+                            requestId,
+                          }: Props) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
+  const path = usePathname();
   const router = useRouter();
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export function IdpSignin({
         }
 
         if (response && "redirect" in response && response?.redirect) {
-          return new Promise(() => setTimeout(() => router.push(response.redirect), 2000));
+          return router.push(`${path}/redirect?redirectURL=${response.redirect}`);
         }
       })
       .catch(() => {
