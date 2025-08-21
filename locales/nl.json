@@ -50,7 +50,9 @@
         "code": "Dit veld is verplicht",
         "newPassword": "Je moet een wachtwoord opgeven!",
         "confirmPassword": "Dit veld is verplicht"
-      }
+      },
+      "newPassword": "Nieuw wachtwoord",
+      "confirmPassword": "Bevestig wachtwoord"
     },
     "change": {
       "title": "Wachtwoord wijzigen",

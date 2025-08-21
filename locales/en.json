@@ -51,7 +51,9 @@
         "code": "This field is required",
         "newPassword": "You have to provide a password!",
         "confirmPassword": "This field is required"
-      }
+      },
+      "newPassword": "New password",
+      "confirmPassword": "Confirm password"
     },
     "change": {
       "title": "Change password",

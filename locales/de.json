@@ -95,7 +95,9 @@
       "title": "Lernen wir uns kennen",
       "description": "Überprüfen Sie Ihre Daten und Präferenzen, um Ihr Konto zu vervollständigen."
     },
-    "chooseAlternativeMethod": "Wählen Sie eine alternative Methode"
+    "chooseAlternativeMethod": "Wählen Sie eine alternative Methode",
+    "firstname": "Vorname",
+    "lastname": "Nachname"
   },
   "ldap": {
     "title": "LDAP-Anmeldung",
@@ -142,7 +144,9 @@
       "submit": "Weiter",
       "required": {
         "code": "Dieses Feld ist erforderlich"
-      }
+      },
+      "newPassword": "Neues Passwort",
+        "confirmPassword": "Passwort bestätigen"
     }
   },
   "passkey": {

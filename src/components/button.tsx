@@ -35,15 +35,15 @@ export const getButtonClasses = (
   clsx({
     "inline-flex items-center h-10 justify-center gap-2 whitespace-nowrap rounded-3xl text-base font-semibold leading-5 transition cursor-pointer focus-visible:outline-hidden focus-visible:ring-[3px] disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 disabled:bg-neutral-200 disabled:text-neutral-400 font-primary":
       true,
-    "disabled:border-none    disabled:cursor-not-allowed ":
+    "disabled:border-none    disabled:cursor-not-allowed disabled:bg-[#E6E3E1] disabled:color-[#A2A2A2]":
       variant === ButtonVariants.Primary,
-    "bg-primary text-primary-foreground hover:brightness-105 active:brightness-95":
+    "bg-[#ffcc00] text-[#16171C] hover:brightness-105 active:brightness-95":
       variant === ButtonVariants.Primary && color !== ButtonColors.Warn,
-    "bg-warn-light-500 dark:bg-warn-dark-500 hover:bg-warn-light-400 hover:dark:bg-warn-dark-400 text-white dark:text-white":
+    "bg-warn-light-500 hover:bg-warn-light-400 text-white":
       variant === ButtonVariants.Primary && color === ButtonColors.Warn,
-    "border border-button-light-border dark:border-button-dark-border text-gray-950 hover:bg-gray-500 hover:bg-opacity-20 hover:dark:bg-white hover:dark:bg-opacity-10 focus:bg-gray-500 focus:bg-opacity-20 focus:dark:bg-white focus:dark:bg-opacity-10 dark:text-white disabled:text-gray-600 disabled:hover:bg-transparent disabled:dark:hover:bg-transparent disabled:cursor-not-allowed disabled:dark:text-gray-900":
+    "border border-button-light-border dark:border-button-dark-border text-gray-950 hover:bg-gray-500 hover:bg-opacity-20 hover:dark:bg-white hover:dark:bg-opacity-10 focus:bg-gray-500 focus:bg-opacity-20 focus:dark:bg-white focus:dark:bg-opacity-10 disabled:text-gray-600 disabled:hover:bg-transparent disabled:dark:hover:bg-transparent disabled:cursor-not-allowed disabled:dark:text-gray-900":
       variant === ButtonVariants.Secondary,
-    "border border-button-light-border dark:border-button-dark-border text-warn-light-500 dark:text-warn-dark-500 hover:bg-warn-light-500 hover:bg-opacity-10 dark:hover:bg-warn-light-500 dark:hover:bg-opacity-10 focus:bg-warn-light-500 focus:bg-opacity-20 dark:focus:bg-warn-light-500 dark:focus:bg-opacity-20":
+    "border border-button-light-border dark:border-button-dark-border text-warn-light-500 hover:bg-warn-light-500 hover:bg-opacity-10 dark:hover:bg-warn-light-500 focus:bg-warn-light-500 focus:bg-opacity-20":
       color === ButtonColors.Warn && variant !== ButtonVariants.Primary,
     "w-full px-5": size === ButtonSizes.Large,
     "px-5": size === ButtonSizes.Small,
@@ -65,7 +65,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     <button
       type="button"
       ref={ref}
-      style={{ backgroundColor: variant === ButtonVariants.Primary ? "hsl(48,100%,50%)": "inherit" }}
       className={`${getButtonClasses(size, variant, color)} ${className}`}
       {...props}
     >

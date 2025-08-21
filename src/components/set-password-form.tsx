@@ -19,7 +19,6 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { FieldValues, useForm } from "react-hook-form";
 import { Alert, AlertType } from "./alert";
-import { BackButton } from "./back-button";
 import { Button, ButtonVariants } from "./button";
 import { TextInput } from "./input";
 import { PasswordComplexity } from "./password-complexity";
@@ -238,7 +237,7 @@ export function SetPasswordForm({
             {...register("password", {
               required: t("set.required.newPassword"),
             })}
-            label="New Password"
+            label={t("set.newPassword")}
             error={errors.password?.message as string}
             data-testid="password-set-text-input"
           />
@@ -251,7 +250,7 @@ export function SetPasswordForm({
             {...register("confirmPassword", {
               required: t("set.required.confirmPassword"),
             })}
-            label="Confirm Password"
+            label={t("set.confirmPassword")}
             error={errors.confirmPassword?.message as string}
             data-testid="password-set-confirm-text-input"
           />
@@ -269,10 +268,10 @@ export function SetPasswordForm({
       {error && <Alert>{error}</Alert>}
 
       <div className="mt-8 flex w-full flex-row items-center justify-between">
-        <BackButton data-testid="back-button" />
         <Button
           type="submit"
           variant={ButtonVariants.Primary}
+          className="w-full"
           disabled={
             loading ||
             !policyIsValid ||
