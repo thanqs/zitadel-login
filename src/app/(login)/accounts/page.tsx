@@ -6,7 +6,7 @@ import { listSessions } from "@/lib/zitadel";
 import { UserPlusIcon } from "@heroicons/react/24/outline";
 import { headers } from "next/headers";
 import Link from "next/link";
-import { router } from "next/client";
+import { redirect } from "next/navigation";
 
 async function loadSessions({ serviceUrl }: { serviceUrl: string }) {
   const cookieIds = await getAllSessionCookieIds();
@@ -48,7 +48,7 @@ export default async function Page(props: {
   }
 
   if(sessions.length === 0) {
-    await router.push(`/loginname?` + params.toString());
+    redirect(`/loginname?` + params.toString());
   }
 
   return (
