@@ -58,7 +58,7 @@ export default async function Page(props: {
   }
 
   return initial !== "true" && !code ? (
-    <div className="m-auto w-full max-w-[566px] space-y-6 pb-10">
+    <div className="m-auto w-full max-w-[566px] space-y-6 pb-10 px-4">
       <div className="flex flex-col items-center space-y-4 gap-[40px]">
         <div className="flex flex-col items-center space-y-4">
           <Image src={EnvelopeIcon} alt="Envelope" width={100} height={100} />
@@ -81,7 +81,7 @@ export default async function Page(props: {
       </div>
     </div>
   ) : (
-    <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
+    <div className="m-auto w-full max-w-[330px] space-y-6 pb-10 px-4">
       <div className="flex flex-col items-center space-y-4">
         <h2 style={{ color: "hsl(250,100%,38%)" }}>
             <Translated i18nKey="set.title" namespace="password" />
