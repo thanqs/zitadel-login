@@ -188,7 +188,7 @@ export function RegisterForm({
           )}
 
         {error && (
-          <div className="py-4">
+          <div>
             <Alert>{error}</Alert>
           </div>
         )}
