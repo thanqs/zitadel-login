@@ -116,19 +116,19 @@ export function PasswordForm({
   }
 
   return (
-    <form className="w-full flex flex-col gap-6">
-      <div className={`${error && "transform-gpu animate-shake"} flex flex-col gap-3`}>
+    <form className="w-full flex flex-col">
+      <div className={`${error && "transform-gpu animate-shake"} flex flex-col gap-1`}>
         <TextInput
           type="password"
           autoComplete="password"
           {...register("password", { required: t("verify.required.password") })}
           label="Password"
+          placeholder={t("placeholder")}
           data-testid="password-text-input"
         />
         {!loginSettings?.hidePasswordReset && (
           <a
-            className=" transition-all text-sm hover:text-primary-light-500 dark:hover:text-primary-dark-500"
-            style={{ textAlign: "right", color: "#2100C4", textDecoration: "underline", fontWeight: "600", fontSize: "16px" }}
+            className="transition-all text-brand-blue cursor-pointer hover:text-primary-light-500 dark:hover:text-primary-dark-500 text-right underline"
             onClick={() => resetPasswordAndContinue()}
             // type="button"
             // disabled={loading}
@@ -156,18 +156,18 @@ export function PasswordForm({
 
       {error && (
         <div className="py-4" data-testid="error">
-          <Alert>{error}</Alert>
+          <Alert><Translated i18nKey="error.incorrect" namespace="password" /></Alert>
         </div>
       )}
 
-      <div className="flex w-full flex-row items-center">
+      <div className="flex w-full flex-row items-center pt-6">
         <BackButton data-testid="back-button" />
         <span className="flex-grow"></span>
         <Button
           type="submit"
           className="self-end"
           variant={ButtonVariants.Primary}
-          disabled={loading || !formState.isValid}
+          disabled={loading}
           onClick={handleSubmit(submitPassword)}
           data-testid="submit-button"
         >

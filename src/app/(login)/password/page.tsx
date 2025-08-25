@@ -49,25 +49,23 @@ export default async function Page(props: {
   });
 
   return (
-    <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
-      <div className="flex flex-col items-center gap-4">
-        <h2
-          style={{
-            color: "hsl(250,100%,38%)",
-          }}
-        >
+    <div className="m-auto w-full max-w-[330px]">
+      <div className="flex flex-col gap-6">
+        <h2 className="text-brand-blue">
           <Translated i18nKey="verify.title" namespace="password" />
         </h2>
 
         {/* show error only if usernames should be shown to be unknown */}
         {(!sessionFactors || !loginName) &&
           !loginSettings?.ignoreUnknownUsernames && (
-            <div className="py-4">
+            <div>
               <Alert>
                 <Translated i18nKey="unknownContext" namespace="error" />
               </Alert>
             </div>
           )}
+
+        <div className="space-y-3">
 
         {sessionFactors && (
           <UserAvatar
@@ -86,6 +84,8 @@ export default async function Page(props: {
             loginSettings={loginSettings}
           />
         )}
+
+        </div>
       </div>
     </div>
   );

@@ -54,9 +54,9 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     ref,
   ) => {
     return (
-      <label className="font-primary text-base leading-5 font-medium">
+      <label className="font-primary text-base leading-5 space-y-0.5 font-medium">
         <span
-          className={`leading-3 mb-1.5 ${
+          className={`leading-5 block ${
             error ? "text-warn-light-500 dark:text-warn-dark-500" : ""
           }`}
         >
