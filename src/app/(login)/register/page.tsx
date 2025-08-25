@@ -79,7 +79,7 @@ export default async function Page(props: {
   }
 
   return (
-    <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
+    <div className="m-auto w-full max-w-[330px] space-y-6">
       <div className="flex flex-col items-center space-y-4 gap-4">
         <h2 style={{
           color: "hsl(250,100%,38%)",
@@ -99,7 +99,7 @@ export default async function Page(props: {
               identityProviders={identityProviders}
               requestId={requestId}
               organization={organization}
-            ></SignInWithIdp>
+            />
           </>
         )}
 
@@ -119,7 +119,7 @@ export default async function Page(props: {
               email={email}
               requestId={requestId}
               loginSettings={loginSettings}
-            ></RegisterForm>
+            />
           )}
       </div>
     </div>

@@ -35,15 +35,15 @@ type Props = {
 };
 
 export function RegisterForm({
-                               legal,
-                               email,
-                               firstname,
-                               lastname,
-                               organization,
-                               requestId,
-                               loginSettings,
-                               idpCount = 0,
-                             }: Props) {
+  legal,
+  email,
+  firstname,
+  lastname,
+  organization,
+  requestId,
+  loginSettings,
+  idpCount = 0,
+}: Props) {
   const { register, handleSubmit, formState } = useForm<Inputs>({
     mode: "onBlur",
     defaultValues: {
@@ -149,9 +149,9 @@ export function RegisterForm({
             <TextInput
               type="email"
               autoComplete="email"
-              required
               {...register("email", { required: t("required.email") })}
-              label="E-mail"
+              label={t("label.email")}
+              placeholder={t("placeholder.email")}
               error={errors.email?.message as string}
               data-testid="email-text-input"
             />
@@ -198,7 +198,7 @@ export function RegisterForm({
             type="submit"
             className="w-full"
             variant={ButtonVariants.Primary}
-            disabled={loading || !formState.isValid}
+            disabled={loading}
             onClick={handleSubmit((values) => {
               const usePasswordToContinue: boolean =
                 loginSettings?.allowUsernamePassword &&

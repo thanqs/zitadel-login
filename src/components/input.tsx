@@ -29,7 +29,7 @@ const styles = (error: boolean, disabled: boolean) =>
   clsx({
     "file:text-foreground focus:border-brand-blue flex h-10 w-full rounded-lg border-2 border-transparent bg-[#FAF7F5] py-[7px] ps-3 pe-2 text-base font-normal outline-hidden transition-colors file:border-0 file:bg-transparent file:font-medium placeholder:text-neutral-400 disabled:cursor-not-allowed disabled:opacity-50":
       true,
-    "border border-warn-light-500 dark:border-warn-dark-500 hover:border-warn-light-500 hover:dark:border-warn-dark-500 focus:border-warn-light-500 focus:dark:border-warn-dark-500":
+    "border border-[#EB0000] dark:border-warn-dark-500 hover:border-warn-light-500 hover:dark:border-warn-dark-500 focus:border-warn-light-500 focus:dark:border-warn-dark-500":
       error,
     "pointer-events-none text-gray-500 dark:text-gray-800 border border-input-light-border dark:border-input-dark-border hover:border-light-hoverborder hover:dark:border-hoverborder cursor-default":
       disabled,
@@ -56,9 +56,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     return (
       <label className="font-primary text-base leading-5 space-y-0.5 font-medium">
         <span
-          className={`leading-5 block ${
-            error ? "text-warn-light-500 dark:text-warn-dark-500" : ""
-          }`}
+          className="leading-5 block"
         >
           {label} {required && "*"}
         </span>
@@ -82,7 +80,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           </span>
         )}
 
-        <div className="leading-14.5px h-14.5px text-warn-light-500 dark:text-warn-dark-500 flex flex-row items-center text-12px">
+        <div className="leading-14.5px text-[#920000] dark:text-warn-dark-500 flex flex-row items-center">
           <span>{error ? error : " "}</span>
         </div>
 
