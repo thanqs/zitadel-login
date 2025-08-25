@@ -27,7 +27,7 @@ export type TextInputProps = DetailedHTMLProps<
 
 const styles = (error: boolean, disabled: boolean) =>
   clsx({
-    "file:text-foreground focus:border-brand-blue flex h-10 w-full rounded-lg border-2 border-transparent bg-neutral-50 py-[7px] ps-3 pe-2 text-base font-normal outline-hidden transition-colors file:border-0 file:bg-transparent file:font-medium placeholder:text-neutral-400 disabled:cursor-not-allowed disabled:opacity-50":
+    "file:text-foreground focus:border-brand-blue flex h-10 w-full rounded-lg border-2 border-transparent bg-[#FAF7F5] py-[7px] ps-3 pe-2 text-base font-normal outline-hidden transition-colors file:border-0 file:bg-transparent file:font-medium placeholder:text-neutral-400 disabled:cursor-not-allowed disabled:opacity-50":
       true,
     "border border-warn-light-500 dark:border-warn-dark-500 hover:border-warn-light-500 hover:dark:border-warn-dark-500 focus:border-warn-light-500 focus:dark:border-warn-dark-500":
       error,
