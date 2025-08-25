@@ -15,7 +15,7 @@ export function Alert({ children, type = AlertType.ALERT }: Props) {
     <div
       style={{color: "#920000"}}
     >
-      <span className="text-sm w-full ">{children}</span>
+      <span className="w-full">{children}</span>
     </div>
   );
 }
