@@ -53,7 +53,7 @@ export default async function Page(props: {
 
   return (
     <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
-      <div className="flex flex-col items-center space-y-4 gap-4">
+      <div className="flex flex-col space-y-4 gap-4">
         <h2
           data-i18n-key="error.tryagain"
           style={{
