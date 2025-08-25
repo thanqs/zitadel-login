@@ -120,11 +120,9 @@ export default async function Page(props: { searchParams: Promise<any> }) {
         <div className="flex flex-col items-center space-y-4">
           <Image src={EnvelopeIcon} alt="Envelope" width={100} height={100} />
           <h2
-            style={{
-              color: "hsl(250,100%,38%)",
-            }}
+            className="text-brand-blue"
           >
-            Check je inbox
+            <Translated i18nKey="verify.title" namespace="verify" />
           </h2>
           <p className="text-center">
             <Translated i18nKey="verify.codeSent" namespace="verify" data={{email: human?.email?.email}} />
@@ -140,11 +138,10 @@ export default async function Page(props: { searchParams: Promise<any> }) {
 
   return (
     <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-start gap-4">
+        <Image src={EnvelopeIcon} alt="Envelope" width={100} height={100} />
         <h2
-          style={{
-            color: "hsl(250,100%,38%)",
-          }}
+          className="text-brand-blue"
         >
           <Translated i18nKey="verify.title" namespace="verify" />
         </h2>
@@ -158,11 +155,9 @@ export default async function Page(props: { searchParams: Promise<any> }) {
         )}
 
         {id && send && (
-          <div className="w-full py-4">
-            <Alert type={AlertType.INFO}>
-              <Translated i18nKey="verify.codeSentAgain" namespace="verify" data={{email: human?.email?.email}} />
-            </Alert>
-          </div>
+          <p className="w-full py-4 text-neutral-700">
+            <Translated i18nKey="verify.codeSentAgain" namespace="verify" data={{email: human?.email?.email}} />
+          </p>
         )}
         <VerifyForm
           loginName={loginName}
