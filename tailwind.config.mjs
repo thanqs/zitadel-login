@@ -80,6 +80,9 @@ export default {
             },
           },
         },
+        brand: {
+          blue: "#2100C4"
+        }
       },
       animation: {
         shake: "shake .8s cubic-bezier(.36,.07,.19,.97) both;",
