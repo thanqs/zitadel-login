@@ -34,6 +34,7 @@ export const ThanqsSidebar = () => {
   }
   return <GiftsAndPresentsIllustration />;
 };
+
 export const GiftsAndPresentsIllustration = () => (
   <div
     style={{
