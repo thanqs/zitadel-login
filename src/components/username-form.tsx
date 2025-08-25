@@ -112,7 +112,7 @@ export function UsernameForm({
           <Alert>{error}</Alert>
         </div>
       )}
-      <div className="flex w-full flex-row items-center">
+      <div className="flex w-full flex-row items-center pt-3">
         <Button
           data-testid="submit-button"
           type="submit"
