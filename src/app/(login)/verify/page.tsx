@@ -125,7 +125,7 @@ export default async function Page(props: { searchParams: Promise<any> }) {
             <Translated i18nKey="verify.title" namespace="verify" />
           </h2>
           <p className="text-center">
-            <Translated i18nKey="verify.codeSent" namespace="verify" data={{email: human?.email?.email}} />
+            <Translated i18nKey="verify.codeSent" namespace="verify" data={{email: human?.email?.email ?? loginName}} />
           </p>
         </div>
         <ThanqsVerifyEmailSendAgain
@@ -156,7 +156,7 @@ export default async function Page(props: { searchParams: Promise<any> }) {
 
         {id && send && (
           <p className="w-full py-4 text-neutral-700">
-            <Translated i18nKey="verify.codeSentAgain" namespace="verify" data={{email: human?.email?.email}} />
+            <Translated i18nKey="verify.codeSentAgain" namespace="verify" data={{email: human?.email?.email ?? loginName}} />
           </p>
         )}
         <VerifyForm
