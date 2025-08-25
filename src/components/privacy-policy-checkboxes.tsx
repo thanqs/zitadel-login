@@ -15,7 +15,7 @@ export function PrivacyPolicyCheckboxes({ legal }: Props) {
         <Translated i18nKey="agreeTo" namespace="register" />
         {legal?.helpLink && (
           <span>
-            <Link href={legal.helpLink} target="_blank">
+            <Link href={legal.helpLink} target="_blank" className="hover:text-brand-blue">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -34,7 +34,7 @@ export function PrivacyPolicyCheckboxes({ legal }: Props) {
           </span>
         )}
         {legal?.tosLink && (
-          <Link href={legal.tosLink} className="underline" target="_blank">
+          <Link href={legal.tosLink} className="underline hover:text-brand-blue" target="_blank">
             <Translated i18nKey="termsOfService" namespace="register" />
           </Link>
         )}
@@ -44,7 +44,7 @@ export function PrivacyPolicyCheckboxes({ legal }: Props) {
         {legal?.privacyPolicyLink && (
           <Link
             href={legal.privacyPolicyLink}
-            className="underline"
+            className="underline hover:text-brand-blue"
             target="_blank"
           >
             <Translated i18nKey="privacyPolicy" namespace="register" />

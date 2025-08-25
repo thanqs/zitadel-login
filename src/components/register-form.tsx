@@ -217,7 +217,7 @@ export function RegisterForm({
         {legal && <PrivacyPolicyCheckboxes legal={legal} />}
       </form>
       <button
-        className="w-full transition-all text-sm hover:text-primary-light-500 dark:hover:text-primary-dark-500"
+        className="w-full transition-all hover:text-primary-light-500 dark:hover:text-primary-dark-500"
         onClick={() => {
           const registerParams = new URLSearchParams();
           if (organization) {
