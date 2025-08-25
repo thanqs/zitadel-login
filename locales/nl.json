@@ -24,17 +24,21 @@
   "loginname": {
     "title": "Inloggen",
     "description": "Voer je inloggegevens in.",
-    "register": "Nieuwe gebruiker registreren",
+    "new": "Nieuw bij Thanqs?",
+    "register": "Maak een account",
     "submit": "Doorgaan",
     "required": {
       "loginName": "Dit veld is verplicht"
+    },
+    "email": {
+      "placeholder": "Voer je e-mailadres in"
     }
   },
   "password": {
     "verify": {
       "title": "Wachtwoord",
       "resetPassword": "Wachtwoord vergeten?",
-      "submit": "Doorgaan",
+      "submit": "Inloggen",
       "required": {
         "password": "Dit veld is verplicht"
       },
@@ -46,8 +50,12 @@
         "initial_user_not_supported": "Er is een fout opgetreden.",
         "user_not_found": "Gebruiker niet gevonden.",
         "password_verification_error": "Er is een fout opgetreden.",
-        "user_locked_out": "Je account is geblokkeerd.s"
+        "user_locked_out": "Je account is geblokkeerd."
       }
+    },
+    "placeholder": "Voer je wachtwoord in",
+    "error": {
+      "incorrect": "Ongeldig wachtwoord. Probeer het opnieuw."
     },
     "set": {
       "title": "Kies een wachtwoord",
@@ -202,6 +210,12 @@
       "title": "Gegevens ontbreken",
       "description": "Geef e-mail, voor- en achternaam op om te registreren."
     },
+    "label": {
+      "email": "E-mailadres"
+    },
+    "placeholder": {
+      "email": "Voer je e-mailadres in"
+    },
     "title": "Account aanmaken",
     "description": "Maak je ZITADEL-account aan.",
     "noMethodAvailableWarning": "Geen authenticatiemethode beschikbaar. Neem contact op met je beheerder.",
@@ -263,7 +277,7 @@
     "successDescription": "De gebruiker is succesvol geverifieerd.",
     "setupAuthenticator": "Authenticator instellen",
     "verify": {
-      "title": "Verifiëren...",
+      "title": "Check je inbox",
       "description": "Voer de code in die in de verificatie-e-mail staat.",
       "noCodeReceived": "Geen code ontvangen?",
       "resendCode": "Code opnieuw versturen",

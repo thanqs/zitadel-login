@@ -24,17 +24,21 @@
   "loginname": {
     "title": "Anmelden",
     "description": "Geben Sie Ihre Anmeldedaten ein.",
-    "register": "Neuen Benutzer registrieren",
+    "register": "Konto erstellen",
+    "new": "Neu bei Thanqs?",
     "submit": "Weiter",
     "required": {
       "loginName": "Dieses Feld ist erforderlich"
+    },
+    "email": {
+      "placeholder": "Gib deine E-Mail-Adresse ein"
     }
   },
   "password": {
     "verify": {
       "title": "Passwort",
       "resetPassword": "Passwort vergessen?",
-      "submit": "Weiter",
+      "submit": "Anmelden",
       "required": {
         "password": "Dieses Feld ist erforderlich"
       },
@@ -48,6 +52,10 @@
         "password_verification_error": "Ein Fehler ist aufgetreten.",
         "user_locked_out": "Ihr Konto ist gesperrt."
       }
+    },
+    "placeholder": "Gib dein Passwort ein",
+    "error": {
+      "incorrect": "Das Passwort ist falsch. Bitte versuche es erneut."
     },
     "set": {
       "title": "Passwort wählen",
@@ -200,6 +208,12 @@
     "missingdata": {
       "title": "Fehlende Daten",
       "description": "Geben Sie E-Mail, Vor- und Nachnamen an, um sich zu registrieren."
+    },
+    "label": {
+      "email": "E-Mail-Adresse"
+    },
+    "placeholder": {
+      "email": "Gib deine E-Mail-Adresse ein"
     },
     "title": "Konto erstellen",
     "description": "Erstellen Sie Ihr ZITADEL-Konto.",

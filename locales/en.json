@@ -24,10 +24,14 @@
   "loginname": {
     "title": "Login",
     "description": "Enter your login details.",
-    "register": "Register new user",
+    "register": "Create account",
+    "new": "New to Thanqs?",
     "submit": "Continue",
     "required": {
       "loginName": "This field is required"
+    },
+    "email": {
+      "placeholder": "Enter your email address"
     }
   },
   "password": {
@@ -35,7 +39,7 @@
       "title": "Password",
       "description": "Enter your password.",
       "resetPassword": "Forgot password?",
-      "submit": "Continue",
+      "submit": "Login",
       "required": {
         "password": "This field is required"
       },
@@ -49,6 +53,10 @@
         "password_verification_error": "An error occurred.",
         "user_locked_out": "Your account is locked."
       }
+    },
+    "placeholder": "Enter your password",
+    "error": {
+      "incorrect": "Password is incorrect. Please try again."
     },
     "set": {
       "title": "Choose a password",
@@ -199,6 +207,12 @@
     "missingdata": {
       "title": "Missing data",
       "description": "Provide email, first and last name to register."
+    },
+    "label": {
+      "email": "Email address"
+    },
+    "placeholder": {
+      "email": "Enter your email address"
     },
     "title": "Create account",
     "description": "Create your ZITADEL account.",
