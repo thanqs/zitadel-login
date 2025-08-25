@@ -58,7 +58,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
         <span
           className="leading-5 block"
         >
-          {label} {required && "*"}
+          {label} {required && <span className="text-brand-pink">*</span>}
         </span>
         <input
           suppressHydrationWarning

@@ -81,7 +81,8 @@ export default {
           },
         },
         brand: {
-          blue: "#2100C4"
+          blue: "#2100C4",
+          pink: "#F55376",
         }
       },
       animation: {
