@@ -45,7 +45,6 @@ export function RegisterForm({
   idpCount = 0,
 }: Props) {
   const { register, handleSubmit, formState } = useForm<Inputs>({
-    mode: "onBlur",
     defaultValues: {
       email: email ?? "",
       firstname: firstname ?? "-",
