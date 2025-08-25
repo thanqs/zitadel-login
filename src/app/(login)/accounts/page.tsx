@@ -59,23 +59,20 @@ export default async function Page(props: {
         >
           <Translated i18nKey="title" namespace="accounts" />
         </h2>
-        <p className="ztdl-p">
+        <p className="ztdl-p text-neutral-700">
           <Translated i18nKey="description" namespace="accounts" />
         </p>
 
-        <div className="flex flex-col w-full space-y-2">
-          <SessionsList sessions={sessions} requestId={requestId} />
-          <Link href={`/loginname?` + params}>
-            <div className="flex flex-row items-center py-3 px-4 hover:bg-black/10 dark:hover:bg-white/10 rounded-md transition-all">
-              <div className="w-8 h-8 mr-4 flex flex-row justify-center items-center rounded-full bg-black/5 dark:bg-white/5">
-                <UserPlusIcon className="h-5 w-5" />
-              </div>
-              <span className="text-sm">
-                <Translated i18nKey="addAnother" namespace="accounts" />
-              </span>
-            </div>
-          </Link>
-        </div>
+        <SessionsList sessions={sessions} requestId={requestId} />
+
+        <Link href={`/loginname?` + params}>
+          <div className="flex items-center gap-2 py-3 px-4 justify-center w-full grow hover:bg-neutral-50 transition-all border rounded-full">
+            <UserPlusIcon className="size-5" />
+            <span>
+              <Translated i18nKey="addAnother" namespace="accounts" />
+            </span>
+          </div>
+        </Link>
       </div>
     </div>
   );

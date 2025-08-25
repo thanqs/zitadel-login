@@ -101,10 +101,10 @@ export function SessionItem({
           }
         }
       }}
-      className="group flex flex-row items-center bg-background-light-400 dark:bg-background-dark-400 border hover:border-neutral-300 border-divider-light dark:hover:bg-white/10 py-2 px-4 rounded-md transition-all"
+      className="group flex flex-row items-center bg-background-light-400 hover:bg-neutral-50 dark:bg-background-dark-400dark:hover:bg-white/10 py-3 px-4 transition-all"
     >
       <div className="flex flex-col items-start overflow-hidden">
-        <span className="">
+        <span className="font-semibold">
           {session.factors?.user?.displayName !== "- -"
             ? session.factors?.user?.displayName
             : session.factors?.user?.loginName}
@@ -116,12 +116,12 @@ export function SessionItem({
           </span>
         )}
         {valid ? (
-          <span className="text-xs opacity-80 text-ellipsis">
+          <span className="text-xs text-neutral-700 text-ellipsis">
             {verifiedAt && moment(timestampDate(verifiedAt)).fromNow()}
           </span>
         ) : (
           verifiedAt && (
-            <span className="text-xs opacity-80 text-ellipsis">
+            <span className="text-xs text-neutral-700 text-ellipsis">
               expired{" "}
               {session.expirationDate &&
                 moment(timestampDate(session.expirationDate)).fromNow()}

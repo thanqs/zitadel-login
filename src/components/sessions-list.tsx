@@ -15,7 +15,7 @@ type Props = {
 export function SessionsList({ sessions, requestId }: Props) {
   const [list, setList] = useState<Session[]>(sessions);
   return sessions ? (
-    <div className="flex flex-col space-y-2">
+    <div className="flex flex-col border rounded-lg divide-y overflow-hidden w-full">
       {list
         .filter((session) => session?.factors?.user?.loginName)
         // sort by change date descending
