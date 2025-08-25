@@ -43,14 +43,9 @@ export const ThanqsResetEmailSendAgain = ({
 
   return (
     <div
-      className="w-full p-5 pb-6 flex flex-col gap-4"
-      style={{
-        backgroundColor: "#FaF7F5",
-        border: "1px solid #E6E3E1",
-        borderRadius: "8px",
-      }}
+      className="w-full p-5 pb-6 flex flex-col items-center gap-4 rounded-lg border bg-[#FaF7F5]"
     >
-      <p className="text-center">
+      <p className="text-center text-neutral-500">
         Niet ontvangen? Check je spam folder of vraag de link opnieuw aan.
       </p>
       <Button
