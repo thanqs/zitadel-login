@@ -101,7 +101,7 @@ export function SessionItem({
           }
         }
       }}
-      className="group flex flex-row items-center bg-background-light-400 dark:bg-background-dark-400  border border-divider-light hover:shadow-lg dark:hover:bg-white/10 py-2 px-4 rounded-md transition-all"
+      className="group flex flex-row items-center bg-background-light-400 dark:bg-background-dark-400 border hover:border-neutral-300 border-divider-light dark:hover:bg-white/10 py-2 px-4 rounded-md transition-all"
     >
       <div className="flex flex-col items-start overflow-hidden">
         <span className="">
