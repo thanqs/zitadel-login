@@ -77,7 +77,7 @@ export default async function RootLayout({
               <div className="m-auto w-full max-w-[566px] space-y-6 pb-10">
                 {children}
               </div>
-              <div className="flex flex-row justify-end py-4 items-center space-x-4">
+              <div className="flex  justify-end py-4 pb-8 items-center px-4 lg:px-0">
                 <LanguageSwitcher />
               </div>
             </div>
