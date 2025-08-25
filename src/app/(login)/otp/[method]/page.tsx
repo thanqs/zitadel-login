@@ -71,10 +71,10 @@ export default async function Page(props: {
 
   return (
     <DynamicTheme branding={branding}>
-      <div className="flex flex-col items-center space-y-4">
-        <h1>
+      <div className="flex flex-col items-start justify-start space-y-4 w-full max-w-[400px] m-auto">
+        <h2 className="text-brand-blue">
           <Translated i18nKey="verify.title" namespace="otp" />
-        </h1>
+        </h2>
         {method === "time-based" && (
           <p className="ztdl-p">
             <Translated i18nKey="verify.totpDescription" namespace="otp" />

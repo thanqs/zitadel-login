@@ -222,15 +222,15 @@ export function LoginOTP({
     <form className="w-full">
       {["email", "sms"].includes(method) && (
         <Alert type={AlertType.INFO}>
-          <div className="flex flex-row">
-            <span className="mr-auto flex-1 text-left">
+          <div className="flex">
+            <span className="flex-1 text-neutral-700">
               <Translated i18nKey="verify.noCodeReceived" namespace="otp" />
             </span>
             <button
               aria-label="Resend OTP Code"
               disabled={loading}
               type="button"
-              className="ml-4 cursor-pointer text-primary-light-500 hover:text-primary-light-400 disabled:cursor-default disabled:text-gray-400 dark:text-primary-dark-500 hover:dark:text-primary-dark-400 dark:disabled:text-gray-700"
+              className="cursor-pointer text-brand-blue underline hover:text-primary-light-400 disabled:cursor-default disabled:text-gray-400 dark:text-primary-dark-500 hover:dark:text-primary-dark-400 dark:disabled:text-gray-700"
               onClick={() => {
                 setLoading(true);
                 updateSessionForOTPChallenge()
@@ -272,7 +272,7 @@ export function LoginOTP({
           type="submit"
           className="self-end"
           variant={ButtonVariants.Primary}
-          disabled={loading || !formState.isValid}
+          disabled={loading}
           onClick={handleSubmit((e) => {
             setCodeAndContinue(e, organization);
           })}
