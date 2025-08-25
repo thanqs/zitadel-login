@@ -93,7 +93,7 @@ export function SignInWithIdp({
         width={200}
         height={1}
         />
-        <span className="flex-1">of</span>
+        <span className="flex-1 text-neutral-500">of</span>
       <Image
         src={Line}
         alt="line"
