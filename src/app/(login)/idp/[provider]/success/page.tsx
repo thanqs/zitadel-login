@@ -31,10 +31,10 @@ import { headers } from "next/headers";
 const ORG_SUFFIX_REGEX = /(?<=@)(.+)/;
 
 async function resolveOrganizationForUser({
-                                            organization,
-                                            addHumanUser,
-                                            serviceUrl,
-                                          }: {
+  organization,
+  addHumanUser,
+  serviceUrl,
+}: {
   organization?: string;
   addHumanUser?: { username?: string };
   serviceUrl: string;
