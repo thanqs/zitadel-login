@@ -146,7 +146,7 @@ export function RegisterFormIDPIncomplete({
         <Button
           type="submit"
           variant={ButtonVariants.Primary}
-          disabled={loading || !formState.isValid}
+          disabled={loading}
           onClick={handleSubmit(submitAndRegister)}
           data-testid="submit-button"
         >

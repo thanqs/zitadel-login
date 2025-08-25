@@ -24,12 +24,10 @@ export async function completeIDP({
 }) {
   return (
     <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
-      <div className="flex flex-col items-center gap-6">
-        <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-start gap-6">
+        <div className="flex flex-col items-start gap-4">
         <h2
-          style={{
-            color: "hsl(250,100%,38%)",
-          }}
+          className="text-brand-blue"
         >
           <Translated i18nKey="completeRegister.title" namespace="idp" />
         </h2>
