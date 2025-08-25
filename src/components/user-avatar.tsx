@@ -33,7 +33,7 @@ export function UserAvatar({
   }
 
   return (
-    <div className="flex h-full w-full flex-row items-center rounded-lg border py-[7px] dark:border-white/20">
+    <div className="relative flex h-full w-full flex-row items-center rounded-lg border py-[7px] dark:border-white/20">
       <span className="ml-4 max-w-[250px] text-ellipsis text-base overflow-hidden">
         {loginName}
       </span>
@@ -41,7 +41,7 @@ export function UserAvatar({
       {showDropdown && (
         <Link
           href={"/accounts?" + params}
-          className="ml-4 flex items-center justify-center p-1 pl-0 hover:bg-black/10 dark:hover:bg-white/10 rounded-full mr-1 transition-all"
+          className="absolute right-1 flex items-center justify-center size-8 hover:bg-black/10 dark:hover:bg-white/10 rounded-full transition-all"
         >
           <ChevronDownIcon className="h-4 w-4" />
         </Link>
