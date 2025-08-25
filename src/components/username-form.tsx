@@ -97,56 +97,59 @@ export function UsernameForm({
     inputLabel = "Username or email";
   }
 
-  return (<>
-    <form className="w-full h-full space-y-3">
-      <TextInput
-        type="text"
-        autoComplete="username"
-        {...register("loginName", { required: t("required.loginName") })}
-        label={inputLabel}
-        data-testid="username-text-input"
-        suffix={suffix}
-      />
-      {error && (
-        <div data-testid="error">
-          <Alert>{error}</Alert>
+  return (
+    <>
+      <form className="space-y-3">
+        <TextInput
+          type="text"
+          autoComplete="username"
+          {...register("loginName", { required: t("required.loginName") })}
+          label={inputLabel}
+          placeholder={t("email.placeholder")}
+          data-testid="username-text-input"
+          suffix={suffix}
+        />
+        {error && (
+          <div data-testid="error">
+            <Alert>{error}</Alert>
+          </div>
+        )}
+        <div className="flex w-full flex-row items-center pt-3">
+          <Button
+            data-testid="submit-button"
+            type="submit"
+            className="w-full"
+            variant={ButtonVariants.Primary}
+            disabled={loading}
+            onClick={handleSubmit((e) => submitLoginName(e, organization))}
+          >
+            {loading && <Spinner className="h-5 w-5 mr-2" />}
+            <Translated i18nKey="submit" namespace="loginname" />
+          </Button>
         </div>
-      )}
-      <div className="flex w-full flex-row items-center pt-3">
-        <Button
-          data-testid="submit-button"
-          type="submit"
-          className="w-full"
-          variant={ButtonVariants.Primary}
-          disabled={loading}
-          onClick={handleSubmit((e) => submitLoginName(e, organization))}
-        >
-          {loading && <Spinner className="h-5 w-5 mr-2" />}
-          <Translated i18nKey="submit" namespace="loginname" />
-        </Button>
-      </div>
-    </form>
+      </form>
       {allowRegister && (
-        <p className="text-center text-base font-normal text-neutral-500 md:mb-14">
-        <button
-          className="transition-all text-sm hover:text-primary-light-500"
-          onClick={() => {
-            const registerParams = new URLSearchParams();
-            if (organization) {
-              registerParams.append("organization", organization);
-            }
-            if (requestId) {
-              registerParams.append("requestId", requestId);
-            }
+        <p className="text-center text-base font-normal text-neutral-500 md:mb-14 pt-10">
+          {`${t("new")} `}
+          <button
+            className="transition-all text-brand-blue underline  hover:text-primary-light-500"
+            onClick={() => {
+              const registerParams = new URLSearchParams();
+              if (organization) {
+                registerParams.append("organization", organization);
+              }
+              if (requestId) {
+                registerParams.append("requestId", requestId);
+              }
 
-            router.push("/register?" + registerParams);
-          }}
-          type="button"
-          disabled={loading}
-          data-testid="register-button"
-        >
-          <Translated i18nKey="register" namespace="loginname" />
-        </button>
+              router.push("/register?" + registerParams);
+            }}
+            type="button"
+            disabled={loading}
+            data-testid="register-button"
+          >
+            <Translated i18nKey="register" namespace="loginname" />
+          </button>
         </p>
       )}
     </>
