@@ -77,7 +77,7 @@ export function SignInWithIdp({
   };
 
   return (
-    <div className="flex flex-col w-full space-y-2 text-sm gap-3">
+    <div className="flex flex-col w-full  text-sm gap-3">
       <div className="flex flex-col gap-2">
       {!!identityProviders.length && identityProviders?.map(renderIDPButton)}
       {state?.error && (

@@ -52,8 +52,8 @@ export default async function Page(props: {
   });
 
   return (
-    <div className="m-auto w-full max-w-[330px] space-y-6 pb-10">
-      <div className="flex flex-col space-y-4 gap-4">
+    <div className="m-auto w-full max-w-[330px]">
+      <div className="flex flex-col gap-6">
         <h2
           data-i18n-key="error.tryagain"
           style={{
@@ -66,25 +66,27 @@ export default async function Page(props: {
         {/*  <Translated i18nKey="description" namespace="loginname" />*/}
         {/*</p>*/}
 
-        {identityProviders &&
-          identityProviders.length > 0 &&
-          loginSettings?.allowExternalIdp && (
-            <SignInWithIdp
-              identityProviders={identityProviders}
-              requestId={requestId}
-              organization={organization}
-            ></SignInWithIdp>
-          )}
+        <div className="space-y-3">
+          {identityProviders &&
+            identityProviders.length > 0 &&
+            loginSettings?.allowExternalIdp && (
+              <SignInWithIdp
+                identityProviders={identityProviders}
+                requestId={requestId}
+                organization={organization}
+              ></SignInWithIdp>
+            )}
 
-        <UsernameForm
-          loginName={loginName}
-          requestId={requestId}
-          organization={organization} // stick to "organization" as we still want to do user discovery based on the searchParams not the default organization, later the organization is determined by the found user
-          loginSettings={contextLoginSettings}
-          suffix={suffix}
-          submit={submit}
-          allowRegister={!!loginSettings?.allowRegister}
-        ></UsernameForm>
+          <UsernameForm
+            loginName={loginName}
+            requestId={requestId}
+            organization={organization} // stick to "organization" as we still want to do user discovery based on the searchParams not the default organization, later the organization is determined by the found user
+            loginSettings={contextLoginSettings}
+            suffix={suffix}
+            submit={submit}
+            allowRegister={!!loginSettings?.allowRegister}
+          />
+        </div>
       </div>
     </div>
   );

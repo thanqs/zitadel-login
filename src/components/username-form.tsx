@@ -98,7 +98,7 @@ export function UsernameForm({
   }
 
   return (<>
-    <form className="w-full h-full">
+    <form className="w-full h-full space-y-3">
       <TextInput
         type="text"
         autoComplete="username"
@@ -112,13 +112,13 @@ export function UsernameForm({
           <Alert>{error}</Alert>
         </div>
       )}
-      <div className="mt-4 flex w-full flex-row items-center">
+      <div className="flex w-full flex-row items-center">
         <Button
           data-testid="submit-button"
           type="submit"
           className="w-full"
           variant={ButtonVariants.Primary}
-          disabled={loading || !formState.isValid}
+          disabled={loading}
           onClick={handleSubmit((e) => submitLoginName(e, organization))}
         >
           {loading && <Spinner className="h-5 w-5 mr-2" />}
@@ -127,7 +127,7 @@ export function UsernameForm({
       </div>
     </form>
       {allowRegister && (
-        <p className="mb-8 text-center text-base font-normal text-neutral-500 md:mb-14">
+        <p className="text-center text-base font-normal text-neutral-500 md:mb-14">
         <button
           className="transition-all text-sm hover:text-primary-light-500"
           onClick={() => {
