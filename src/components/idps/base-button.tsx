@@ -26,10 +26,9 @@ export const BaseButton = forwardRef<
       ref={ref}
       disabled={formStatus.pending}
       className={clsx(
-        "flex-1 transition-all cursor-pointer flex flex-row items-center bg-background-light-400 text-text-light-500 border border-divider-light hover:border-black dark:border-divider-dark hover:dark:border-white focus:border-primary-light-500 focus:dark:border-primary-dark-500 outline-none rounded-md  h-10",
+        "flex-1 transition-all cursor-pointer flex flex-row items-center hover:bg-neutral-50 bg-background-light-400 text-text-light-500 border border-divider-light hover:border-neutral-300 dark:border-neutral-950 hover:dark:border-white focus:border-primary-light-500 focus:dark:border-primary-dark-500 outline-none rounded-md h-10",
         props.className,
       )}
-      style={{ borderColor: "#E6E3E1" }}
     >
       <div className="flex-1 justify-between flex items-center gap-4">
         <div className="flex-1 flex flex-row items-center py-[6px] px-2 pl-3 justify-center gap-[10px]"
