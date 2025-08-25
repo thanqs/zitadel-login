@@ -99,21 +99,14 @@ export function UsernameForm({
 
   return (<>
     <form className="w-full h-full">
-      <div className="">
-        <TextInput
-          type="text"
-          autoComplete="username"
-          {...register("loginName", { required: t("required.loginName") })}
-          label={inputLabel}
-          data-testid="username-text-input"
-          suffix={suffix}
-          style={{
-            borderColor: error? "#920000" : "var(--border-color)",
-            borderWidth: error? 2:0,
-          }}
-        />
-      </div>
-
+      <TextInput
+        type="text"
+        autoComplete="username"
+        {...register("loginName", { required: t("required.loginName") })}
+        label={inputLabel}
+        data-testid="username-text-input"
+        suffix={suffix}
+      />
       {error && (
         <div data-testid="error">
           <Alert>{error}</Alert>
