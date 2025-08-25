@@ -26,7 +26,7 @@ export const BaseButton = forwardRef<
       ref={ref}
       disabled={formStatus.pending}
       className={clsx(
-        "flex-1 transition-all cursor-pointer flex flex-row items-center hover:bg-neutral-50 bg-background-light-400 text-text-light-500 border border-divider-light hover:border-neutral-300 dark:border-neutral-950 hover:dark:border-white focus:border-primary-light-500 focus:dark:border-primary-dark-500 outline-none rounded-md h-10",
+        "flex-1 relative transition-all cursor-pointer flex flex-row items-center hover:bg-neutral-50 bg-background-light-400 text-text-light-500 border border-divider-light hover:border-neutral-300 dark:border-neutral-950 hover:dark:border-white focus:border-primary-light-500 focus:dark:border-primary-dark-500 outline-none rounded-md h-10",
         props.className,
       )}
     >
@@ -42,7 +42,7 @@ export const BaseButton = forwardRef<
              }}>
           {props.children}
         </div>
-        {formStatus.pending && <Loader2Icon className="w-4 h-4 animate-spin" />}
+        {formStatus.pending && <div className="absolute right-2 top-1/2 -translate-y-1/2"><Loader2Icon className="w-4 h-4 animate-spin" /></div>}
       </div>
     </button>
   );
