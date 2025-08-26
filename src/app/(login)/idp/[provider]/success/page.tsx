@@ -95,6 +95,7 @@ export default async function Page(props: {
     id,
     token,
   });
+console.log('intent', intent);
 
   const { idpInformation, userId } = intent;
   let { addHumanUser } = intent;
