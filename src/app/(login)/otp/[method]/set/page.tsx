@@ -125,10 +125,10 @@ export default async function Page(props: {
 
   return (
     <DynamicTheme branding={branding}>
-      <div className="flex flex-col items-center space-y-4">
-        <h1>
+      <div className="flex flex-col items-start space-y-4 max-w-[330px] m-auto w-full">
+        <h2 className="text-brand-blue">
           <Translated i18nKey="set.title" namespace="otp" />
-        </h1>
+        </h2>
         {!session && (
           <div className="py-4">
             <Alert>

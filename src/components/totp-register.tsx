@@ -114,7 +114,7 @@ export function TotpRegister({
             className="my-4 h-40 w-40 rounded-md bg-white p-2"
             value={uri}
           />
-          <div className="my-2 mb-4 flex w-96 rounded-lg border border-divider-light px-4 py-2 pr-2 text-sm dark:border-divider-dark">
+          <div className="my-2 mb-4 flex w-full max-w-[330px] rounded-lg border border-divider-light px-4 py-2 pr-2 text-sm dark:border-divider-dark">
             <Link href={uri} target="_blank" className="flex-1 overflow-x-auto">
               {uri}
             </Link>
@@ -138,12 +138,11 @@ export function TotpRegister({
             )}
 
             <div className="mt-8 flex w-full flex-row items-center">
-              <span className="flex-grow"></span>
               <Button
                 type="submit"
-                className="self-end"
+                className="w-full"
                 variant={ButtonVariants.Primary}
-                disabled={loading || !formState.isValid}
+                disabled={loading}
                 onClick={handleSubmit(continueWithCode)}
                 data-testid="submit-button"
               >
