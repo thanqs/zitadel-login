@@ -965,7 +965,7 @@ export async function searchUsers({
     return emailOrPhoneResult;
   }
 
-  return { error: "User not found in the system" };
+  return { error: "User not found in the system", errorCode: "user_not_found" };
 }
 
 export async function getDefaultOrg({

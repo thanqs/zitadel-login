@@ -32,6 +32,9 @@
     },
     "email": {
       "placeholder": "Voer je e-mailadres in"
+    },
+    "error": {
+      "user_not_found": "Gebruiker niet gevonden"
     }
   },
   "password": {

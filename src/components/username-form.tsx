@@ -70,6 +70,11 @@ export function UsernameForm({
       return router.push(res.redirect);
     }
 
+    if (res && "errorCode" in res && res.errorCode && res.errorCode === "user_not_found") {
+      setError(t("error.user_not_found"));
+      return;
+    }
+
     if (res && "error" in res && res.error) {
       setError(res.error);
       return;

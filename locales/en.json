@@ -32,6 +32,9 @@
     },
     "email": {
       "placeholder": "Enter your email address"
+    },
+    "error": {
+      "user_not_found": "User not found."
     }
   },
   "password": {
