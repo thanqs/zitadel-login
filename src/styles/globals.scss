@@ -12,11 +12,11 @@ html {
 @layer base {
   h1,
   .ztdl-h1 {
-    @apply text-2xl text-center;
+    @apply text-2xl;
   }
 
   .ztdl-p {
-    @apply text-base text-text-light-secondary-500 text-center;
+    @apply text-base text-text-light-secondary-500;
   }
 
   /**********THANQS**********/
