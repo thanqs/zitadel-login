@@ -156,6 +156,9 @@
         "code": "Dieses Feld ist erforderlich"
       }
     },
+    "error": {
+      "unable_to_verify": "Dieser Code ist ungültig. Bitte versuche es erneut."
+    },
     "set": {
       "title": "2-Faktor einrichten",
       "totpDescription": "Scannen Sie den QR-Code mit Ihrer Authenticator-App.",

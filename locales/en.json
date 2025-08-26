@@ -157,6 +157,9 @@
         "code": "This field is required"
       }
     },
+    "error": {
+      "unable_to_verify": "This code is invalid. Please try again."
+    },
     "set": {
       "title": "Set up 2-Factor",
       "totpDescription": "Scan the QR code with your authenticator app.",

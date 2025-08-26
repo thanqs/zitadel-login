@@ -168,7 +168,7 @@ export function LoginOTP({
       requestId,
     })
       .catch(() => {
-        setError("Could not verify OTP code");
+        setError(t('error.unable_to_verify'));
         return;
       })
       .finally(() => {

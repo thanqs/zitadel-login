@@ -159,6 +159,9 @@
         "code": "Dit veld is verplicht"
       }
     },
+    "error": {
+      "unable_to_verify": "Deze code is ongeldig. Probeer het alstublieft opnieuw."
+    },
     "set": {
       "title": "2-Factor instellen",
       "totpDescription": "Scan de QR-code met je authenticator-app.",
