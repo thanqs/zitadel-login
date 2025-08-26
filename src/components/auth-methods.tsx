@@ -9,7 +9,7 @@ const cardClasses = (alreadyAdded: boolean) =>
     "relative bg-background-light-400 dark:bg-background-dark-400 group block space-y-1.5 rounded-md px-5 py-3  border border-divider-light dark:border-divider-dark transition-all ",
     alreadyAdded
       ? "opacity-50 cursor-default"
-      : "hover:shadow-lg hover:dark:bg-white/10",
+      : "hover:bg-neutral-50 hover:border-neutral-300 hover:dark:bg-white/10",
   );
 
 const LinkWrapper = ({

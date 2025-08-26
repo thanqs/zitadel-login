@@ -9,6 +9,7 @@ import { AuthenticationMethodType } from "@zitadel/proto/zitadel/user/v2/user_se
 import { useRouter } from "next/navigation";
 import { EMAIL, SMS, TOTP, U2F } from "./auth-methods";
 import { Translated } from "./translated";
+import { Button } from "./button";
 
 type Props = {
   userId: string;
@@ -58,7 +59,7 @@ export function ChooseSecondFactorToSetup({
 
   return (
     <>
-      <div className="grid w-full grid-cols-1 gap-5 pt-4">
+      <div className="grid w-full grid-cols-1 gap-2 pt-4">
         {loginSettings.secondFactors.map((factor) => {
           switch (factor) {
             case SecondFactorType.OTP:
@@ -93,8 +94,7 @@ export function ChooseSecondFactorToSetup({
         })}
       </div>
       {!force && (
-        <button
-          className="text-sm transition-all hover:text-primary-light-500 dark:hover:text-primary-dark-500"
+        <Button
           onClick={async () => {
             const resp = await skipMFAAndContinueWithNextUrl({
               userId,
@@ -112,7 +112,7 @@ export function ChooseSecondFactorToSetup({
           data-testid="reset-button"
         >
           <Translated i18nKey="set.skip" namespace="mfa" />
-        </button>
+        </Button>
       )}
     </>
   );

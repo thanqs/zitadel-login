@@ -163,11 +163,6 @@ export default async function Page(props: {
               force={force === "true"}
             ></ChooseSecondFactorToSetup>
           )}
-
-        <div className="mt-8 flex w-full flex-row items-center">
-          <BackButton />
-          <span className="flex-grow"></span>
-        </div>
       </div>
     </DynamicTheme>
   );
