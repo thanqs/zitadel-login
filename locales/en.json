@@ -36,7 +36,7 @@
   },
   "password": {
     "verify": {
-      "title": "Password",
+      "title": "Log in with your password",
       "description": "Enter your password.",
       "resetPassword": "Forgot password?",
       "submit": "Login",

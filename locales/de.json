@@ -36,7 +36,7 @@
   },
   "password": {
     "verify": {
-      "title": "Passwort",
+      "title": "Mit Passwort anmelden",
       "resetPassword": "Passwort vergessen?",
       "submit": "Anmelden",
       "required": {
