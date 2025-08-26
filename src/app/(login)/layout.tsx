@@ -8,12 +8,21 @@ import { Fustat } from "next/font/google";
 import { ReactNode, Suspense } from "react";
 import LogoSvg from "@/public/logo/thanqs-logo.svg"
 import { ThanqsSidebar, GiftsAndPresentsIllustration } from "@/components/thanqs-sidebar";
+import { getTranslations } from "next-intl/server";
+import { Metadata } from "next";
 
 const fustat = Fustat({
   weight: ["200", "300", "400", "500", "600", "700", "800"],
   subsets: ["latin"],
 
 });
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations({ namespace: 'pages' });
+  return {
+    title: t('default.title')
+  };
+}
 
 export default async function RootLayout({
                                            children,

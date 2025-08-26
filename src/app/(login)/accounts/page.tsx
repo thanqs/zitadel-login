@@ -4,9 +4,18 @@ import { getAllSessionCookieIds } from "@/lib/cookies";
 import { getServiceUrlFromHeaders } from "@/lib/service-url";
 import { listSessions } from "@/lib/zitadel";
 import { UserPlusIcon } from "@heroicons/react/24/outline";
+import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { headers } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations({ namespace: 'pages' });
+  return {
+    title: t('accounts.title')
+  };
+}
 
 async function loadSessions({ serviceUrl }: { serviceUrl: string }) {
   const cookieIds = await getAllSessionCookieIds();

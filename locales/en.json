@@ -2,6 +2,23 @@
   "common": {
     "back": "Back"
   },
+  "pages": {
+    "default": {
+      "title": "Thanqs"
+    },
+    "loginname": {
+      "title": "Login - Thanqs"
+    },
+    "register": {
+      "title": "Register - Thanqs"
+    },
+    "password": {
+      "title": "Login - Thanqs"
+    },
+    "accounts": {
+      "title": "Account - Thanqs"
+    }
+  },
   "accounts": {
     "title": "Accounts",
     "description": "Select the account you want to use.",

@@ -14,6 +14,15 @@ import { User } from "@zitadel/proto/zitadel/user/v2/user_pb";
 import { headers } from "next/headers";
 import Image from "next/image";
 import EnvelopeIcon from "../../../../public/icons/envelope.svg";
+import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations({ namespace: 'pages' });
+  return {
+    title: t('password.title')
+  };
+}
 
 export default async function Page(props: {
   searchParams: Promise<Record<string | number | symbol, string | undefined>>;
