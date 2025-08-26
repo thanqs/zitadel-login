@@ -62,7 +62,7 @@
     },
     "set": {
       "title": "Kies een wachtwoord",
-      "description": "Stel het wachtwoord voor je account in",
+      "description": "Je e-mailadres is bevestigd. Stel nu een wachtwoord in om je account aan te maken.",
       "codeSent": "We hebben een e-mail gestuurd naar je e-mailadres. Volg de instructies om weer toegang te krijgen tot je account.",
       "noCodeReceived": "Geen code ontvangen?",
       "resend": "Code opnieuw versturen",

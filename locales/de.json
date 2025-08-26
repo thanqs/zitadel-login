@@ -62,7 +62,7 @@
     },
     "set": {
       "title": "Passwort wählen",
-      "description": "Legen Sie das Passwort für Ihr Konto fest",
+      "description": "Deine E-Mail-Adresse wurde bestätigt. Lege jetzt ein Passwort fest, um dein Konto zu erstellen.",
       "codeSent": "Wir haben eine E-Mail an Ihre Adresse gesendet. Folgen Sie den Anweisungen, um wieder Zugriff auf Ihr Konto zu erhalten.",
       "noCodeReceived": "Keinen Code erhalten?",
       "resend": "Code erneut senden",

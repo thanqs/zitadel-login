@@ -63,7 +63,7 @@
     },
     "set": {
       "title": "Choose a password",
-      "description": "Set the password for your account",
+      "description": "Your email address has been confirmed. Now set a password to create your account.",
       "codeSent": "We have sent an email to your address. Follow the instructions to regain access to your account.",
       "noCodeReceived": "No code received?",
       "resend": "Resend code",
