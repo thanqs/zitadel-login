@@ -53,13 +53,13 @@ export default async function Page(props: {
 
   return (
     <div className="m-auto w-full max-w-[330px] space-y-6">
-      <div className="flex flex-col items-start gap-4">
+      <div className="flex flex-col items-start gap-6">
         <h2
           className="text-brand-blue"
         >
           <Translated i18nKey="title" namespace="accounts" />
         </h2>
-        <p className="ztdl-p text-neutral-700">
+        <p className="text-neutral-700">
           <Translated i18nKey="description" namespace="accounts" />
         </p>
 
