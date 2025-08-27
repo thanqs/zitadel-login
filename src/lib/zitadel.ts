@@ -35,7 +35,7 @@ import {
   SearchQuery,
   SearchQuerySchema,
 } from "@zitadel/proto/zitadel/user/v2/query_pb";
-import { SendInviteCodeSchema, SetMetadataEntrySchema } from "@zitadel/proto/zitadel/user/v2/user_pb";
+import { SendInviteCodeSchema } from "@zitadel/proto/zitadel/user/v2/user_pb";
 import {
   AddHumanUserRequest,
   ResendEmailCodeRequest,
@@ -408,23 +408,13 @@ export async function addOrganizationAndIdpUser({
   const orgService: Client<typeof OrganizationService> =
     await createServiceForHost(OrganizationService, serviceUrl);
 
-  let utf8Encode = new TextEncoder();
-
   return await orgService.addOrganization({
     name: uuidv4(),
     admins: [
       {
         userType: {
           case: "human",
-          value: {
-            ...humanUser,
-            metadata: [
-              create(SetMetadataEntrySchema,               {
-                key: "project",
-                value: utf8Encode.encode(process.env.ZITADEL_PROJECT_ID),
-              }),
-            ],
-          },
+          value:humanUser,
         } ,
       },
     ],
@@ -442,7 +432,6 @@ export async function addOrganizationAndHumanUser({
   const orgService: Client<typeof OrganizationService> =
     await createServiceForHost(OrganizationService, serviceUrl);
 
-  let utf8Encode = new TextEncoder();
   return await orgService.addOrganization({
     name: uuidv4(),
     admins: [
@@ -459,12 +448,6 @@ export async function addOrganizationAndHumanUser({
             },
             username: email,
             profile: { givenName: firstName, familyName: lastName, preferredLanguage: preferredLanguage },
-            metadata: [
-              {
-                key: "project",
-                value: utf8Encode.encode(process.env.ZITADEL_PROJECT_ID),
-              },
-            ],
             passwordType: password
               ? { case: "password", value: { password } }
               : undefined,
