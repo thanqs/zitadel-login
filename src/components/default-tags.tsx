@@ -26,7 +26,7 @@ export function DefaultTags() {
         href="/favicon/safari-pinned-tab.svg"
         rel="mask-icon"
       /> */}
-      <link href="/favicon.svg" rel="shortcut icon" />
+      <link rel="shortcut icon" href="/favicon.ico?v=1" />
     </>
   );
 }
